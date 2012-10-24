@@ -1,4 +1,10 @@
-Prototype::Application.routes.draw do
+SmartHomeWebApp::Application.routes.draw do
+  resources :phones
+
+  resources :users
+  #get "users/id"
+  match "/users/:id" => "users#show"
+  root :to => 'users#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

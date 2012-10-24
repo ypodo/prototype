@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  mail: MyString
+  phone: MyString
+  returned: false
+  user: MyString
+
+two:
+  name: MyString
+  mail: MyString
+  phone: MyString
+  returned: false
+  user: MyString

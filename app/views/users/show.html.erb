@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+
+
+<p>
+	
+	
+</p>
+<%@phone.each do |f| %>
+	<%=f.name %>
+	<%=f.user %>
+	<br>
+	<hr />
+<%end%>
+
+<p>Add new record</p>
+
+<%= form_for(@record) do |f| %>
+  <% if @record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@phone.errors.count, "error") %> prohibited this phone from being saved:</h2>
+
+      <ul>
+      <% @record.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :mail %><br />
+    <%= f.text_field :mail %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :returned %><br />
+    <%= f.check_box :returned %>
+  </div>
+  <div class="field">
+    
+    <%= f.hidden_field :user ,:value=> @user.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
