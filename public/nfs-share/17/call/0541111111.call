@@ -1,0 +1,10 @@
+Channel:SIP/0541111111
+CallerID:375 <17> 
+MaxRetries: 0 
+RetryTime: 300 
+WaitTime: 60 
+Context: external 
+Extension:0541111111
+Priority: 2 
+Setvar: invite_id=375
+Setvar: user_id=17

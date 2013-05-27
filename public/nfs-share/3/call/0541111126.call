@@ -1,0 +1,10 @@
+Channel:SIP/0541111126
+CallerID:451 <3> 
+MaxRetries: 0 
+RetryTime: 300 
+WaitTime: 60 
+Context: external 
+Extension:0541111126
+Priority: 2 
+Setvar: invite_id=451
+Setvar: user_id=3

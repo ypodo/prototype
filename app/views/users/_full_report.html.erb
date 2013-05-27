@@ -1,0 +1,54 @@
+ <div class="row-fluid" id="full_report_div" > 	
+ 	 	
+ 	<form class="well well-small">
+	  <div class="input-append">
+	  <input class="" id="appendedInputButton" type="email" type="text">
+	  <button class="btn" type="button" for="inputIcon"  onclick="sendReport()">Send mail</button>	  
+	</div>
+	</form>		
+	            	
+ 	<p></p>
+ 	<div class="control-list"> 	
+ 		<div class="row-fluid">
+ 			<div class="span8">
+ 			<h6><div id="progress_bar_lable"></div></h6>
+	 		<div class="progress progress-striped active">
+			  <div class="bar bar-warning" style="width: 0%;" id="progress_bar"></div>			  
+			</div>
+ 		</div>
+ 		<div class="span4">
+ 			<div id="token">
+			  	<%if !@user.orders.last.nil?%>
+			  		<h5>Transaction id: <%=@user.orders.last.token%></h5>
+				<%end%>		  	  
+		  	  </div>
+ 		</div>
+ 		</div>
+ 		
+	 	<div class="row-fluid">		 	
+		 	<div class="span3">
+	 	 		<!--Small report table on the right side-->
+	 	 		<%=render 'report'%>
+	 	 		<button class="btn btn-block" type="button" onclick="refresh_report_sum()">Refresh</button>
+	 	 	</div>
+	 	 	
+		 	<div class="span9">
+			 	<table class="table table-bordered table-hover">
+			  		<thead>
+		                <tr>                  
+		                  <th>Name</th>
+		                  <th>Email</th>
+		                  <th>Phone number</th>
+		                  <th>Acknowledge status</th>
+		                </tr>
+				  	</thead>
+				  	<tbody id="full_report_table_body">
+			                <%=render 'invites_each'%>                
+			          </tbody>
+			  	</table>	
+		 	</div>		 	
+	 	 	
+	 	 	
+	 	</div>
+ 	</div> 	
+ </div> 

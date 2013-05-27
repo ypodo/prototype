@@ -1,0 +1,9 @@
+Channel:SIP/1001
+CallerID: "user_id" <3>
+MaxRetries: 1
+RetryTime: 60
+WaitTime: 30
+Context: default
+Extension: 1001
+Priority: 2
+CallerIDName: Prototype_rails_id

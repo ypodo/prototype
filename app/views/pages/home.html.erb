@@ -1,0 +1,59 @@
+<div class="row-fluid">
+	<div class="span8">			
+		<iframe  class="well" width="580" height="400" src="http://www.youtube.com/embed/L624IWK28_M?rel=0" frameborder="0" allowfullscreen></iframe>
+	</div>		
+	<div class="span4">	
+		<% if !signed_in? %>
+		<div class="span11 well well-small">		
+			<div class="control-group">
+			<p>Registration</p>			
+			<%= form_for(@user) do |f| %>
+			<%= render 'shared/error_messages', :object => f.object %>			    
+			    <%= f.text_field :name ,:placeholder=>"Name" ,:required => true, :value=>""%>			  
+			    <%= f.text_field :email, :placeholder=>"Email@" ,:required => true, :value=>"",:type=>"email"%>			  
+			    <%= f.password_field :password, :placeholder=>"Password" ,:required => true%>			  
+			    <%= f.password_field :password_confirmation, :placeholder=>"Confirm password" ,:required => true%>
+			    <p>
+			    <%= f.submit "Sign up", :class=>"btn btn-primary inline",:onclick => 'agreementValid();'%>		
+		      	
+		      	<label class="checkbox inline" >
+		      		<%= f.check_box :agreement, :calss=>"inline", :id=>"agreement" ,:required => true%>
+      				<a href="#term" data-toggle="modal" id="agreementText"> Agreements.</a>
+    			</label>
+			  	</div>
+			<% end %>
+			<hr />			
+			<%=render 'users/terms_mudal'%>
+			<div class="control-group">
+				<p>Login</p>
+				<%= form_for(:session, :url => sessions_path) do |f| %>			  
+			    <%= f.text_field :email, :placeholder=>"Email@",:type=>"email", :value=>"", :required => true,'data-toggle'=>'tooltip', 'title'=>"Enter your registed email to login"%>			  
+			    <%= f.password_field :password,:placeholder=>"Password" ,:required => true, 'data-toggle'=>'tooltip', 'title'=>"Enter your password to login the system"%>				    
+			    <div class="inline">
+				    <%= f.submit "Login", :class=>"btn btn-primary" %>
+				    <%= link_to "forgot the password?", "#", :class=>"label label-warning", :data => {:toggle => "modal"}, :href => "#myModal"%>	
+					<!--
+					<p></p>				   
+				    <a type="button" href="/auth/facebook">Facebook login</a>
+				    <p></p>
+				   	<a type="button" href="/auth/google_oauth2">Google login</a>
+				   	-->
+			    </div>	
+		  	</div>
+		  	
+			<%= render 'password_form'%>
+			<% end %>
+		</div>
+		<%else %>
+		<div class="control-group">			
+			<!--<%=link_to image_tag("/assets/Right3Green.png"),current_user%>-->			
+            
+            <%=render 'how_to_list'%>
+            <%=render 'addThis'%>         
+		</div>	
+		
+			
+      	<% end %>      	
+	</div>	
+</div>
+

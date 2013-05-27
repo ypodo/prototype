@@ -1,0 +1,32 @@
+<%if !@inviteHistorys.nil?%>
+<button class="btn btn-success" onclick="foo()">Close</button>
+
+<p></p>
+<table class="table table-bordered" id="tbl_invitesHistory">
+      <thead>
+        <tr>
+          <th>invites: <%=@inviteHistorys.count%></th>
+          <th>First Name</th>
+          <th>Mail</th>
+          <th>Number</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      	<%@inviteHistorys.each_with_index  do |elem,index|%>
+        <tr>  
+          <td><%=index+1%></td>        
+          <td><%=elem.name%></td>
+          <td><%=elem.mail%></td>
+          <td><%=elem.number%></td>    
+          <%if !elem.arriving.nil? %>
+          	<td><%=elem.arriving%></td>
+      	  <%else%>
+          	<td>nil</td>
+          <%end%>         
+        </tr>
+        <%end%>        
+      </tbody>
+</table>
+
+<%end%>
