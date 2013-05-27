@@ -1,0 +1,22 @@
+<table class="table table-condensed">              
+      <tbody>
+        <tr>
+          <td><strong>Deal description:</strong></td>
+          <td><%=@user.invites.count%>, invites will be executed, wright after the payment will be completed.</td>                 
+        </tr>
+        <tr>                 
+          <td><strong>Total invites:</strong></td>
+          <td><%=@user.invites.count%></td>                  
+        </tr>
+        <tr>
+          <td><strong>Total amount:</strong></td>                  
+          <td><%=@user.invites.count*0.5%> nis</td>
+        </tr>            
+        <tr>
+        	<td class="span3"><strong>Mail on completion:</strong></td>
+        	<td><%=@user.email%></td>
+        </tr>               
+      </tbody>
+</table>
+ 
+ 

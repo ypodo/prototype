@@ -1,0 +1,43 @@
+<%if !@invite_history.nil?%>
+<table class="table table-bordered" id="report_tbl">
+         		<%count_yes=0%>
+              	<%count_nil=0%>
+              	<%count_not=0%>
+              	<%@invite_history.each do |elem|
+              		
+              		if  (elem.arriving.nil?)
+      					count_nil+=1
+              		elsif (elem.arriving == 1)
+        				count_yes+=1
+      				elsif  (elem.arriving == 2)
+      					count_not+=1					
+      				end
+  				end
+      			%>
+          <thead>
+            <caption>
+            	Report summary.            
+            </caption>	            
+          </thead>
+          <tbody>
+            <tr class="success">              
+              <td style="font-weight: bold">Total invites:</td>
+              <td style="font-weight: bold" id="total_invites_data_row"><%=@invite_history.count%></td>                  
+            </tr>
+            <tr class="error">              
+              <td style="font-weight: bold">Comming:</td>
+              <td style="font-weight: bold" id="comming_invites_data_row"><%=count_yes%></td>                  
+            </tr>
+            <tr class="warning">              
+              <td style="font-weight: bold">No Answer:</td>
+              <td style="font-weight: bold" id="no_answer_data_row"><%=count_nil%></td>                  
+            </tr>       
+            <tr class="">              
+              <td style="font-weight: bold">Not comming:</td>
+              <td style="font-weight: bold" id="no_answer_data_row"><%=count_not%></td>                  
+            </tr>      
+          </tbody>
+</table>
+<%else%>
+<table class="table table-bordered" id="report_tbl"></table>
+<%end%>

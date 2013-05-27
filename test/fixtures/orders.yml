@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  token: MyString
+  amount: 1
+  first_name: MyString
+  last_name: MyString
+
+two:
+  user_id: 1
+  token: MyString
+  amount: 1
+  first_name: MyString
+  last_name: MyString

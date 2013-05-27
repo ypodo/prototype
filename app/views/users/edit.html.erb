@@ -1,6 +1,38 @@
-<h1>Editing user</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<div class="row-fluid">
+<div class="span4 well">		    		
+<h3>Edit user settings</h3>
+	<%= form_for(@user) do |f| %>
+	  <%= render 'shared/error_messages', :object => f.object %>
+	  <div class="field">
+	   <p>
+	    <%= f.label :name %>
+	    <%= f.text_field :name, :disabled => true%>
+	  </div>
+	  <div class="field">
+	    <%= f.label :email,"Email/User name"%>
+	    <%= f.text_field :email %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :password %>
+	    <%= f.password_field :password %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :password_confirmation, "Confirmation" %><p>
+	    <%= f.password_field :password_confirmation %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit "Save", :class => "btn btn-success btn-large btn-block"%>
+	  </div>
+	<% end %>
+			
+</div>
+	
+	<div class="span3 well">
+		<ul>
+			<li>Dear User, we will use this information only to send you the report mail while all calls will be completed</li>
+			<li> You private information will not shared with anyone for any reason.</li>
+		</ul>
+		
+	</div>
+	
+</div>

@@ -1,0 +1,17 @@
+<%= form_for @invite do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+ <table>
+ 	<tr>
+ 		<td><%= f.text_field :name %></td>
+ 		<td><%=f.text_field :number%></td>
+ 		<td><%=f.text_field :mail%></td>
+ 	</tr>
+ </table> 
+    
+    
+    
+  
+  <div class="actions">
+    <%= f.submit "Add new record" %>
+  </div>
+<% end %>

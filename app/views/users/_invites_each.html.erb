@@ -1,0 +1,18 @@
+<%if !@invite_history.nil?%>
+
+<%@invite_history.each do |f| %>							
+<tr>				
+	<td><%=f.name %></td>
+	<td><%=f.mail %> </td>
+	<td><%=f.number %></td>	    
+    <%if (f.arriving == 1)%>
+    	<td bgcolor="#0073FF">Yes</td>
+	<%elsif(f.arriving == 2)%>
+		<td bgcolor="#FF0000">No</td>
+	<%else%>
+		<td>No answer</td>
+	<%end%>		
+</tr>
+	<%end%>
+<%end%>
+

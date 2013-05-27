@@ -11,23 +11,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121017184750) do
+ActiveRecord::Schema.define(:version => 20130516043709) do
 
-  create_table "phones", :force => true do |t|
-    t.string   "name"
-    t.string   "mail"
-    t.string   "phone"
-    t.boolean  "returned"
-    t.string   "user"
+  create_table "authorizations", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "recipient_phones", :force => true do |t|
-    t.string   "Name"
-    t.string   "Mail"
-    t.string   "phone"
-    t.boolean  "returned"
+  create_table "invite_histories", :force => true do |t|
+    t.string   "name"
+    t.string   "mail"
+    t.string   "number"
+    t.integer  "user_id"
+    t.string   "event"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "arriving"
+    t.string   "token"
+  end
+
+  create_table "invites", :force => true do |t|
+    t.string   "name"
+    t.string   "mail"
+    t.string   "number"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "arriving"
+  end
+
+  add_index "invites", ["user_id"], :name => "index_invites_on_user_id"
+
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "token"
+    t.decimal  "amount"
+    t.string   "first_name"
+    t.string   "last_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -35,8 +58,14 @@ ActiveRecord::Schema.define(:version => 20121017184750) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "encrypted_password"
+    t.string   "salt"
+    t.boolean  "admin"
+    t.boolean  "agreement"
+    t.string   "provider"
+    t.string   "uid"
   end
 
 end

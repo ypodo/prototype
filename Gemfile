@@ -1,12 +1,25 @@
 source 'https://rubygems.org'
 
-#gem 'rails', '3.2.3'
-gem 'rails', '3.0.9'# Bundle edge Rails instead:
+gem 'rails', '3.2.13'
+
+# Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3'
-
-gem 'sqlite3', '1.3.3', :group => :development
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
+#gem 'omniauth-google-oauth2'
+gem 'activemerchant'
+gem 'jruby-openssl', :platform => :jruby
+gem 'sqlite3'
+gem "net-ssh"
+gem "fastthread"
+gem 'jquery-rails'
+gem "therubyracer"
+gem "bootstrap-sass", "~> 2.3.1.0"
+gem  "twitter-bootstrap-rails"
+#PayPal
+gem "paypal-express"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -14,7 +27,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platform => :ruby
+  # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -34,4 +47,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# gem 'debugger'

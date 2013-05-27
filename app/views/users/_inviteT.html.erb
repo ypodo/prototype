@@ -1,0 +1,22 @@
+<table id="inviteT_tbl" class="table table-bordered">	
+	<tr>
+		<td id="total_invites">
+			Total invites: <%=@invites.count%>			
+			<tr>
+				<th>Name</th>
+				<th>Mail</th>
+				<th>Phone</th>
+				<!--<%=button_to "Delete all", :controller => "invites", :action => "delete_all", :remote => true, :confirm => "Are you sure?", :popup => true %>-->
+				<th><button class="btn btn-mini btn-danger" type="button" onclick="remove_all_invites();">Remove all invites</button></th>						
+			</tr>
+			<%@invites.each do |f| %>
+			<tr>				
+				<td><%=f.name %></td>
+				<td><%=f.mail %> </td>
+				<td><%=f.number %></td>	
+			    <td style="color: orange"><%= link_to 'Destroy', f, method: :delete ,:class=>"label label-important", :remote=>true, :onclick=>"delete_invite_ajax(#{f.id});", :id=>f.id%></td>			    	
+			</tr>
+			<%end%>		
+		</td>	
+	</tr>
+</table>

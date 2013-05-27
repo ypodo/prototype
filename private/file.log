@@ -1,0 +1,3 @@
+show_method 
+params 
+{"action"=>"show", "controller"=>"users", "id"=>"13"}user_from_remember_token.id \n13current_user \n#<User:0xb2e8a0c8>

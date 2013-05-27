@@ -1,0 +1,21 @@
+
+<script>
+	function setupRecorder() {
+		Wami.setup({
+			id : "wami",
+			onReady : setupGUI
+		});
+	}
+
+	function setupGUI() {
+		var gui = new Wami.GUI({
+			id : "wami",
+			recordUrl : "https://wami-recorder.appspot.com/audio",
+			playUrl : "https://wami-recorder.appspot.com/audio"
+		});
+
+		gui.setPlayEnabled(false);
+	}
+</script>
+
+<object data="../Wami/Wami.swf" width="100%" align="center"></object>

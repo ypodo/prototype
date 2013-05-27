@@ -1,0 +1,21 @@
+<%= form_for(@new_invite, :update => 'inviteT', :position => :bottom, :remote=> true , :html => {:id => "ajax_trigger"}) do |f| %>
+<% if @new_invite.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this phone from being saved:</h2>
+  <ul>
+  <% @new_invite.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+  <% end %>
+<div class="form-inline">
+	<%= f.text_field :name, :size=>"18" ,:placeholder=>"Name",:class=>"input", :required => true%>
+	<%= f.text_field :mail, :size=>'25' ,:placeholder=>"Email", :type=>"email"%>	
+    <%= f.text_field :number, :size=>"10", :placeholder=>"Phone number", :required => true, :type=>"number"%>
+	<%= f.label  :"Add new", :class => "btn btn-success", :id => "submit_invite", :onclick=>"add_invite_ajax();" ,'data-toggle'=>"tooltip", 'title'=>"Enter new invite name, email, number"%>
+</div>			    
+	  
+<% end %>
+		
+

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  mail: MyString
+  number: MyString
+  user_id: 1
+  payer_id: MyString
+  event: MyString
+
+two:
+  name: MyString
+  mail: MyString
+  number: MyString
+  user_id: 1
+  payer_id: MyString
+  event: MyString
