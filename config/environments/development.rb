@@ -30,6 +30,8 @@ Prototype::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   
-  #payPal config
+  #password reset: http://railscasts.com/episodes/274-remember-me-reset-password
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  
   
 end

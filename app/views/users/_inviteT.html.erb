@@ -1,7 +1,10 @@
 <table id="inviteT_tbl" class="table table-bordered">	
 	<tr>
-		<td id="total_invites">
-			Total invites: <%=@invites.count%>			
+		<td id="">
+			<div class="input-append input-prepend span1 columns">
+				<span class="add-on" id="total_invites">Total invites: <%=@invites.count%></span>
+				<span class="add-on" id="payments">nis: <%=(@user.invites.count*unit_price).to_f.round(2)%></span>
+			</div>									
 			<tr>
 				<th>Name</th>
 				<th>Mail</th>

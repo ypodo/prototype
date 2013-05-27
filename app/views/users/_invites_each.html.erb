@@ -9,8 +9,10 @@
     	<td bgcolor="#0073FF">Yes</td>
 	<%elsif(f.arriving == 2)%>
 		<td bgcolor="#FF0000">No</td>
+	<%elsif(f.arriving.nil?)%>
+		<td bgcolor="">in progress</td>
 	<%else%>
-		<td>No answer</td>
+		<td>na</td>
 	<%end%>		
 </tr>
 	<%end%>

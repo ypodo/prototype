@@ -18,12 +18,19 @@
           <td><%=index+1%></td>        
           <td><%=elem.name%></td>
           <td><%=elem.mail%></td>
-          <td><%=elem.number%></td>    
-          <%if !elem.arriving.nil? %>
-          	<td><%=elem.arriving%></td>
-      	  <%else%>
-          	<td>nil</td>
-          <%end%>         
+          <td><%=elem.number%></td> 
+           
+          	<%if elem.arriving.nil? %>
+          		<td>in progress</td>
+          	<% elsif (elem.arriving == 1)%>
+		    	<td bgcolor="#0073FF">Yes</td>
+			<%elsif(elem.arriving == 2)%>
+				<td bgcolor="#FF0000">No</td>
+			<%elsif(elem.arriving == -1)%>
+				<td bgcolor="#FF0000">called but no answered</td>
+			<%else%>
+				<td>na</td>			
+          <%end%>  
         </tr>
         <%end%>        
       </tbody>

@@ -1,0 +1,34 @@
+<script>
+//Global veraibles
+	var unit_price=<%=unit_price.to_f.round(2)%>	
+	var ui_location=$.cookie("ui_location");
+	
+	
+	if(ui_location=="tab2"){		
+		tab2();
+	}
+	else if(ui_location=="recors_message_tab"){
+		tab1();
+	}
+	else if(ui_location=="view_results_tab"){
+		tab4();
+	}
+	else{}
+	
+</script>
+
+<script> 
+// This script switching tabs 
+  $('#mainTabs a').click(function (e) {
+	  e.preventDefault();
+	  $(this).tab('show');  	  
+	  tab_data_sync($(this).tab('show').attr('href')); // #tab2  ,doAxaj in side this function while tab swithcing,
+	  
+	})
+</script>
+<script>
+	function timer(){
+ 		 setTimeout('foo()',4000);
+	}
+	
+</script>    

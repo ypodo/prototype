@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
 include CallsHelper
+include ApplicationHelper
+include UsersHelper
+
   def checkout     
-    amount=current_user.invites.count*(0.5)
+    amount=(current_user.invites.count*(unit_price)).to_f.round(2)
     if (amount <= 0)
       render :nothing => true
       return
-    end    
+    end  
     
     payment_request = Paypal::Payment::Request.new(
       :currency_code => :ILS, # if nil, PayPal use USD as default
@@ -23,6 +26,7 @@ include CallsHelper
       "http://"+env["HTTP_HOST"]+"/orders/cancel",
       :no_shipping => true
     )
+    cookies[:ui_location]="tab4"    
     render :text => response.popup_uri
     #redirect_to gateway.redirect_url_for(setup_response.token)
   end
@@ -47,7 +51,7 @@ include CallsHelper
   private
     def complete(var)
       # This process will be the last who 
-      amount=current_user.invites.count*(0.5)
+      amount=current_user.invites.count*(unit_price)
       payment_request = Paypal::Payment::Request.new(
       :currency_code => :ILS, # if nil, PayPal use USD as default
       :amount        => amount,
@@ -68,6 +72,7 @@ include CallsHelper
         if add_payment_to_orders(response_paypal)
           copy_invites_to_history_table
           start(token)        
+          
           render :text => '<button type="button" onclick="window.close();">Click Me!</button><h1> Your payment has been processed successfully, please close the window to continue."'      
           return true
         else
@@ -76,9 +81,9 @@ include CallsHelper
         end
       else 
        render :text => "Process already started, please whait!"           
-      end
-      
+      end      
     end
+    
     def add_payment_to_orders(response_paypal)
       order=current_user.orders.new      
       order.token=response_paypal.token

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 include ApplicationHelper
 require 'fastthread'
+
   before_filter :authenticate, :only => [:index,:edit, :update,:destroy,:show]
   before_filter :correct_user, :only => [:edit, :update, :show]
   before_filter :admin_user,   :only => :destroy
@@ -51,7 +52,7 @@ require 'fastthread'
       @invite_history=@user.inviteHistorys.where(:token=>current_token)
     else
       @invite_history=nil
-    end
+    end    
   end
   
   def create
@@ -98,14 +99,17 @@ require 'fastthread'
     #Progress bar updating
     count=0
     last_token=current_user.orders.last.token
-    @invites = current_user.inviteHistorys.where(:token=>last_token)#User.find(user_from_remember_token.id).invites
-    total_invites=@invites.count    
-    @invites.each do |elem|
-      if (elem.arriving.nil?)
-        count+=1
-      else
-      end
+    if !last_token.nil?
+      @invites = current_user.inviteHistorys.where(:token=>last_token)#User.find(user_from_remember_token.id).invites
+      total_invites=@invites.count    
+      @invites.each do |elem|
+        if (elem.arriving.nil?)
+          count+=1
+        else
+        end
+      end  
     end
+    
     total_completed=total_invites-count    
     #render(:text => "#{100/total_invites*total_completed}" )
     render :text => "#{100/total_invites*total_completed}" # return to client browser procent of complition

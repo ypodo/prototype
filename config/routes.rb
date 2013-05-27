@@ -1,5 +1,9 @@
 Prototype::Application.routes.draw do
   
+  #get "password_resets/new"
+  get "password_resets/new" => "password_resets#new"
+  
+  resources :authentications  
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
   resources :invites, :only => [:create, :destroy]
@@ -32,17 +36,24 @@ Prototype::Application.routes.draw do
   match '/help',    :to => 'pages#help'
   match '/support', :to => 'pages#support'
   match '/term_of_use', :to => 'pages#term_of_use'
-  match '/foo', :to => 'pages#foo'
   
-  # Cotial Auth routing  
-  match 'auth/provider/callback', :to => 'sessions#create'
+  # Cotial Auth routing    
+  get '/auth/:provider/callback', :to => 'sessions#create'  
   match 'auth/failure', :to => redirect('/')
   match 'signout', :to => 'sessions#destroy', as: 'signout'
+  
   #paypal-express
   match '/orders/checkout', :to => 'orders#checkout'
   match '/orders/new', :to => 'orders#new'
   match '/orders/cancel', :to => 'orders#cancel'
   match '/orders/confirm', :to => 'orders#confirm'
+  
+  #reset password
+  #get "logout" => "sessions#destroy", :as => "logout"
+  #get "login" => "sessions#new", :as => "login"
+  #get "signup" => "users#new", :as => "signup"  
+  resources :password_resets
+  
   
   root :to => 'pages#home'
   

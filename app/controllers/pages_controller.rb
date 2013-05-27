@@ -23,9 +23,5 @@ require 'net/http'
   
   def term_of_use    
   end
-  
-  def foo
-    render :js => "alert('Hello');"
-  end
-  
+    
 end

@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  include SessionsHelper
+  include SessionsHelper  
+  require 'omniauth-google-oauth2'
+  #def current_user
+  #  @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+  #end
   
 end

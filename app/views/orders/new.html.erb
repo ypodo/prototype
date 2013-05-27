@@ -1,35 +1,10 @@
-<script>
-alert("Payment Cancelled"); 
- // add relevant message above or remove the line if not required
-window.onload = function(){
-	 if(window.opener){
-		 window.close();
-	} 
-	 else{
-		 if(top.dg.isOpen() == true){
-              top.dg.closeFlow();
-              return true;
-          }
-     }                              
-};                             
-</script>
+
 <!-- INFO: The post URL "checkout.PHP" is invoked when clicked on "Pay with PayPal" button.-->
 
 
 <!-- Add Digital goods in-context experience. Ensure that this script is added before the closing of html body tag -->
 
-<script src='https://www.paypalobjects.com/js/external/dg.js' type='text/javascript'></script>
 
-<script>
-
-	var dg = new PAYPAL.apps.DGFlow(
-	{
-		trigger: 'paypal_submit',
-		expType: 'instant'
-		 //PayPal will decide the experience type for the buyer based on his/her 'Remember me on your computer' option.
-	});
-
-</script>
 
 <form action='checkout' METHOD='post'>
 	<input id="payment_amount" name="payment[amount]" type="hidden" value="1">

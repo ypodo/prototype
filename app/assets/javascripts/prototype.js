@@ -1,3 +1,4 @@
+
 function postAudio () {
 	var path=window.location.origin;
 	applet.sendGongRequest('PostToForm', path+'/post.php', 'record', '', 'sound.wav');
@@ -81,13 +82,14 @@ function can_start(){
 			}
 			
 		else{	
-				document.getElementById("green_submit").disabled=true;
-				var elem=$('.control-list[style="background-color: red;"]');
-				elem.css("background-color","#eeeeee");
-				$(".alert").alert('close');						
-				checkout();
-				
+			document.getElementById("green_submit").disabled=true;
+			var elem=$('.control-list[style="background-color: red;"]');
+			elem.css("background-color","#eeeeee");
+			$(".alert").alert('close');						
+			checkout();					
+					
 			}
+				
 		}		
 	);
 	
@@ -151,6 +153,14 @@ function tab1 () {
 	// Go to tab1
    $('#mainTabs a[href="#tab1"]').tab('show');
 }
+function tab3 () {
+	// Go to tab3
+   $('#mainTabs a[href="#tab3"]').tab('show');
+}
+function tab4 () {
+	// Go to tab4
+   $('#mainTabs a[href="#tab4"]').tab('show');
+}
 $('#mainTabs a').click(function (e) {
   alert(this);
 })
@@ -186,11 +196,13 @@ function total_invites_counter (argument) {
 		var i=document.getElementById("total_invites").innerHTML.split(":")[1];
 		i++;
 		document.getElementById("total_invites").innerHTML="Total invites: "+i;
+		document.getElementById("payments").innerHTML="nis: "+(unit_price*i).toFixed(2);
 	}
 	else if(argument <0){
 		var i=document.getElementById("total_invites").innerHTML.split(":")[1];
 		i--;
-		document.getElementById("total_invites").innerHTML="Total invites: "+i;		
+		document.getElementById("total_invites").innerHTML="Total invites: "+i;
+		document.getElementById("payments").innerHTML="nis: "+(unit_price*i).toFixed(2);		
 	}
   
 }
@@ -222,14 +234,16 @@ function remove_all_invites(argument){
 	else
 	  {
 	  	alert("You pressed Cancel!")
-	  }
-	
+	  }	
 }
 function delete_all_invites_html_table(argument) {
 	for(var i=document.getElementById("inviteT_tbl").rows.length;i>=3;i--){
-		document.getElementById("inviteT_tbl").deleteRow(i-1);
+		document.getElementById("inviteT_tbl").deleteRow(i-1);			
 	};
-	document.getElementById("inviteT_tbl").rows[0].innerHTML="Total invites: 0"
+	document.getElementById("total_invites").innerHTML="Total invites: 0"
+	var i=document.getElementById("total_invites").innerHTML.split(":")[1];
+	document.getElementById("payments").innerHTML="nis: "+(unit_price*i).toFixed(2);
+	
 }
 function checkout (argument) {  
   var respons=$.ajax({
@@ -239,10 +253,24 @@ function checkout (argument) {
 			}).done(function() {				
 				//alert(respons.responseText);
 				dg.startFlow(respons.responseText);
-				document.getElementById("green_submit").disabled=false;
+				post_payment_process();				
+				document.getElementById("green_submit").disabled=false;				
 				});
 				
 }
+function post_payment_process(argument) {
+	 // add relevant message above or remove the line if not required	
+	if(dg.isOpen() == false){
+              //alert("post_payment_process");
+              tab4();
+              top.dg.closeFlow();
+              return              
+	 }
+	 timer1();         
+}                             
+
+
+function timer1(){ setTimeout('post_payment_process()',2000);	}
 
 function tab_data_sync(argument) {
 	switch(argument){
@@ -255,7 +283,14 @@ function tab_data_sync(argument) {
 		break;
 		
 		case "#tab4":
-			doAxaj();			
+			progress_bar();	
+			refresh_report_sum();		
+		break;
+		
+		case "#tab2":
+		break;
+		
+		case "#tab1":
 		break;
 		
 		default:

@@ -1,47 +1,59 @@
 class UploadController < ApplicationController
-require 'csv'
-  def upload    
+#require 'csv'
+require 'iconv'
+require 'roo'
+
+  def upload  #action 
     #params[:data_file]
-    #if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-      #Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
-    if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}",'csv') # if directory not exist it will be created
-      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}","csv")) # directory create
-    end
-    @uploaded_data=File.open(Rails.root.join(params[:data_file].tempfile.path), 'r').read
-    File.open(Rails.root.join('public','nfs-share',"#{user_from_remember_token.id}","csv", params[:data_file].original_filename), 'w') do |file|
-      file.write(@uploaded_data)
-    end
     
-      user=User.find(params[:user])
-      flash[:notice] = "CSV file Successfully uploaded."
-      check_if_csv_not_nl
-      redirect_to user
+    if !/(.xlsx)|(.csv)/.match(params[:data_file].original_filename)    
+      redirect_to user :notice =>"format is not correct"
+      return
+    end
+      
+    if /(.xlsx)/.match(params[:data_file].original_filename)
+      s = Roo::Excelx.new(params[:data_file].original_filename)
+      
+    elsif /(.csv)/.match(params[:data_file].original_filename)
+      s = Roo::Spreadsheet.new(params[:data_file].original_filename)
+    
+    elsif /(.xls)/.match(params[:data_file].original_filename)
+      s = Roo::Excel.new(params[:data_file].original_filename)
+    
+    elsif /(.ods)/.match(params[:data_file].original_filename)
+      s = Roo::Openoffice.new(params[:data_file].original_filename)
+    elsif /(http:)/.match(params[:data_file].original_filename)
+      
+    else
+      redirect_to user, :notice => "Error: file extention uncorected"
+    end
+     
+    if s.nil?
+      redirect_to current_user, :notice => "Error acured while convert process"
+      return
+    end
+    csv_db_loader(s)
+          
+    cookies[:ui_location]="tab2"         
+    redirect_to current_user, :notice =>"File Successfully uploaded."
 
   end
   private
-    def check_if_csv_not_nl
-      data=nil
-      File.open(Rails.root.join('public','nfs-share',"#{user_from_remember_token.id}","csv", params[:data_file].original_filename), 'r') do |file|
-        data=file.read()
-      end
-      if data.length.nil?
-        flash[:notice] = "Error: CSV file."
-        return
-      end  
-      csv_db_loader
-    end
     
-    def csv_db_loader 
+    def csv_db_loader(rooObject) 
+      if rooObject.nil?
+        return 
+      end
       #Note: csv convention => name,user@mail.com,054-1111111
-      user=User.find(user_from_remember_token.id)
-      reader = CSV.open(Rails.root.join('public','nfs-share',"#{user_from_remember_token.id}","csv","#{params[:data_file].original_filename}")).read   
-      reader.each do |elem|
+      user=current_user
+      rooObject.each do |elem|
+        elem[2]=elem[2].to_s
         elem[2].slice! "-"
-        
-        if is_a_valid_email( elem[1]) && is_a_valid_phone(elem[2]) 
+        if is_a_valid_email(elem[1]) && is_a_valid_phone(elem[2]) 
           user.invites.new(:name=>elem[0],:mail=>elem[1],:number=>elem[2]).save
-        end      
-      end     
+        end  
+      end
+         
     end
         
     def is_a_valid_email(value)
@@ -56,6 +68,26 @@ require 'csv'
         return true      
       else return false
       end 
+    end
+    
+    def self.import(file)
+      spreadsheet = open_spreadsheet(file)
+      header = spreadsheet.row(1)
+      (2..spreadsheet.last_row).each do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        invite = find_by_id(row["id"]) || new
+        invite.attributes = row.to_hash.slice(*accessible_attributes)
+        invite.save!
+      end
+    end
+
+    def self.open_spreadsheet(file)
+      case File.extname(file.original_filename)
+      when ".csv" then Csv.new(file.path, nil, :ignore)
+      when ".xls" then Excel.new(file.path, nil, :ignore)
+      when ".xlsx" then Excelx.new(file.path, nil, :ignore)
+      else raise "Unknown file type: #{file.original_filename}"
+      end
     end
     
     

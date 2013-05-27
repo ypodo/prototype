@@ -3,7 +3,7 @@ require 'omniauth'
 require 'omniauth-facebook'
 
   def new
-    @title="Sign in"
+    @title="Sign in: SessionsController"
   end
   
   def destroy
@@ -27,11 +27,10 @@ require 'omniauth-facebook'
       end
     end
        
-    user = User.authenticate(params[:session][:email],
-                             params[:session][:password])
+    user = User.authenticate(params[:session][:email], params[:session][:password])
     if user.nil?
       flash.now[:error] = "Invalid email/password combination, please try again."
-      @title = "Sign in"
+      
       render 'new'
     else
       sign_in user

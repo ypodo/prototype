@@ -2,11 +2,15 @@
 <html>
   <head>    
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<!--<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">-->	
+	<script src="/path/to/jquery.cookie.js"></script>
+
+	
 	<%= stylesheet_link_tag "application"%>
     <%= csrf_meta_tag %>
     <%= javascript_include_tag "application" %>
-    <%= render 'layouts/stylesheets' %>    
+    <%= render 'layouts/stylesheets' %>  
+    
   </head>
   <body>  	
   	<div class="container">
@@ -15,7 +19,7 @@
       <section class="round" >
         <% flash.each do |key, value| %>
           <div class="alert <%= key %>"><%= value %></div>
-        <% end %>
+        <% end %>        
         <%= yield %>        
       </section>
      <p></p> 
@@ -25,7 +29,7 @@
       	<%= render 'layouts/footer' %>
   	</div>
     </div>
-   
+   <%=render 'users/javaScript'%>  
   </body>
   <!-- <%= debug(params) if Rails.env.development? %> -->
 </html>

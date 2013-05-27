@@ -4,11 +4,10 @@ gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+gem 'roo'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
-#gem 'omniauth-google-oauth2'
 gem 'activemerchant'
 gem 'jruby-openssl', :platform => :jruby
 gem 'sqlite3'
@@ -17,9 +16,12 @@ gem "fastthread"
 gem 'jquery-rails'
 gem "therubyracer"
 gem "bootstrap-sass", "~> 2.3.1.0"
-gem  "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails"
+gem "remotipart", "~> 1.0.5"
 #PayPal
 gem "paypal-express"
+#excel
+gem "roo"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

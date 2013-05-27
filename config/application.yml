@@ -1,0 +1,5 @@
+# config/application.yml
+
+OAUTH_CLIENT_ID: "208680748430.apps.googleusercontent.com"
+OAUTH_CLIENT_SECRET: "IV23LlbuVdUHrn-B2mNU6pFF"
+APPLICATION_CONFIG_SECRET_TOKEN: "<A LONG SECRET>"
