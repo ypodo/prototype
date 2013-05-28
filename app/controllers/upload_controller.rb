@@ -7,29 +7,37 @@ require 'roo'
     #params[:data_file]
     
     if !/(.xlsx)|(.csv)/.match(params[:data_file].original_filename)    
-      redirect_to user :notice =>"format is not correct"
+      redirect_to user :notice =>"uploaded file extension is not correct"
       return
     end
-      
+    if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}",'csv') # if directory not exist it will be created
+      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}","csv")) # directory create
+    end
+    @uploaded_data=File.open(Rails.root.join(params[:data_file].tempfile.path), 'r').read
+    File.open(Rails.root.join('public','nfs-share',"#{user_from_remember_token.id}","csv", params[:data_file].original_filename), 'w') do |file|
+      file.write(@uploaded_data+".xlsx")
+    end
+    excel_path="public/nfs-share/#{user_from_remember_token.id}/csv/#{params[:data_file].original_filename}"
+    
     if /(.xlsx)/.match(params[:data_file].original_filename)
-      s = Roo::Excelx.new(params[:data_file].original_filename)
+      s = Roo::Excelx.new(excel_path)
       
     elsif /(.csv)/.match(params[:data_file].original_filename)
-      s = Roo::Spreadsheet.new(params[:data_file].original_filename)
+      s = Roo::Csv.new(excel_path)
     
     elsif /(.xls)/.match(params[:data_file].original_filename)
       s = Roo::Excel.new(params[:data_file].original_filename)
     
     elsif /(.ods)/.match(params[:data_file].original_filename)
-      s = Roo::Openoffice.new(params[:data_file].original_filename)
+      s = Roo::Openoffice.new(excel_path)
     elsif /(http:)/.match(params[:data_file].original_filename)
       
     else
-      redirect_to user, :notice => "Error: file extention uncorected"
+      redirect_to user, :notice => "Error: file extension uncorrected"
     end
      
     if s.nil?
-      redirect_to current_user, :notice => "Error acured while convert process"
+      redirect_to current_user, :notice => "Error occurred while convert process"
       return
     end
     csv_db_loader(s)
@@ -47,11 +55,20 @@ require 'roo'
       #Note: csv convention => name,user@mail.com,054-1111111
       user=current_user
       rooObject.each do |elem|
-        elem[2]=elem[2].to_s
-        elem[2].slice! "-"
-        if is_a_valid_email(elem[1]) && is_a_valid_phone(elem[2]) 
-          user.invites.new(:name=>elem[0],:mail=>elem[1],:number=>elem[2]).save
-        end  
+        if elem[2].nil? != elem[1].nil?    # no mail
+          elem[1]=elem[1].to_s
+          elem[1].slice! "-"
+          if is_a_valid_phone(elem[1]) 
+            user.invites.new(:name=>elem[0],:number=>elem[1]).save
+          end
+        else
+          elem[2]=elem[2].to_s
+          elem[2].slice! "-"  
+          if is_a_valid_email(elem[1]) && is_a_valid_phone(elem[2]) 
+            user.invites.new(:name=>elem[0],:mail=>elem[1],:number=>elem[2]).save
+          end  
+        end         
+        
       end
          
     end
@@ -64,7 +81,7 @@ require 'roo'
     end
     
     def is_a_valid_phone(value)
-      if /(^0\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)(\d\d\d\d\d\d\d{,1})/.match(value)
+      if /(^0\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)(\d\d\d\d\d\d\d{,1})/.match(value) || value == ""
         return true      
       else return false
       end 

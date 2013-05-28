@@ -14,7 +14,7 @@
 			    <div class="tab-pane active" id="tab1">	
 					  <%=render 'recorder'%>
 				  	<div class="span9 well">
-						<%=render 'speeches'%>
+						<%=render 'speeches_eng'%>
 					</div>	
 			    </div>
 			    <div class="tab-pane" id="tab2">				      
@@ -24,7 +24,7 @@
 							<a class="btn"><input type="image"  src='/assets/google_search_icon_1.png' style="width: 20px;" /> Google contacts</a>
 							<p></p>
 							<p class="">You can uploade Excel or CSV file, <a href="file_format:#">accepted file format.</a></p>
-							<p class="">Connect my google contacts, android phone, <a href="file_format:#">Google/Android contacts</a></p>
+							<p class="">Export from google/android phone contacts, <a href="file_format:#">Google/Android contacts</a></p>
 			    		</div>
 			    		<%=render 'upload_modal'%>	
 				    	<div class="controls well well-small">
@@ -102,3 +102,32 @@ if (window.opener){
 
 </script>
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+	// hide #back-top first
+	$("#back-top").hide();
+	
+	// fade in #back-top
+	$(function () {
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('#back-top').fadeIn();
+			} else {
+				$('#back-top').fadeOut();
+			}
+		});
+
+		// scroll body to 0px on click
+		$('#back-top a').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 800);
+			return false;
+		});
+	});
+
+});
+</script>

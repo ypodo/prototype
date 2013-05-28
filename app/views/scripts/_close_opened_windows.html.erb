@@ -1,0 +1,10 @@
+<script>
+if (window.opener){
+	alert("window.close()");
+	window.close();
+	}
+	else if (top.dg.isOpen() == true){
+		
+	top.dg.closeFlow();
+}
+</script>

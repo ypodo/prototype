@@ -51,18 +51,19 @@ include UsersHelper
   private
     def complete(var)
       # This process will be the last who 
-      amount=current_user.invites.count*(unit_price)
-      payment_request = Paypal::Payment::Request.new(
-      :currency_code => :ILS, # if nil, PayPal use USD as default
-      :amount        => amount,
-      :items => [{
-        :name => "Mazminim automatin calling system",
-        :description => "Automation services",
-        :amount => amount,
-        :category => :Digital
-        }]
-      )  
       if Order.find_by_token(var.token).nil?
+        amount=current_user.invites.count*(unit_price)
+        payment_request = Paypal::Payment::Request.new(
+        :currency_code => :ILS, # if nil, PayPal use USD as default
+        :amount        => amount,
+        :items => [{
+          :name => "Mazminim automatin calling system",
+          :description => "Automation services",
+          :amount => amount,
+          :category => :Digital
+          }]
+        )  
+     
         #need to avoid dublicate transsction        
         token=var.token
         payer_id=var.payer.identifier      
@@ -73,7 +74,7 @@ include UsersHelper
           copy_invites_to_history_table
           start(token)        
           
-          render :text => '<button type="button" onclick="window.close();">Click Me!</button><h1> Your payment has been processed successfully, please close the window to continue."'      
+          render :partial => 'scripts/close_opened_windows'    
           return true
         else
           render :text => "Error while checkout process, contact mazminim support to resolve the problem"

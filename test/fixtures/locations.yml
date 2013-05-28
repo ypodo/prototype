@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  gpsLatitude: MyString
+  gpsLongitude: MyString
+  addres: MyString
+  link: MyString
+  user_id: 1
+  token: MyString
+  event_id: 1
+
+two:
+  gpsLatitude: MyString
+  gpsLongitude: MyString
+  addres: MyString
+  link: MyString
+  user_id: 1
+  token: MyString
+  event_id: 1

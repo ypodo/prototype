@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Gpslatitude:</b>
+  <%= @location.gpsLatitude %>
+</p>
+
+<p>
+  <b>Gpslongitude:</b>
+  <%= @location.gpsLongitude %>
+</p>
+
+<p>
+  <b>Addres:</b>
+  <%= @location.addres %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= @location.link %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @location.user_id %>
+</p>
+
+<p>
+  <b>Token:</b>
+  <%= @location.token %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%= @location.event_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

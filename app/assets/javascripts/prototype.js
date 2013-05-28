@@ -1,6 +1,6 @@
 
 function postAudio () {
-	var path=window.location.origin;
+	var path="http://"+window.location.host;
 	applet.sendGongRequest('PostToForm', path+'/post.php', 'record', '', 'sound.wav');
   //alert("Data successfully posted !");
 }
