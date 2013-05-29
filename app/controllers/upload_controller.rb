@@ -55,11 +55,17 @@ require 'roo'
       #Note: csv convention => name,user@mail.com,054-1111111
       user=current_user
       rooObject.each do |elem|
-        if elem[2].nil? != elem[1].nil?    # no mail
+        if elem[2].nil? && !elem[1].nil?    # dva stolbika
           elem[1]=elem[1].to_s
           elem[1].slice! "-"
           if is_a_valid_phone(elem[1]) 
             user.invites.new(:name=>elem[0],:number=>elem[1]).save
+          end
+        elsif !elem[0].nil? && elem[1].nil? && !elem[2].nil?
+          elem[2]=elem[2].to_s
+          elem[2].slice! "-"
+          if is_a_valid_phone(elem[2]) 
+            user.invites.new(:name=>elem[0],:number=>elem[2]).save
           end
         else
           elem[2]=elem[2].to_s

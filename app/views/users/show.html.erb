@@ -89,8 +89,6 @@ if (window.opener){
 <!-- Add Digital goods in-context experience. Ensure that this script is added before the closing of html body tag -->
 
 <script src='https://www.paypalobjects.com/js/external/dg.js' type='text/javascript'></script>
-
-
 <script>
 
 	var dg = new PAYPAL.apps.DGFlow(
@@ -100,34 +98,4 @@ if (window.opener){
 		 //PayPal will decide the experience type for the buyer based on his/her 'Remember me on your computer' option.
 	});
 
-</script>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
-
-<script>
-$(document).ready(function(){
-
-	// hide #back-top first
-	$("#back-top").hide();
-	
-	// fade in #back-top
-	$(function () {
-		$(window).scroll(function () {
-			if ($(this).scrollTop() > 100) {
-				$('#back-top').fadeIn();
-			} else {
-				$('#back-top').fadeOut();
-			}
-		});
-
-		// scroll body to 0px on click
-		$('#back-top a').click(function () {
-			$('body,html').animate({
-				scrollTop: 0
-			}, 800);
-			return false;
-		});
-	});
-
-});
 </script>
