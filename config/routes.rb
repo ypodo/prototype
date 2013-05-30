@@ -40,7 +40,7 @@ Prototype::Application.routes.draw do
   match '/support', :to => 'pages#support'
   match '/term_of_use', :to => 'pages#term_of_use'
   
-  # Cotial Auth routing    
+  # Sotial Auth routing    
   get '/auth/:provider/callback', :to => 'sessions#create'  
   match 'auth/failure', :to => redirect('/')
   match 'signout', :to => 'sessions#destroy', as: 'signout'
