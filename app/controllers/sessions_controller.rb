@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-require 'omniauth'
-require 'omniauth-facebook'
+#require 'omniauth'
+#require 'omniauth-facebook'
 
   def new
     @title="Sign in: SessionsController"
@@ -39,7 +39,8 @@ require 'omniauth-facebook'
     end
   end
   
-  def failure
-    
+  def omniauth_failure
+    redirect_to root_path
+    #redirect wherever you want.
   end
 end

@@ -5,8 +5,8 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'roo'
-#gem 'omniauth'
-#gem 'omniauth-facebook'
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem 'activemerchant'
 gem 'jruby-openssl', :platform => :jruby

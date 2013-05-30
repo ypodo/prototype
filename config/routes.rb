@@ -42,7 +42,7 @@ Prototype::Application.routes.draw do
   
   # Sotial Auth routing    
   get '/auth/:provider/callback', :to => 'sessions#create'  
-  match 'auth/failure', :to => redirect('/')
+  match '/auth/failure', :to => 'sessions#omniauth_failure'
   match 'signout', :to => 'sessions#destroy', as: 'signout'
   
   #paypal-express
