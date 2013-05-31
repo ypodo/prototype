@@ -32,7 +32,7 @@ module CallsHelper
     if !File.exist?(File.join('public','nfs-share', "#{user_from_remember_token.id}",'report'))
       Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}",'report')) # directory create              
     end
-    @result= system "ruby public/nfs-share/scripts/create_call_files.rb #{user_from_remember_token.id}"    
+    @result= system "ruby public/nfs-share/scripts/create_call_files.rb #{user_from_remember_token.id} 1 event_id"    
   end
   
   def create_phone_file(user,token)
