@@ -33,19 +33,22 @@ include UsersHelper
   
   def confirm
     if (!params[:token].nil? && !params[:PayerID].nil?)
+      semaphore = Mutex.new
       token = params[:token]
       payer_id=params[:PayerID]  
-      #or  response.payer.identifier      
-      response_paypal = express.details(token)
-      # inspect these attributes for more details    
-      if complete(response_paypal) == true
-        #render :json => response_paypal
-        
-      end       
-     end     
+      #or  response.payer.identifier 
+      if Order.find_by_token(token).nil?
+        response_paypal = express.details(token)
+        complete(response_paypal)
+      else
+        return
+      end
+    end
+          
   end
   
   def cancel 
+    render :partial => 'scripts/close_opened_windows'
   end
   
   private

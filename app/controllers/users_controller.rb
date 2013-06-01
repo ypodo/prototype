@@ -36,7 +36,8 @@ require 'fastthread'
     @users = User.all
   end
   
-  def show    
+  def show 
+    #show.html.rb will be renderen on the end    
     @user = User.find(params[:id])         
     @title = @user.name    
     
@@ -145,9 +146,7 @@ require 'fastthread'
     end 
   end
   
-  def full_report
-    #@user=current_user
-  end
+  
   def ajax_payment_details
     @user=current_user
     

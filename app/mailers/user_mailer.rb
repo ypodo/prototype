@@ -10,7 +10,10 @@ require 'mail'
   #
   def password_reset(user)
     @user = user
-    mail :to => user.email, :subject => "Password Reset"
+    #send_mail(user,data,subject,to)
+    data =  render_to_string :partial => "user_mailer/registration_confirmation"
+    subject= "password_reset"
+    send_mail(user, data, subject,'yuri.shterenberg@gmail.com')
   end
   
   

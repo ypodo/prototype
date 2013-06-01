@@ -1,8 +1,5 @@
 Prototype::Application.routes.draw do
   
-  resources :locations
-
-
   #get "password_resets/new"
   get "password_resets/new" => "password_resets#new"
   
@@ -56,7 +53,7 @@ Prototype::Application.routes.draw do
   #get "login" => "sessions#new", :as => "login"
   #get "signup" => "users#new", :as => "signup"  
   resources :password_resets
-  
+  resources :locations
   
   root :to => 'pages#home'
   
