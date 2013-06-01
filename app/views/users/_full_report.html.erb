@@ -10,13 +10,13 @@
  	<p></p>
  	<div class="control-list"> 	
  		<div class="row-fluid">
- 			<div class="span8">
+ 			<div class="span7">
  			<h6><div id="progress_bar_lable"></div></h6>
 	 		<div class="progress progress-striped active">
 			  <div class="bar bar-warning" style="width: 0%;" id="progress_bar"></div>			  
 			</div>
  		</div>
- 		<div class="span4">
+ 		<div class="span5">
  			<div id="token">
 			  	<%if !@user.orders.last.nil?%>
 			  		<h5>Transaction id: <%=@user.orders.last.token%></h5>
