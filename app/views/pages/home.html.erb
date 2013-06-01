@@ -31,6 +31,7 @@
 			    <%= f.password_field :password,:placeholder=>"Password" ,:required => true, 'data-toggle'=>'tooltip', 'title'=>"Enter your password to login the system"%>				    
 			    <div class="inline">
 				    <%= f.submit "Login", :class=>"btn btn-primary" %>
+				    <% end %>
 				    <%= link_to "forgot the password?", "#", :class=>"label label-warning", :data => {:toggle => "modal"}, :href => "#myModal"%>	
 					<!--
 					<p></p>				   
@@ -39,10 +40,9 @@
 				   	<a type="button" href="/auth/google_oauth2">Google login</a>
 				   	-->
 			    </div>	
-		  	</div>
-		  	
+		  	</div>		  	
 			<%= render 'password_form'%>
-			<% end %>
+			
 		</div>
 		<%else %>
 		<div class="control-group">			
