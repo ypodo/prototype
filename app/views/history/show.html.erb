@@ -1,4 +1,6 @@
-<%=@orders.nil?%>
+<%if @orders.nil?%>
+<strong>No orders found</strong>
+<%else%>
 <table class="table">
       <caption class="pull-left"></caption>
       <thead>
@@ -33,3 +35,4 @@
 	  document.getElementById("tbl_invitesHistory").innerHTML="";
 	}
 </script>
+<%end%>
