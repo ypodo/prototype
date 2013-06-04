@@ -28,8 +28,6 @@ class SessionsController < ApplicationController
         #redirect_back_or user
       end
     end
-       
-    
   end
   
   def omniauth_failure
