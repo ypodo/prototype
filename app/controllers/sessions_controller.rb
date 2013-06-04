@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-#require 'omniauth'
-#require 'omniauth-facebook'
 
   def new
     @title="Sign in: SessionsController"

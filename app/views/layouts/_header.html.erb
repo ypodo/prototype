@@ -15,7 +15,7 @@
 				  </a>
 				  </div>				  				
 				<% if signed_in? %>					  	
-				      				  
+				     	  
 		        <% end %>			      	
 	    	</ul>	
 		    <ul class="nav pull-right">
@@ -39,8 +39,16 @@
 						  <li><a href="/help">Support</a></li>                      
 	                      <li class="divider"></li>                      
 	                      <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+              			</ul>
+              			<li>
+              				<%if current_user.provider=="facebook"%>
+              					<strong>facebook</strong>>
+          					<%elsif current_user.provider=="google_oauth2"%>
+          						<strong>google</strong>
+      						<%end%>              				
+          				</li> 
               		  <% end %>
-                    </ul>
+                    
                   </li>
                 </ul>
 

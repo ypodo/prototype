@@ -38,7 +38,7 @@ Prototype::Application.routes.draw do
   match '/term_of_use', :to => 'pages#term_of_use'
   
   # Sotial Auth routing    
-  get '/auth/google_auth2/callback', :to => 'sessions#create'  
+  get '/auth/:provider/callback', :to => 'sessions#create'  
   match '/auth/failure', :to => 'sessions#omniauth_failure'
   match 'signout', :to => 'sessions#destroy', as: 'signout'
   
