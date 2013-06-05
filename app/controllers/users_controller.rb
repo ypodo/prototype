@@ -6,6 +6,13 @@ require 'fastthread'
   before_filter :correct_user, :only => [:edit, :update, :show]
   before_filter :admin_user,   :only => :destroy
   
+  def export_google_contacts
+    
+  end
+  
+  def wami
+    params
+  end
   def recorder        
     if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
       Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      

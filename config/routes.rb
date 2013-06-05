@@ -27,6 +27,7 @@ Prototype::Application.routes.draw do
   match '/users/:id/ajax_payment_details' => 'users#ajax_payment_details'
   #Post recorder
   match '/post.php', :to => 'users#recorder'
+  match '/wami', :to => 'users#wami'
   #match '/full_report/ajax_progress_call' => 'users#ajax_progress_call'
   #match '/full_report/ajax_report' => 'users#ajax_report'
   #static pages
