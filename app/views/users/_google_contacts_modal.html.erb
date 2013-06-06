@@ -1,5 +1,3 @@
-
- 
 <!-- Modal -->
 <div id="GoogleModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
@@ -7,19 +5,11 @@
     <h3 id="myModalLabel">Import google contacts / Android phone contacts</h3>
   </div>
   <div class="modal-body">
-    <form class="form-inline">
-	  <input type="text" class="input-small" placeholder="Email">
-	  <input type="password" class="input-small" placeholder="Password">
-	  <button type="submit" class="btn btn-primary">Import</button>
-	</form>  
-	
-	<%= form_tag('/google_contacts', :remote => true, :class=>'form-inline') do %>
-	    <%= text_field_tag 'login'%>
-	    <%= password_field_tag 'pass'%>
-  		<%= submit_tag 'Save', :class=> 'btn btn-primary'%>
-  		
-	<% end %>
-	  
+	<%= form_tag('/google_contacts') do%>
+	    <p>Gmail:    <%= text_field_tag 'login'%></p> 
+	    <p>Password: <%= password_field_tag 'pass'%></p>
+  		<%= submit_tag 'Import', :class=> 'btn btn-primary'%>  		
+	<% end %>	  
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>    
