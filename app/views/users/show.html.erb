@@ -21,12 +21,14 @@
 			      <div class="control-list" style="background-color:">			    	
 			    		<div class="well well-small">
 				    		<a href="#uploadModal" role="button" class="btn" data-toggle="modal">Upload file</a>
-							<a class="btn"><input type="image"  src='/assets/google_search_icon_1.png' style="width: 20px;" /> Google contacts</a>
+							<!-- Button to trigger modal -->
+							<a href="#GoogleModal" role="button" class="btn" data-toggle="modal"><input type="image"  src='/assets/google_search_icon_1.png' style="width: 20px;" /> Google contacts</a>							
 							<p></p>
 							<p class="">You can uploade Excel or CSV file.</p>
 							<p class="">Export from google/android phone contacts.</p>
 			    		</div>
-			    		<%=render 'upload_modal'%>	
+			    		<%=render 'upload_modal'%>
+			    		<%=render 'google_contacts_modal'%>	
 				    	<div class="controls well well-small">
 				    		<%=render 'invite'%>
 				        	<%=render 'inviteT'%>

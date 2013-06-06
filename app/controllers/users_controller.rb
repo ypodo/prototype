@@ -6,10 +6,7 @@ require 'fastthread'
   before_filter :correct_user, :only => [:edit, :update, :show]
   before_filter :admin_user,   :only => :destroy
   
-  def export_google_contacts
     
-  end
-  
   def wami
     params
   end
@@ -159,6 +156,7 @@ require 'fastthread'
     
     render :partial => 'payment_details',:object =>@user
   end
+  
 # END AJAX
   private
 

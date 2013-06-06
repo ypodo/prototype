@@ -17,6 +17,8 @@ Prototype::Application.routes.draw do
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   match '/upload', :to => 'upload#upload'
+  match '/google_contacts', :to => 'upload#google_contacts'
+  
   #AJAX
   match '/invites/delete_all', :to => 'invites#delete_all'  
   match '/ajax_report_mail', :to => 'users#ajax_report_mail_to'  
