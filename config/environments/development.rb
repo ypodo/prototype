@@ -33,5 +33,9 @@ Prototype::Application.configure do
   #password reset: http://railscasts.com/episodes/274-remember-me-reset-password
   config.action_mailer.default_url_options = { :host => "mazminim:3000" }
   
+  # Add the fonts path
+  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+  # Precompile additional assets
+  config.assets.precompile += %w( .svg .eot .woff .ttf )
   
 end

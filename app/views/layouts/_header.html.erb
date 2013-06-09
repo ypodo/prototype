@@ -8,18 +8,19 @@
                 <span class="icon-bar"></span>
               </a>                  
 		    <div class="nav-collapse collapse navbar-responsive-collapse">		    
-		    <ul class="nav">		  		  
-		  		  <div class="media-object">
-		  		  <a class="pull-left" href="/">
-				    <img class="" src="/assets/logo.gif" style="width: 90px; height: 13px;">
-				  </a>
-				  </div>				  				
+		    <ul class="nav">
+				  <li>
+				  	<a class="pull-left" href="/" >				   
+				  	  <font face="forte" size="5" color="red">mazminim</font>
+				  	</a>
+				  	
+			  	  </li>				  		  				
 				<% if signed_in? %>					  	
 				     	  
 		        <% end %>			      	
 	    	</ul>	
 		    <ul class="nav pull-right">
-                  <% if signed_in? %>
+                  <% if signed_in? %>					
 					<li class="divider-vertical"></li>                  		
 					<li><%= link_to "my Desktop", current_user,:style => "font-size:16px;font-weight:600;" %></li>
 					  
