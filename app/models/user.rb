@@ -1,6 +1,9 @@
 require 'digest'
 class User < ActiveRecord::Base
   
+  #category
+  has_one :category
+  
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation, :agreement ,:provider, :uid
   #Inite runtime
