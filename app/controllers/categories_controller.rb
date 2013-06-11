@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
+  #http://localhost:3000/categories
   def index
     @categories = Category.all
 
