@@ -15,6 +15,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     if !current_user.nil?
+      
       redirect_to current_user
     end    
   end
