@@ -25,7 +25,7 @@ Wami.GUI = function(options) {
 
 	function setOptions(options) {
 		if (!options.buttonUrl) {
-			options.buttonUrl = "buttons.png";
+			options.buttonUrl = "assets/buttons.png";
 		}
 
 		if (typeof options.listen == 'undefined' || options.listen) {

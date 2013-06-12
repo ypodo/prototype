@@ -3,21 +3,28 @@
 # invite_id ARGV[0]
 # user_id ARGV[1]
 # answer ARGV[2]
+# reason ARGV[3]
+puts "Executing ssh db update"
 
 #require 'rubygems'
-#require 'net/ssh'
-require '/usr/local/rvm/gems/ruby-1.9.2-p320/gems/net-ssh-2.6.5/lib/net/ssh'
+require 'net/ssh'
+
 ip="192.168.56.102"
 path="/var/www/prototype/public/nfs-share/scripts"
 invite_id = ARGV[0]
 user_id = ARGV[1]
 answer = ARGV[2]
+reason = ARGV[3]
 
-
-puts require 'net/ssh'
+puts "require 'net/ssh'"
 puts "User_id: "+user_id
 puts "Invite_id: "+invite_id
 puts "Answer: "+answer
+
+unless reason.nil?
+  # update DB - call failed with according attempt number
+  asnwer = reason
+end
 
 HOST = ip #Rails server ip
 USER = 'root'

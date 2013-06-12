@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524061809) do
+ActiveRecord::Schema.define(:version => 20130528162957) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(:version => 20130524061809) do
     t.string   "provider"
     t.string   "uid"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "invite_histories", :force => true do |t|
@@ -49,23 +49,23 @@ ActiveRecord::Schema.define(:version => 20130524061809) do
     t.string   "mail"
     t.string   "number"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "arriving"
   end
 
   add_index "invites", ["user_id"], :name => "index_invites_on_user_id"
 
-  create_table "order_transactions", :force => true do |t|
-    t.integer  "order_id"
-    t.string   "action"
-    t.integer  "amount"
-    t.boolean  "success"
-    t.string   "authorization"
-    t.string   "message"
-    t.text     "params"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+  create_table "locations", :force => true do |t|
+    t.string   "gpsLatitude"
+    t.string   "gpsLongitude"
+    t.string   "addres"
+    t.string   "link"
+    t.integer  "user_id"
+    t.string   "token"
+    t.integer  "event_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "orders", :force => true do |t|
@@ -78,14 +78,23 @@ ActiveRecord::Schema.define(:version => 20130524061809) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "phones", :force => true do |t|
+    t.string   "name"
+    t.string   "mail"
+    t.string   "phone"
+    t.boolean  "returned"
+    t.string   "user"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "encrypted_password"
     t.string   "salt"
-    t.boolean  "admin"
     t.boolean  "agreement"
     t.string   "provider"
     t.string   "uid"

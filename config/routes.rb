@@ -39,6 +39,9 @@ Prototype::Application.routes.draw do
   match '/help',    :to => 'pages#help'
   match '/support', :to => 'pages#support'
   match '/term_of_use', :to => 'pages#term_of_use'
+  post '/wami', :to => 'users#wami'
+  get '/wami_play', :to => 'users#wami_play'
+  match '/recorder', :to => 'pages#recorder'
   
   # Sotial Auth routing    
   get '/auth/:provider/callback', :to => 'sessions#create'  

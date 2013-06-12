@@ -5,6 +5,40 @@ require 'fastthread'
   before_filter :authenticate, :only => [:index,:edit, :update,:destroy,:show]
   before_filter :correct_user, :only => [:edit, :update, :show]
   before_filter :admin_user,   :only => :destroy
+  def wami
+    #current_user
+    
+    
+    if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
+    end
+    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"), "w+b") do |f|
+      #f.write("first attempt")
+      f.write(request.env["rack.input"].read)
+    end
+
+    
+#    file = File.new("audio.wav", "w+b")
+#    file.write request.raw_post
+#    #file.write request.env["rack.input"].read
+#    @tmp_var2 = "done"
+#    file.close
+#    render :text => 'ok'
+
+
+#    if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+#      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
+#    end
+    
+#    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"), "w") do |f|
+#      f.write(@request.env["rack.input"].read)
+#    end
+  end
+  
+  def wami_play
+    @user = current_user
+  end
+    
   
   def recorder        
     if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
