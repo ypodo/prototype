@@ -13,7 +13,7 @@ puts "User_id: "+user_id
 puts "Invite_id: "+invite_id
 puts "Answer: "+answer
 
-HOST = '192.168.56.102' #Rails server ip
+HOST = '192.168.1.11' #Rails server ip
 USER = 'root'
 PASS = 'saasbook'
 command="ruby /home/ubuntu/Documents/prototype/private/nfs-share/scripts/update_db.rb "+invite_id+" "+user_id+" "+answer # Execution command on Rails server

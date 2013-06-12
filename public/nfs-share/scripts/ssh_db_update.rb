@@ -9,7 +9,7 @@ puts "Executing ssh db update"
 #require 'rubygems'
 require 'net/ssh'
 
-ip="192.168.56.102"
+ip="192.168.1.11"
 path="/var/www/prototype/public/nfs-share/scripts"
 invite_id = ARGV[0]
 user_id = ARGV[1]

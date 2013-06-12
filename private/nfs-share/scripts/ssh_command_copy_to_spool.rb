@@ -6,7 +6,7 @@ require 'net/ssh'
 user_id = ARGV[0]
 puts user_id
 
-HOST = '192.168.56.101'
+HOST = '192.168.1.12'
 USER = 'root'
 PASS = '1qaz!QAZ'
 command="cp /srv/nfs/"+user_id+"/call/* /var/spool/asterisk/outgoing/"
