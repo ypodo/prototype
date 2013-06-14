@@ -18,9 +18,9 @@
           <td><%=index+1%></td>
           <td><%=elem.token%></td>
           <td><%=elem.created_at%></td>
-          <td><%=elem.amount%> nis</td>  
-          <td>
-          	<button class="btn btn-info" onclick="show_history_invites_by_token('<%=elem.token%>');">show details</button>
+          <td><%=elem.amount.to_f.round(2)%> nis</td>  
+          <td>          	
+          	<a href="#tbl_invitesHistory" class="btn btn-info" onclick="show_history_invites_by_token('<%=elem.token%>');">show details</a>
       	  </td>          
         </tr>
     <%end%>

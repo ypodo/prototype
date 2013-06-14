@@ -1,8 +1,11 @@
 require 'digest'
 class User < ActiveRecord::Base
   
-  attr_accessor :password
-  attr_accessible :name, :email, :password, :password_confirmation, :agreement ,:provider, :uid
+  #category
+  #has_one :category
+  
+  attr_accessor :password, :category
+  attr_accessible :name, :email, :password, :password_confirmation, :agreement ,:provider, :uid, :category
   #Inite runtime
   has_many :invites
   has_many :invites, :dependent => :destroy

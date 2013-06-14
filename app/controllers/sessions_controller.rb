@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
-  def new
-    @title="Sign in: SessionsController"
+  def new    
   end
   
   def destroy

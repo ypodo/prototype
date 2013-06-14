@@ -1,0 +1,10 @@
+<br />
+<!--<%= link_to 'New Category', new_category_path %>-->
+<div class="container">
+<div class="row-fluid offset1" align="center">
+<p>
+<% @categories.each do |category| %>
+  <%=render 'each_categories', :category => category%>  
+<% end %>
+</div>
+</div>

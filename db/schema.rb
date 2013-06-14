@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524061809) do
+ActiveRecord::Schema.define(:version => 20130612182009) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(:version => 20130524061809) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "invite_histories", :force => true do |t|
@@ -56,6 +63,18 @@ ActiveRecord::Schema.define(:version => 20130524061809) do
 
   add_index "invites", ["user_id"], :name => "index_invites_on_user_id"
 
+  create_table "locations", :force => true do |t|
+    t.string   "gpsLatitude"
+    t.string   "gpsLongitude"
+    t.string   "addres"
+    t.string   "link"
+    t.integer  "user_id"
+    t.string   "token"
+    t.integer  "event_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "order_transactions", :force => true do |t|
     t.integer  "order_id"
     t.string   "action"
@@ -78,6 +97,16 @@ ActiveRecord::Schema.define(:version => 20130524061809) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "phones", :force => true do |t|
+    t.string   "name"
+    t.string   "mail"
+    t.string   "phone"
+    t.boolean  "returned"
+    t.string   "user"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -92,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20130524061809) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "category"
   end
 
 end

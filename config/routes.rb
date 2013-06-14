@@ -1,5 +1,7 @@
 Prototype::Application.routes.draw do
   
+  resources :categories
+
   #get "password_resets/new"
   get "password_resets/new" => "password_resets#new"
   
@@ -14,7 +16,8 @@ Prototype::Application.routes.draw do
   match '/users/:id/can_start' => 'calls#can_start'
   
   match '/signup',  :to => 'users#new'
-  match '/signin',  :to => 'sessions#new'
+  #match '/signin',  :to => 'sessions#new'
+  match '/signin',  :to =>'pages#home'
   match '/signout', :to => 'sessions#destroy'
   match '/upload', :to => 'upload#upload'
   match '/google_contacts', :to => 'upload#google_contacts'
