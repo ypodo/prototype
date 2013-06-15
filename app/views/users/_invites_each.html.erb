@@ -5,14 +5,23 @@
 	<td><%=f.name %></td>
 	<td><%=f.mail %> </td>
 	<td><%=f.number %></td>	    
-    <%if (f.arriving == 1)%>
-    	<td bgcolor="#0073FF">Yes</td>
-	<%elsif(f.arriving == 2)%>
-		<td bgcolor="#FF0000">No</td>
-	<%elsif(f.arriving.nil?)%>
-		<td bgcolor="">in progress</td>
-	<%else%>
-		<td>na</td>
+       <%f.arriving = -10%>   
+      	<%if f.arriving.nil? %>
+      		<td>in progress</td>
+      	<% elsif (f.arriving == 1)%>
+	    	<td bgcolor="#0073FF">Confirmed</td>
+		<%elsif(f.arriving == 2)%>
+			<td bgcolor="#FF0000">Declined</td>
+		<%elsif(f.arriving == -10)%>
+			<td bgcolor="#FF0000"><DIV STYLE="font-size: 10px">No answer/busy. Redialing in 5 minutes<p> (1st attempt out of 3)...</p></div></td>
+		<%elsif(f.arriving == -20)%>
+			<td bgcolor="#FF0000">No answer/busy. Redialing in 10 minutes<p> (2nd attempt out of 3)...</p></td>
+		<%elsif(f.arriving == -30)%>
+			<td bgcolor="#FF0000">No answer/busy. Redialing in 20 minutes<p> (3rd attempt out of 3)...</p></td>
+		<%elsif(f.arriving == -40)%>
+			<td bgcolor="#FF0000">No answer/busy.</td>
+		<%else%>
+			<td>No response</td>			
 	<%end%>		
 </tr>
 	<%end%>

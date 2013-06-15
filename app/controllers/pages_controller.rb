@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 require 'net/http'
-
+skip_before_filter  :verify_authenticity_token
   def home
     @user=User.new    
     
@@ -23,5 +23,10 @@ require 'net/http'
   
   def term_of_use    
   end
+  
+  def recorder
+    @user = current_user
+  end
+  
     
 end

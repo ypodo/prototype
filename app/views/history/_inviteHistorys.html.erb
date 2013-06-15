@@ -20,17 +20,22 @@
           <td><%=elem.name%></td>
           <td><%=elem.mail%></td>
           <td><%=elem.number%></td> 
-           
           	<%if elem.arriving.nil? %>
           		<td>in progress</td>
           	<% elsif (elem.arriving == 1)%>
-		    	<td bgcolor="#0073FF">Yes</td>
+		    	<td bgcolor="#0073FF">Confirmed</td>
 			<%elsif(elem.arriving == 2)%>
-				<td bgcolor="#FF0000">No</td>
-			<%elsif(elem.arriving == -1)%>
-				<td bgcolor="#FF0000">called but no answered</td>
+				<td bgcolor="#FF0000">Declined</td>
+			<%elsif(elem.arriving == -10)%>
+				<td bgcolor="#FF0000">No answer/busy. Redialing in 5 minutes (1st attempt out of 3)...</td>
+			<%elsif(elem.arriving == -20)%>
+				<td bgcolor="#FF0000">No answer/busy. Redialing in 10 minutes (2nd attempt out of 3)...</td>
+			<%elsif(elem.arriving == -30)%>
+				<td bgcolor="#FF0000">No answer/busy. Redialing in 20 minutes (3rd attempt out of 3)...</td>
+			<%elsif(elem.arriving == -40)%>
+				<td bgcolor="#FF0000">No answer/busy.</td>
 			<%else%>
-				<td>na</td>			
+				<td>No response</td>			
           <%end%>  
         </tr>
         <%end%>        

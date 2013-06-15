@@ -25,7 +25,7 @@ Wami.GUI = function(options) {
 
 	function setOptions(options) {
 		if (!options.buttonUrl) {
-			options.buttonUrl = "buttons.png";
+			options.buttonUrl = "assets/buttons.png";
 		}
 
 		if (typeof options.listen == 'undefined' || options.listen) {
@@ -70,13 +70,16 @@ Wami.GUI = function(options) {
 		}
 		recordButton.setActivity(0);
 		playButton.setEnabled(false);
+		wamiNotificationArea.innerHTML = "<font class=info>Recording your message..</font>";
 		Wami.startRecording(options.recordUrl,
-				Wami.nameCallback(onRecordStart), Wami
-						.nameCallback(onRecordFinish), Wami
-						.nameCallback(onError));
+				Wami.nameCallback(onRecordStart), 
+				Wami.nameCallback(onRecordFinish),
+				Wami.nameCallback(onError)
+				);
 	}
 
 	function stopRecording() {
+		wamiNotificationArea.innerHTML = "<font class=info>Uploading file. Please wait...</font>";
 		Wami.stopRecording();
 		clearInterval(recordInterval);
 		recordButton.setEnabled(true);
@@ -84,7 +87,8 @@ Wami.GUI = function(options) {
 
 	function startPlaying() {
 		if (!options.playUrl) {
-			alert('No play URL specified!');
+			return;
+			//alert('No play URL specified!');
 		}
 
 		playButton.setActivity(0);
@@ -119,7 +123,9 @@ Wami.GUI = function(options) {
 	 */
 
 	function onError(e) {
-		alert(e);
+		//alert(e); something wrong
+		recordButton.setEnabled(true);
+		wamiNotificationArea.innerHTML = "<font class=error>Please record your message first!</font>";
 	}
 
 	function onRecordStart() {
@@ -136,6 +142,7 @@ Wami.GUI = function(options) {
 
 	function onRecordFinish() {
 		playButton.setEnabled(true);
+			wamiNotificationArea.innerHTML = "<font class=info>File uploaded successfully</font>";
 		if (options.onRecordFinish) {
 			options.onRecordFinish();
 		}
@@ -195,7 +202,7 @@ Wami.GUI = function(options) {
 				return "0px 0px";
 			if (index == 3)
 				return "-112px 0";
-			alert("Background not found: " + index);
+			//alert("Background not found: " + index);
 		}
 
 		// Get the type of meter and its state
@@ -219,7 +226,7 @@ Wami.GUI = function(options) {
 				if (index == 3)
 					return "-327px " + top + "px";
 			}
-			alert("Meter not found: " + self.type + " " + index);
+			//alert("Meter not found: " + self.type + " " + index);
 		}
 
 		function silhouetteWidth() {

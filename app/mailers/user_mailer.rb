@@ -29,18 +29,7 @@ require 'mail'
   end
   
   private
-    def auth
-      Mail.defaults do
-        delivery_method :smtp, { 
-          :address => 'smtp.gmail.com',
-          :port => '587',
-          :user_name => "mazminim.com@gmail.com",
-          :password => "8ik,*IK<",
-          :authentication => :plain,
-          :enable_starttls_auto => true
-        }
-      end
-    end
+   
     def send_mail(user,data,subject,to)      
       data ||="Body"
       subject ||= "deafult subject"

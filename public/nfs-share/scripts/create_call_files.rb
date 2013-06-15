@@ -6,6 +6,8 @@ require 'fileutils'
 path="/var/www/prototype/public/nfs-share/"
 path_dev="/home/ubuntu/Documents/prototype/public/nfs-share/"
 user_id = ARGV[0]
+attempt = ARGV[1]
+event_id = ARGV[2]
 #puts user_id
 #puts "public/nfs-share/"+user_id+"/phonenumbers.txt"
 if !File.directory?(path_dev+user_id+"/call")
@@ -18,7 +20,7 @@ data=File.open path_dev+user_id+"/phonenumbers.txt"
 data.each do |elem|
   elem=elem.gsub(/\n/,"")
   #puts elem.split(":")[0]
-  File.open(path_dev+user_id+"/call/"+elem.split(":")[0]+".call", 'w') do |f| 
+  File.open(path_dev+user_id+"/call/"+elem.split(":")[0]+"."+ attempt + ".missing-id.call", 'w') do |f| 
     f.write("Channel:SIP/"+elem.split(":")[0] +"\n")    
     f.write("CallerID: mazminim"+ "\n")
     f.write("MaxRetries: 0 \n")
@@ -31,6 +33,10 @@ data.each do |elem|
     f.write("Setvar: invite_id="+elem.split(":")[1]+"\n" )
     f.write("Setvar: user_id="+user_id+"\n" )
     f.write("Setvar: inviter="+user_id+"\n" )
+    f.write("Setvar: ext_out="+ elem.split(":")[0] +"\n" )
+    f.write("Setvar: attempt=1\n" )
+    f.write("Setvar: event_id="+event_id+"\n" )
+    f.write("Archive: yes\n" )
   end
 end
 
