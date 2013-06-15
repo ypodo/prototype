@@ -1,6 +1,5 @@
 <h1>Sign in</h1>
-<div class="control-group">
-	<form class="well">
+<div class="control-group well">	
 	<%= form_for(:session, :url => sessions_path) do |f| %>
 	  <div class="row-fluid">
 	    <%= f.label :email %>
@@ -18,7 +17,6 @@
 	  <%= label_tag :remember_me %>
 	</div>
 	<% end %>	
-	</form>
 	<p>New user? <%= link_to "Sign up now!", signup_path %></p>	
 	<p><%= link_to "forgotten password?", new_password_reset_path %></p>	
 </div>

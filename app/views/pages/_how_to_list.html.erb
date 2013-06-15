@@ -2,7 +2,7 @@
 	<p class="lead">How to !</p>
 <ul class="nav nav-tabs nav-stacked">
   <li><a href="http://www.youtube.com/watch?v=lYFMTiubEaw">How to record audio</a></li>
-  <li><a href="http://www.youtube.com/watch?v=S8SMGR8RdLk">How to: add invites</a></li>
+  <li><a href="#" onclick="show_video_in_same_frame(http://www.youtube.com/embed/S8SMGR8RdLk);">How to: add invites</a></li>
   <li><a href="#">How to: ivent location google</a></li>
   <li><a href="http://www.youtube.com/watch?v=TxxLlEDBb54">How to: start call process</a></li>
   <li><a href="http://www.youtube.com/watch?v=UcgfbUzMWkc">How to: uploade excel file</a></li>
@@ -10,5 +10,9 @@
   <li><a href="http://www.youtube.com/watch?v=fYDIMd1MJ18">How to: see history payments</a></li>
   <li><a href="http://www.youtube.com/watch?v=exyZM2W0eTk">How to: connect google contacts</a></li>
 </ul>
-
 </div>
+<script>
+	function show_video_in_same_frame(link){
+		$("#video_main").attr('src',link)		
+	}
+</script>
