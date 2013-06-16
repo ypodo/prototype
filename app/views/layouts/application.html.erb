@@ -11,12 +11,15 @@
     <%= render 'layouts/stylesheets' %>  
     
   </head>
-  <body>  	
-  	<div class="container">
-  		<%= render 'layouts/add_side' %>
-    <div class="row-fluid">
+  <body>
+  	 	
+  	<div class="container">  		
+    <div class="row-fluid">    	
 	<%= render 'layouts/header' %>	
       <section class="round" >
+      	<% if signed_in? %>
+    	<%= render 'layouts/add_side' %>
+    	<%end%>   	
         <% flash.each do |key, value| %>
           <div class="alert <%= key %>"><%= value %></div>
         <% end %>        
