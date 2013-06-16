@@ -13,8 +13,9 @@
   </head>
   <body>  	
   	<div class="container">
+  		<%= render 'layouts/add_side' %>
     <div class="row-fluid">
-	<%= render 'layouts/header' %>
+	<%= render 'layouts/header' %>	
       <section class="round" >
         <% flash.each do |key, value| %>
           <div class="alert <%= key %>"><%= value %></div>
