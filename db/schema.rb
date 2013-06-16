@@ -11,11 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130612182009) do
-=======
-ActiveRecord::Schema.define(:version => 20130528162957) do
->>>>>>> 1027f885b4b4f574719c2527da8d67905a4d5e84
+
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -77,7 +74,7 @@ ActiveRecord::Schema.define(:version => 20130528162957) do
     t.integer  "event_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-<<<<<<< HEAD
+
   end
 
   create_table "order_transactions", :force => true do |t|
@@ -90,8 +87,7 @@ ActiveRecord::Schema.define(:version => 20130528162957) do
     t.text     "params"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-=======
->>>>>>> 1027f885b4b4f574719c2527da8d67905a4d5e84
+
   end
 
   create_table "orders", :force => true do |t|
