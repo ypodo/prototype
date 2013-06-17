@@ -2,14 +2,20 @@
 <div id="GoogleModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Import google contacts / Android phone contacts</h3>
+    <h3 id="myModalLabel"></h3>
   </div>
   <div class="modal-body">
+  	<fieldset>
+  		<legend>Android phone contacts</legend>
 	<%= form_tag('/google_contacts') do%>	    
-	    <p>Gmail:    <%= text_field_tag 'login'%></p> 
-	    <p>Password: <%= password_field_tag 'pass'%></p>
+	    <label>Gmail</label>
+	    <%= text_field_tag 'login'%> 
+	    <label>Password</label>
+	    <%= password_field_tag 'pass'%><p></p>
   		<%= submit_tag 'Import', :class=> 'btn btn-primary'%>  		
-	<% end %>	  
+	<% end %>	
+	</fieldset>
+	  
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>    
