@@ -38,12 +38,7 @@ require 'fastthread'
   def wami_play
     @user = current_user
   end
-    
-  
-    
-  def wami
-    params
-  end
+
   def recorder        
     if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
       Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
