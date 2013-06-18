@@ -5,7 +5,6 @@
 	<td><%=f.name %></td>
 	<td><%=f.mail %> </td>
 	<td><%=f.number %></td>	    
-       <%f.arriving = -10%>   
       	<%if f.arriving.nil? %>
       		<td>in progress</td>
       	<% elsif (f.arriving == 1)%>
@@ -20,6 +19,9 @@
 			<td bgcolor="#FF0000">No answer/busy. Redialing in 20 minutes<p> (3rd attempt out of 3)...</p></td>
 		<%elsif(f.arriving == -40)%>
 			<td bgcolor="#FF0000">No answer/busy.</td>
+		<%elsif(f.arriving == -50)%>
+			<td bgcolor="#FF0000">User didn't provide any answer.</td>
+
 		<%else%>
 			<td>No response</td>			
 	<%end%>		
