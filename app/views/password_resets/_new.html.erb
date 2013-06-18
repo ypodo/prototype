@@ -1,0 +1,21 @@
+<%= form_tag password_resets_path, :method => :post do %>
+  <div class="field">
+    <%= label_tag :email %>
+    <%= text_field_tag :email, params[:email] ,:type=>"email"%>
+  </div>
+  <div class="actions"><%= submit_tag "Reset Password", :class => "btn btn-primary" %></div>
+<% end %>
+
+
+<!--
+<form>
+  <fieldset>
+    <legend>Password</legend>
+    <label>Email address of registered user.</label>
+    <input type="text" placeholder="Type your email…">
+    <span class="help-block">Example: Jonathan.wan@gmail.com</span>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form>
+-->    

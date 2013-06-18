@@ -1,6 +1,6 @@
 @import "bootstrap";
-body { padding-top: 60px; }
-@import "bootstrap-responsive";
+body { padding-top: 25px; }
+//@import "bootstrap-responsive";
 /* line 56, ../../../../../../usr/local/lib/ruby/gems/1.9.1/gems/bootstrap-sass-2.2.1.1/vendor/assets/stylesheets/bootstrap/_navs.scss */
 .nav-list > li > a,
 .nav-list .nav-header {
@@ -8,3 +8,32 @@ body { padding-top: 60px; }
   margin-right: -15px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
 }
+@font-face {
+  font-family: 'forte';
+  src:url('ufonts.com_forte.eot');
+  src:url('ufonts.com_forte.eot?#iefix') format('embedded-opentype'),    
+    url('ufonts.com_forte.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;  
+}
+
+body {
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.sidebar-nav-fixed {
+    padding: 9px 0;
+    position:fixed;
+    left:1px;
+    
+    width:170px;
+}
+
+.row-fluid > .span-fixed-sidebar {
+    margin-left: 290px;
+}
+
+
+
+

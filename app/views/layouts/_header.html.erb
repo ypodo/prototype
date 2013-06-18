@@ -1,37 +1,32 @@
-<header>	
+<header>		
 <div class="navbar navbar-fixed-top">
   	<div class="navbar-inner">	
-	    <div class="container">
-		    <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </a>                  
+	    <div class="container">	
+	    	<a class="brand pull-left" href="/" >				   
+					  	  <font face="forte" size="6" color="red">mazminim</font>
+					  	</a>	           
 		    <div class="nav-collapse collapse navbar-responsive-collapse">		    
-		    <ul class="nav">		  		  
-		  		  <div class="media-object">
-		  		  <a class="pull-left" href="/">
-				    <img class="" src="/assets/logo.gif" style="width: 90px; height: 13px;">
-				  </a>
-				  </div>				  				
-				<% if signed_in? %>					  	
-				      				  
-		        <% end %>			      	
-	    	</ul>	
-		    <ul class="nav pull-right">
-                  <% if signed_in? %>
+			    <ul class="nav">
+					  <li>
+					  						  				  	
+					  </li>	  		  				
+					<% if signed_in? %>					  	
+					     	
+			        <% end %>			      	
+		    	</ul>	
+			    <ul class="nav pull-right">
+                  <% if signed_in? %>					
 					<li class="divider-vertical"></li>                  		
-					<li><%= link_to "my Desktop", current_user,:style => "font-size:16px;font-weight:600;" %></li>
-					 
+					<li><%= link_to "Desktop", current_user,:style => "font-size:16px;font-weight:600;" %></li>
 					<li class="divider-vertical"></li>				  
 					<li><%= link_to "How to", root_path ,:style => "font-size:16px;font-weight:600;"%></li>
 					<li class="divider-vertical"></li>				  
 					<!--<li><%=link_to "Price list", "#",:style => "font-size:16px;font-weight:600;"%></li>-->				 
 				      <% else %>
-				      	<li><%= link_to "Sign in", signin_path ,:style => "font-size:16px;font-weight:600;"%></li>
+			      	<li><%= link_to "Sign in", signin_path ,:style => "font-size:16px;font-weight:600;"%></li>
 			      <% end %>
 	                  <% if signed_in? %>
-	                  <li class="divider-vertical"></li>
+	                  
 	                  <li class="dropdown">
 	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 16px; font-weight:700;"><i class="icon-user"></i> <%=current_user.name%> <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">                      
@@ -39,16 +34,24 @@
 						  <li><a href="/help">Support</a></li>                      
 	                      <li class="divider"></li>                      
 	                      <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+              			</ul>
+              			<li>
+              				<%if current_user.provider=="facebook"%>
+              					<strong>facebook</strong>
+          					<%elsif current_user.provider=="google_oauth2"%>
+          						<strong>google</strong>
+      						<%end%>              				
+          				</li> 
               		  <% end %>
-                    </ul>
+                    
                   </li>
                 </ul>
-
-		    </div>
+	    	</div>
 		    
 	    </div>
 	  </div>
-  </div>  
+  </div> 
+   
 </header>
 <!-- navbar stay active after click -->
 <script type="text/javascript">

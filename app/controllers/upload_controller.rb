@@ -2,7 +2,8 @@ class UploadController < ApplicationController
 #require 'csv'
 require 'iconv'
 require 'roo'
-
+require 'gdata'
+  before_filter :authenticate, :only => [:upload,:google_contacts]
   def upload  #action 
     #params[:data_file]
     
@@ -46,7 +47,52 @@ require 'roo'
     redirect_to current_user, :notice =>"File Successfully uploaded."
 
   end
+  def google_contacts
+    login=params[:login]
+    pass=params[:pass]
+    if login.nil? || login.nil?
+      render :text => "Login or password is empty"
+      return  
+    end
+    matching=0    
+    raw_data=get_raw_data_from_google_contacts(login,pass)
+    if raw_data.nil?
+      return
+    end
+    list=parse_name_number_email(raw_data)
+    if list.nil? #error
+      render :text=> "Error accured while Google contact adta parsing"
+      return false
+    else      
+      list.each do |elem|
+        name=elem[0]
+        email=elem[1]
+        number=elem[2]        
+        number=normalize_phone(number)
+        number=number_correction(number)        
+        if is_a_valid_name(name) && is_a_valid_phone(number)
+          if is_a_valid_email(email) #if mail exist            
+            current_user.invites.new(:name=>name,:number=>number,:mail=>email).save
+            matching+=1          
+          else #mail not existe
+            current_user.invites.new(:name=>name,:number=>number).save
+            matching+=1
+          end          
+        else          
+        end
+      end
+    end
+    cookies[:ui_location]="tab2"         
+    redirect_to current_user, :notice =>"Google contacts successfully uploaded. #{matching}"
+  end
   private
+    def authenticate
+      deny_access unless signed_in?
+    end
+    
+    def number_correction(number)
+      number
+    end
     
     def csv_db_loader(rooObject) 
       if rooObject.nil?
@@ -56,20 +102,17 @@ require 'roo'
       user=current_user
       rooObject.each do |elem|
         if elem[2].nil? && !elem[1].nil?    # dva stolbika
-          elem[1]=elem[1].to_s
-          elem[1].slice! "-"
+          elem[1]=elem[1].to_s.gsub(/\D/, '')
           if is_a_valid_phone(elem[1]) 
             user.invites.new(:name=>elem[0],:number=>elem[1]).save
           end
         elsif !elem[0].nil? && elem[1].nil? && !elem[2].nil?
-          elem[2]=elem[2].to_s
-          elem[2].slice! "-"
+          elem[2]=elem[2].to_s.gsub(/\D/, '')
           if is_a_valid_phone(elem[2]) 
             user.invites.new(:name=>elem[0],:number=>elem[2]).save
           end
         else
-          elem[2]=elem[2].to_s
-          elem[2].slice! "-"  
+          elem[2]=elem[2].to_s.gsub(/\D/, '')          
           if is_a_valid_email(elem[1]) && is_a_valid_phone(elem[2]) 
             user.invites.new(:name=>elem[0],:mail=>elem[1],:number=>elem[2]).save
           end  
@@ -87,7 +130,14 @@ require 'roo'
     end
     
     def is_a_valid_phone(value)
-      if /(^0\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)(\d\d\d\d\d\d\d{,1})/.match(value) || value == ""
+      if /(^0\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)(\d\d\d\d\d\d\d{,1})/.match(value)
+        return true      
+      else return false
+      end 
+    end
+    
+    def is_a_valid_name(value)
+      if !value.nil? && value.length < 20  
         return true      
       else return false
       end 
@@ -112,6 +162,44 @@ require 'roo'
       else raise "Unknown file type: #{file.original_filename}"
       end
     end
+    
+    def normalize_phone(number)
+      if !number.nil?
+        number.gsub(/\D/, '')
+      else
+        return false        
+      end
+    end
+    
+    def parse_name_number_email(data)
+      email=""
+      list=[]
+      if !data.nil?
+        data.elements.to_a('entry').each do |entry|
+          if (!entry.elements['gd:phoneNumber'].nil?)
+            entry.elements.each('gd:phoneNumber') do |number|
+              name=entry.elements['title'].text
+              entry.elements.each('gd:email') do |e|
+                email=e.attribute('address').value
+              end
+              number = number.to_s.split(">")[1].split("<")[0]        
+            list.push([name, email, number]) 
+            email=""
+            end
+          end
+        end
+      end
+      return list
+    end
+    
+    def get_raw_data_from_google_contacts(login,password)
+      _CONTACTS_SCOPE = 'http://www.google.com/m8/feeds/'
+      _CONTACTS_FEED = _CONTACTS_SCOPE + 'contacts/default/full/?max-results=1000'
+      @client = GData::Client::Contacts.new
+      @client.clientlogin(login, password, @captcha_token, @captcha_response)      
+      feed = @client.get(_CONTACTS_FEED).to_xml
+    end
+    
     
     
 end

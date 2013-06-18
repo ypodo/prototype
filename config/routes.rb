@@ -1,7 +1,6 @@
 Prototype::Application.routes.draw do
   
-  resources :locations
-
+  resources :categories
 
   #get "password_resets/new"
   get "password_resets/new" => "password_resets#new"
@@ -17,9 +16,12 @@ Prototype::Application.routes.draw do
   match '/users/:id/can_start' => 'calls#can_start'
   
   match '/signup',  :to => 'users#new'
-  match '/signin',  :to => 'sessions#new'
+  #match '/signin',  :to => 'sessions#new'
+  match '/signin',  :to =>'pages#home'
   match '/signout', :to => 'sessions#destroy'
   match '/upload', :to => 'upload#upload'
+  match '/google_contacts', :to => 'upload#google_contacts'
+  
   #AJAX
   match '/invites/delete_all', :to => 'invites#delete_all'  
   match '/ajax_report_mail', :to => 'users#ajax_report_mail_to'  
@@ -30,6 +32,7 @@ Prototype::Application.routes.draw do
   match '/users/:id/ajax_payment_details' => 'users#ajax_payment_details'
   #Post recorder
   match '/post.php', :to => 'users#recorder'
+  match '/wami', :to => 'users#wami'
   #match '/full_report/ajax_progress_call' => 'users#ajax_progress_call'
   #match '/full_report/ajax_report' => 'users#ajax_report'
   #static pages
@@ -59,7 +62,7 @@ Prototype::Application.routes.draw do
   #get "login" => "sessions#new", :as => "login"
   #get "signup" => "users#new", :as => "signup"  
   resources :password_resets
-  
+  resources :locations
   
   root :to => 'pages#home'
   

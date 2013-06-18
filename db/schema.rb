@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528162957) do
+ActiveRecord::Schema.define(:version => 20130612182009) do
+
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -27,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20130528162957) do
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -66,6 +74,20 @@ ActiveRecord::Schema.define(:version => 20130528162957) do
     t.integer  "event_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+
+  end
+
+  create_table "order_transactions", :force => true do |t|
+    t.integer  "order_id"
+    t.string   "action"
+    t.integer  "amount"
+    t.boolean  "success"
+    t.string   "authorization"
+    t.string   "message"
+    t.text     "params"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+
   end
 
   create_table "orders", :force => true do |t|
@@ -101,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20130528162957) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "category"
   end
 
 end

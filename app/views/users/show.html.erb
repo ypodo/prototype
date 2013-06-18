@@ -1,5 +1,4 @@
-<div class="container-fluid">
-  
+<div class="container-fluid">  
   <div class="row-fluid">  
 	    <div class="span*">
 	    	<div class="tabbable"> <!-- Tabbable nav -->				 
@@ -8,7 +7,7 @@
 			    <li><a href="#tab2" ><h4>Import contacts <i class="icon-list"></i></h4></a></li>
 			    <li><a href="#tab3" ><h4>Invite <i class="icon-ok"></i></h4></a></li>
 			    <li><a href="#tab4" ><h4>View results <i class="icon-tasks"></i></h4></a></li>					  	
-			    <!--<li><a href="#tab5" class="btn btn-success"><h4>Test over Skype</h4></a></li>-->
+			    <!--<li><a href="#tab5" class="btn btn-success"><h4>Test over Skype</h4></a></li>-->			    
 			  </ul>				  
 			  <div class="tab-content">
 			    <div class="tab-pane active" id="tab1">	
@@ -21,12 +20,14 @@
 			      <div class="control-list" style="background-color:">			    	
 			    		<div class="well well-small">
 				    		<a href="#uploadModal" role="button" class="btn" data-toggle="modal">Upload file</a>
-							<a class="btn"><input type="image"  src='/assets/google_search_icon_1.png' style="width: 20px;" /> Google contacts</a>
+							<!-- Button to trigger modal -->
+							<a href="#GoogleModal" role="button" class="btn" data-toggle="modal"><input type="image"  src='/assets/google_search_icon_1.png' style="width: 20px;" /> Google contacts</a>							
 							<p></p>
-							<p class="">You can uploade Excel or CSV file, <a href="file_format:#">accepted file format.</a></p>
-							<p class="">Export from google/android phone contacts, <a href="file_format:#">Google/Android contacts</a></p>
+							<p class="">You can uploade Excel or CSV file.</p>
+							<p class="">Export from google/android phone contacts.</p>
 			    		</div>
-			    		<%=render 'upload_modal'%>	
+			    		<%=render 'upload_modal'%>
+			    		<%=render 'google_contacts_modal'%>	
 				    	<div class="controls well well-small">
 				    		<%=render 'invite'%>
 				        	<%=render 'inviteT'%>
@@ -39,8 +40,11 @@
 					 <div class="control-list" style="background-color: #EEEEEE">			    		
 	                	<button type="button" id="green_submit" onclick="can_start();" class="btn btn-block" data-toggle="tooltip" data-loading-text="Loading..." title="Press to to start the process">
 							<img src="/assets/call.png">
+							
 						</button>
+						
 				    </div>
+				    <!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark"></a></td></tr></table><!-- PayPal Logo -->
 				</div>	
 				<div class="span8">	
 					<div class="alert alert-block alert-error fade in" id="notification" style="display: none">

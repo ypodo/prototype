@@ -15,20 +15,15 @@
 			<% if record_exist %>   				
 				<param name="SoundFileURL" value="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav"/>
 			<%end%>
+			<audio controls>
+			  <source src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav" type="audio/wav">			  
+			Your browser does not support the audio element.
+			</audio>
 			</applet>	
-			<!--http://192.168.56.102/nfs-share/4/4.wav-->
-			<!--This is a comment. Comments are not displayed in the browser
-			<% if record_exist %>
-				<button onclick="play()" class="btn btn-mini btn-primary">Play</button>
-			<%end%>	
-			<button onclick="record()" class="btn btn-mini btn-danger">Rec</button>	
-			<button onclick="stop()" class="btn btn-mini btn-inverse">Stop</button>
-			-->	
 			<p></p>				
 				<button type="button" onclick="postAudio();remove_span();recorderReloade();" class="btn btn-block" data-toggle="tooltip" data-loading-text="Loading..." title="Press to save your record on server">
 				<h5 style="color: #069">Save your record on the server.</h5>
 				</button>	
-			  
 			  <script type="text/javascript">
 			  function remove_span(){
 			  	//This will remove spn in div applet_container
@@ -44,9 +39,6 @@
 				}	
 			  </script>
 		</div>
-		
-		
-		
 </div>
 
 			

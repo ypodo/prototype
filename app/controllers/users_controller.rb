@@ -38,8 +38,7 @@ require 'fastthread'
   def wami_play
     @user = current_user
   end
-    
-  
+
   def recorder        
     if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
       Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
@@ -70,7 +69,8 @@ require 'fastthread'
     @users = User.all
   end
   
-  def show    
+  def show 
+    #show.html.rb will be renderen on the end    
     @user = User.find(params[:id])         
     @title = @user.name    
     
@@ -179,14 +179,13 @@ require 'fastthread'
     end 
   end
   
-  def full_report
-    #@user=current_user
-  end
+  
   def ajax_payment_details
     @user=current_user
     
     render :partial => 'payment_details',:object =>@user
   end
+  
 # END AJAX
   private
 

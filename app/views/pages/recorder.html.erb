@@ -1,6 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html>
-<head>
 <!-- swfobject is a commonly used library to embed Flash content -->
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
@@ -21,26 +18,13 @@
 		var gui = new Wami.GUI({
 			id : "wami",
 			recordUrl : "http://localhost:3000/wami/",
-			<% if !record_exist %>   
-				playUrl : "http://localhost:3000/no-record.wav"
 				
-			<%else%>	
-   				
-				playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav"
-				
-			<%end%>
-			
 		});
 
 		gui.setPlayEnabled(true);
-		<% if !record_exist %>   
-			wamiNotificationArea.innerHTML = "Please record your message!";
-		<%else%>
-			wamiNotificationArea.innerHTML = "You have already recorded your message";
-		<%end%>			
+					
 	}
 </script>
-</head>
 
 <body onload="setupRecorder()">
 	<div id="wami" style="margin-left: 100px;"></div>
@@ -51,4 +35,3 @@
 </div>
 
 </body>
-</html>

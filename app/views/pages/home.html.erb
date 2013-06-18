@@ -1,6 +1,6 @@
 <div class="row-fluid">
 	<div class="span8">			
-		<iframe  class="well" width="580" height="400" src="http://www.youtube.com/embed/L624IWK28_M?rel=0" frameborder="0" allowfullscreen></iframe>
+		<iframe id="video_main" class="well" width="580" height="400" src="http://www.youtube.com/embed/lV1S7ZB8Ahw" frameborder="100" allowfullscreen></iframe>
 	</div>		
 	<div class="span4">	
 		<% if !signed_in? %>
@@ -31,18 +31,18 @@
 			    <%= f.password_field :password,:placeholder=>"Password" ,:required => true, 'data-toggle'=>'tooltip', 'title'=>"Enter your password to login the system"%>				    
 			    <div class="inline">
 				    <%= f.submit "Login", :class=>"btn btn-primary" %>
+				    <% end %>
 				    <%= link_to "forgot the password?", "#", :class=>"label label-warning", :data => {:toggle => "modal"}, :href => "#myModal"%>	
-					<!--
+					
 					<p></p>				   
 				    <a type="button" href="/auth/facebook">Facebook login</a>
 				    <p></p>
 				   	<a type="button" href="/auth/google_oauth2">Google login</a>
-				   	-->
+				   	
 			    </div>	
-		  	</div>
-		  	
+		  	</div>		  	
 			<%= render 'password_form'%>
-			<% end %>
+			
 		</div>
 		<%else %>
 		<div class="control-group">			
