@@ -8,17 +8,14 @@
 	<%= stylesheet_link_tag "application"%>
     <%= csrf_meta_tag %>
     <%= javascript_include_tag "application" %>
-    <%= render 'layouts/stylesheets' %>  
-    
+    <%= render 'layouts/stylesheets' %>      
   </head>
-  <body>
-  	 	
+  <body>  	 	
   	<div class="container">  		
     <div class="row-fluid">    	
 	<%= render 'layouts/header' %>	
       <section class="round" >
-      	<% if signed_in? %>
-    	<%= render 'layouts/add_side' %>
+      	<% if signed_in? %>    	
     	<%end%>   	
         <% flash.each do |key, value| %>
           <div class="alert <%= key %>"><%= value %></div>

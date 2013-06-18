@@ -3,12 +3,12 @@
   	<div class="navbar-inner">	
 	    <div class="container">	
 	    	<a class="brand pull-left" href="/" >				   
-					  	  <font face="forte" size="5" color="red">mazminim</font>
+					  	  <font face="forte" size="6" color="red">mazminim</font>
 					  	</a>	           
 		    <div class="nav-collapse collapse navbar-responsive-collapse">		    
 			    <ul class="nav">
 					  <li>
-					  				  	
+					  						  				  	
 					  </li>	  		  				
 					<% if signed_in? %>					  	
 					     	
@@ -17,7 +17,7 @@
 			    <ul class="nav pull-right">
                   <% if signed_in? %>					
 					<li class="divider-vertical"></li>                  		
-					<li><%= link_to "my Desktop", current_user,:style => "font-size:16px;font-weight:600;" %></li>
+					<li><%= link_to "Desktop", current_user,:style => "font-size:16px;font-weight:600;" %></li>
 					<li class="divider-vertical"></li>				  
 					<li><%= link_to "How to", root_path ,:style => "font-size:16px;font-weight:600;"%></li>
 					<li class="divider-vertical"></li>				  
