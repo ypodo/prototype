@@ -2,9 +2,54 @@
 <!--<%= link_to 'New Category', new_category_path %>-->
 
 <div class="row-fluid" align="center">
-<p>
+ 
+<!--
 <%@categories.each do |category| %>
   <%=render 'each_categories', :category => category%>  
 <% end %>
+<%=@categories[0].name%>
+-->
 
+
+<div class="span3" style="background-color: pink">	
+	<div>
+		<img src="assets/<%=@categories[0].name%>.png">
+	</div>
+	<div><%= link_to @categories[0].name, @categories[0], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+</div>
+
+<div class="span3" style="background-color: red">	
+	<div>
+		<img src="assets/<%=@categories[1].name%>.png">
+	</div>
+	<div><%= link_to @categories[1].name, @categories[1], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+</div>
+
+<div class="span3" style="background-color: green">	
+	<div>
+		<img src="assets/<%=@categories[2].name%>.png">
+	</div>
+	<div><%= link_to @categories[2].name, @categories[2], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+</div>
+<!--
+<div class="well well-small" style="background-color: pink">	
+	<div>
+		<img src="assets/<%=@categories[3].name%>.png">
+	</div>
+	<div><%= link_to @categories[3].name, @categories[3], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+</div>
+<div class="well well-small" style="background-color: pink">	
+	<div>
+		<img src="assets/<%=@categories[4].name%>.png">
+	</div>
+	<div><%= link_to @categories[4].name, @categories[4], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+</div>
+
+<div class="well well-small" style="background-color: pink">	
+	<div>
+		<img src="assets/<%=@categories[5].name%>.png">
+	</div>
+	<div><%= link_to @categories[5].name, @categories[0], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+</div>
+-->
 </div>
