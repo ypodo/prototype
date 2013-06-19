@@ -20,9 +20,9 @@
 	function setupGUI() {
 		var gui = new Wami.GUI({
 			id : "wami",
-			recordUrl : "http://localhost:3000/wami/",
+			recordUrl : "http://<%=request.host_with_port%>/wami/",
 			<% if !record_exist %>   
-				playUrl : "http://localhost:3000/no-record.wav"
+				playUrl : "http://<%=request.host_with_port%>/no-record.wav"
 
 			<%else%>	
    				
