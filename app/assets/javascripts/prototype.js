@@ -138,10 +138,9 @@ function sendReport(argument){ // This function not works
 	if(addr == ""){
 		return;
 	}
-	alert(addr);
 	$.post("/ajax_report_mail/", { mail: '"'+addr+'"'})
 	.done(function(data) {
-	  alert("Data Loaded: " + data.responseText);
+	  alert("Report was sent to: " + data.responseText);
 	});
 }
 
