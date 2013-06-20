@@ -1,4 +1,5 @@
-<div class="span3 well" align="center">			
+<div class="span3" align="center">			
+		<div class="well">	
 			<div id="applet_container">	
 			<% if !record_exist %>   
 				<span class="label label-warning">No audio recordings.</span>
@@ -21,19 +22,8 @@
 			<button type="button" onclick="postAudio();remove_span();recorderReloade();" class="btn btn-block" data-toggle="tooltip" data-loading-text="Loading..." title="Press to save your record on server">
 				<p>Save your record.</p>
 			</button>
-		<!--
-			<br />
-			<br />
-			<div class="input-append" align="left">
-				<%= form_tag({:action => :upload_audio, :controller=> :upload}, :method => 'post', :multipart => true, :remote => true, :id=>"uploade_audio_form" ) do %>
-				  <%= file_field_tag :data_file ,:required => true, :accept=>"*.", :name=>"MAX_FILE_SIZE", :value=>"1048576"%>
-				  <%= hidden_field_tag('user', value = @user.id)%>
-				  <br />
-				  <%= submit_tag 'Upload', :class=>"btn", :required => true, :temote=>true, :onclick=>"recorderReloade();"%>		
-				<% end %>
-			</div>	
-		-->	
-				
+		
+		
 	  <script type="text/javascript">
 	  function remove_span(){
 	  	//This will remove spn in div applet_container
@@ -48,8 +38,18 @@
 			var url = applet.sendGongRequest('LoadFromURL', "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav")					
 		}	
 	  </script>
-			  
+	</div>	  
 		</div>
+		<iframe class="span* well" src="/upload_frame" frameborder="0" scrolling="no" align="left" height="130" id="upload_frame">
+				<%= form_tag({:action => :upload_audio, :controller=> :upload}, :method => 'post', :multipart => true, :remote => true, :id=>"uploade_audio_form" ) do %>
+				  <%= file_field_tag :data_file ,:required => true, :accept=>"*.", :name=>"MAX_FILE_SIZE", :value=>"1048576"%>
+				  <%= hidden_field_tag('user', value = @user.id)%>
+				  <br />
+				  <%= submit_tag 'Upload', :class=>"btn", :required => true, :temote=>true, :onclick=>"recorderReloade();"%>		
+				<% end %>
+		</iframe>
+		
+			
 </div>
 
 			

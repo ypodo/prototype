@@ -31,5 +31,10 @@ module UsersHelper
     mam=0.18    
     return (cost_per_call*(1+profit)*(1+mam))      
   end
-
+  
+  def convert_audio_to_sln
+    if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"))              
+      Kernel.system "public/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id}"        
+    end 
+  end
 end

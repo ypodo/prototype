@@ -1,18 +1,31 @@
 class UploadController < ApplicationController
-#require 'csv'
+include UsersHelper
 require 'iconv'
 require 'roo'
 require 'gdata'
   before_filter :authenticate, :only => [:upload,:google_contacts]
   
   def upload_audio
-    
+    max_size=1048576
+    if(params[:user]==current_user.id.to_s && params[:AUDIO_FILE].content_type == "audio/wav")
+      if(File.size(params[:AUDIO_FILE].tempfile)<max_size)
+        if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+          Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
+        end
+        #copy audio to user section from temperory server section.
+        @record_tmp=File.open(Rails.root.join(params[:AUDIO_FILE].tempfile.path), 'r').read    
+        File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"), "w") do |f|
+          f.write(@record_tmp)
+        end    
+        convert_audio_to_sln    
+      end
+    end      
+    @user = current_user
+    render :partial => "users/upload_frame"    
   end
   
-  
   def upload  #action 
-    #params[:data_file]
-    
+    #params[:data_file]    
     if !/(.xlsx)|(.csv)/.match(params[:data_file].original_filename)    
       redirect_to user :notice =>"uploaded file extension is not correct"
       return
