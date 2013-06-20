@@ -180,7 +180,6 @@ require 'fastthread'
     end 
   end
   
-  
   def ajax_payment_details
     @user=current_user
     
