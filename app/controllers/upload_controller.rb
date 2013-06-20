@@ -4,6 +4,12 @@ require 'iconv'
 require 'roo'
 require 'gdata'
   before_filter :authenticate, :only => [:upload,:google_contacts]
+  
+  def upload_audio
+    
+  end
+  
+  
   def upload  #action 
     #params[:data_file]
     

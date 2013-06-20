@@ -20,6 +20,7 @@ Prototype::Application.routes.draw do
   match '/signin',  :to =>'pages#home'
   match '/signout', :to => 'sessions#destroy'
   match '/upload', :to => 'upload#upload'
+  match '/upload_audio', :to => 'upload#upload_audio'
   match '/google_contacts', :to => 'upload#google_contacts'
   
   #AJAX
