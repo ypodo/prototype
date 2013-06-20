@@ -1,0 +1,77 @@
+ <div class="row-fluid" id="full_report_div" > 	 	
+ 	<div class="control-list"> 	
+ 		<h6><div id="progress_bar_lable"></div></h6>
+	 		<div class="progress progress-striped active">
+			  <div class="bar bar-warning" style="width: 0%;" id="progress_bar"></div>
+			</div>
+			<img src="http://<%=request.host_with_port%>/assets/logo.gif" />
+		<br />		
+		<br />
+		<strong>Final report for:</strong>
+		<br />
+		<%link_to "Mazminim.com", root_path%>
+	 	<div class="row-fluid">		 	
+			
+	 	 		<!--Small report table on the right side-->
+	 	 		
+	 	 		<%if !@invite_history.nil?%>
+					<table class="table table-bordered" id="report_tbl" border="1">
+         		<%count_yes=0%>
+              	<%count_nil=0%>
+              	<%count_not=0%>
+              	<%@invite_history.each do |elem|
+              		
+              		if  (elem.arriving.nil?)
+      					count_nil+=1
+              		elsif (elem.arriving == 1)
+        				count_yes+=1
+      				elsif  (elem.arriving == 2)
+      					count_not+=1					
+      				end
+  				end
+      			%>
+          <thead>
+            <caption>
+            	Report summary.            
+            </caption>	            
+          </thead>
+          <tbody>
+            <tr class="success">              
+              <td style="font-weight: bold">Total invites:</td>
+              <td style="font-weight: bold" id="total_invites_data_row"><%=@invite_history.count%></td>                  
+            </tr>
+            <tr class="error">              
+              <td style="font-weight: bold">Comming:</td>
+              <td style="font-weight: bold" id="comming_invites_data_row"><%=count_yes%></td>                  
+            </tr>
+            <tr class="warning">              
+              <td style="font-weight: bold">No Answer:</td>
+              <td style="font-weight: bold" id="no_answer_data_row"><%=count_nil%></td>                  
+            </tr>       
+            <tr class="">              
+              <td style="font-weight: bold">Not comming:</td>
+              <td style="font-weight: bold" id="no_answer_data_row"><%=count_not%></td>                  
+            </tr>      
+          </tbody>
+</table>
+<%else%>
+<table class="table table-bordered" id="report_tbl"></table>
+<%end%>	
+<br />
+ 	<table class="table" border="1">
+  		<thead>
+            <tr>                  
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone number</th>
+              <th>Acknowledge status</th>
+            </tr>
+	  	</thead>
+	  	<tbody id="full_report_table_body">
+            <%=render 'invites_each'%>                
+          </tbody>
+  	</table>	
+ 	 	 	
+	 	</div>
+ 	</div> 	
+ </div> 

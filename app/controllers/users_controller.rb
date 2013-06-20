@@ -97,7 +97,7 @@ require 'fastthread'
       if @user.save      
         sign_in @user
         flash[:success] = "Welcome to the Mazminim.com you can start using the service!"
-        #UserMailer.registration_confirmation(@user)
+        UserMailer.registration_confirmation(@user)
         redirect_to categories_path
         #redirect_to @user
         # Обработка успешного сохранения.
@@ -172,9 +172,9 @@ require 'fastthread'
     else
       current_token=current_user.orders.last.token
       if !current_token.nil?
-        @invite_history=current_user.inviteHistorys.where(:token=>current_token)
-        report=render_to_string(:partial => "report/full_report_mail")    
-        UserMailer.report_on_completion(current_user,report,"User Report after calling process complited",params[:mail])
+        @invite_history=current_user.inviteHistorys.where(:token=>current_token)        
+        report=render_to_string(:partial => "user_mailer/final_report")      
+        UserMailer.report_on_completion(current_user,report,"Report after calling process complited",params[:mail])
         render :text => "Mail sent to #{params[:mail]}"
       end
     end 

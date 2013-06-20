@@ -124,23 +124,13 @@ function refresh_report_sum(argument) {
 			document.getElementById("report_tbl").innerHTML=msg;
 		});
 }
-function sendReport(argument){ // This function not works 
-	//This fuction will call send mail function in mail_controller
-	/*$.ajax({
-		type: "POST",
-		data: {mail: '"'+argument+'"'},
-		url: "/ajax_report_mail/" // :Action => sendReport, :controller => user
-		}).done(function(msg){
-		alert(msg);
-	});
-	*/
+function sendReport(argument){ // This function not works
 	var addr=document.getElementById("appendedInputButton").value;
 	if(addr == ""){
 		return;
 	}
 	$.post("/ajax_report_mail/", { mail: '"'+addr+'"'})
-	.done(function(data) {
-	  alert("Report was sent to: " + data.responseText);
+	.done(function(data) {	  
 	});
 }
 

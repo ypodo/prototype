@@ -15,14 +15,10 @@
 			<% if record_exist %>   				
 				<param name="SoundFileURL" value="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav"/>
 			<%end%>			
-			</applet>	
-			<audio controls>
-			  <source src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav" type="audio/wav">			  
-				Your browser does not support the audio element.
-			</audio>
+			</applet>
 			<p></p>				
 				<button type="button" onclick="postAudio();remove_span();recorderReloade();" class="btn btn-block" data-toggle="tooltip" data-loading-text="Loading..." title="Press to save your record on server">
-				<h5 style="color: #069">Save your record on the server.</h5>
+				<p>Save your record.</p>
 				</button>	
 			  <script type="text/javascript">
 			  function remove_span(){
@@ -38,6 +34,7 @@
 					var url = applet.sendGongRequest('LoadFromURL', "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav")					
 				}	
 			  </script>
+			  
 		</div>
 </div>
 
