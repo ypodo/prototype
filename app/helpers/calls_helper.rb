@@ -12,7 +12,6 @@ module CallsHelper
       return nil  
     end
     
-    
     #while this command executing asterisk will satrt call and generate report files 
     #@result=system "ruby public/nfs-share/scripts/ssh_command_copy_to_spool.rb #{user_from_remember_token.id}"
     #@result= system "ruby public/nfs-share/scripts/ssh_command_copy_to_spool.rb  #{user_from_remember_token.id}"    
@@ -28,10 +27,7 @@ module CallsHelper
     #before_create_remove_all_prev in /public/nfs-share/user_id/call.
     if !File.exist?(File.join('public','nfs-share', "#{user_from_remember_token.id}",'call'))
       Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}",'call')) # directory create              
-    end
-    if !File.exist?(File.join('public','nfs-share', "#{user_from_remember_token.id}",'report'))
-      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}",'report')) # directory create              
-    end
+    end    
     @result= system "ruby public/nfs-share/scripts/create_call_files.rb #{user_from_remember_token.id} 1 12345"
     ##{current_user.orders.last.token}    
   end

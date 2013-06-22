@@ -1,5 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html>
 <head>
 <!-- swfobject is a commonly used library to embed Flash content -->
 <script type="text/javascript"
@@ -23,11 +21,8 @@
 			recordUrl : "http://<%=request.host_with_port%>/wami/",
 			<% if !record_exist %>   
 				playUrl : "http://<%=request.host_with_port%>/no-record.wav"
-
-			<%else%>	
-   				
+			<%else%>	   				
 				playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav"
-
 			<%end%>
 
 		});
@@ -43,7 +38,7 @@
 </head>
 
 <body onload="setupRecorder()">
-	<div id="wami" style="margin-left: 100px;"></div>
+	<div id="wami"></div>
 	<noscript>WAMI requires Javascript</noscript>
 <br>
 <br><br><br><br><br><br><br>
@@ -51,4 +46,3 @@
 </div>
 
 </body>
-</html>

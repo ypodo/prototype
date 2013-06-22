@@ -71,8 +71,7 @@ function doAxaj(msg)
 }
 function can_start(){
 	//1. ask server about all requerment before start could be started
-	//document.getElementById("green_submit").disabled=true;
-	
+	//document.getElementById("green_submit").disabled=true;	
 	var can_start=$.ajax(window.location.pathname+"/can_start").done(function(){
 		if(can_start.responseText=="false"){			
 				$("#notification").show();
@@ -80,14 +79,13 @@ function can_start(){
 				elem.css("background-color","red");
 				return false;
 			}
-			
+						
 		else{	
-			document.getElementById("green_submit").disabled=true;
-			var elem=$('.control-list[style="background-color: red;"]');
-			elem.css("background-color","#eeeeee");
-			$(".alert").alert('close');						
-			checkout();					
-					
+				document.getElementById("green_submit").disabled=true;
+				var elem=$('.control-list[style="background-color: red;"]');
+				elem.css("background-color","#eeeeee");
+				$(".alert").alert('close');						
+				checkout();	
 			}
 				
 		}		
@@ -124,27 +122,15 @@ function refresh_report_sum(argument) {
 			document.getElementById("report_tbl").innerHTML=msg;
 		});
 }
-function sendReport(argument){ // This function not works 
-	//This fuction will call send mail function in mail_controller
-	/*$.ajax({
-		type: "POST",
-		data: {mail: '"'+argument+'"'},
-		url: "/ajax_report_mail/" // :Action => sendReport, :controller => user
-		}).done(function(msg){
-		alert(msg);
-	});
-	*/
+function sendReport(argument){ // This function not works
 	var addr=document.getElementById("appendedInputButton").value;
 	if(addr == ""){
 		return;
 	}
-	alert(addr);
 	$.post("/ajax_report_mail/", { mail: '"'+addr+'"'})
-	.done(function(data) {
-	  alert("Data Loaded: " + data.responseText);
+	.done(function(data) {	  
 	});
 }
-
 function tab2 () {
 	// Go to tab2
    $('#mainTabs a[href="#tab2"]').tab('show');
@@ -264,6 +250,7 @@ function post_payment_process(argument) {
               //alert("post_payment_process");
               tab4();
               top.dg.closeFlow();
+              tab_data_sync("#tab4");
               return              
 	 }
 	 timer1();         

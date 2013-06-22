@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
       category=Category.find_by_id(params[:id])
       if !category.nil?
         #current_user.update_attribute(:category, category.name)
-        flash[:notice] = "Category #{category.name} was selected"              
+        flash[:notice] = "Category #{category.name} was selected, we will adapt the application to you."              
         redirect_to current_user  
       end      
     end    

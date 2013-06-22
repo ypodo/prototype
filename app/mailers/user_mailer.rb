@@ -21,15 +21,26 @@ require 'mail'
     send_mail(user, data, subject,to)
   end
   
-  def registration_confirmation(user)
-    subject="Hello #{user.name}. Wellcome to mazminim."
-    data="Hello #{user.name}. Wellcome to mazminim. Your user name is: #{user.email}    To start using our services browse to mazminim.com and enjoy.
-                          For any problems or questions occurring during using service, contact us from support page or direct mail to: mazminim.com@gmail.com"
-    send_mail(user, data, subject,'yuri.shterenberg@gmail.com')
+  def registration_confirmation(user)    
+    @user=user
+    subject="Hello #{user.name}. Wellcome to mazminim."    
+    walcome_html=render_to_string(:partial => "user_mailer/welcome")
+    send_mail(user, walcome_html, subject,'yuri.shterenberg@gmail.com')
   end
   
   private
-   
+    def auth
+      Mail.defaults do
+        delivery_method :smtp, { 
+          :address => 'smtp.gmail.com',
+          :port => '587',
+          :user_name => "mazminim.com@gmail.com",
+          :password => "8ik,*IK<",
+          :authentication => :plain,
+          :enable_starttls_auto => true
+        }
+      end
+    end
     def send_mail(user,data,subject,to)      
       data ||="Body"
       subject ||= "deafult subject"

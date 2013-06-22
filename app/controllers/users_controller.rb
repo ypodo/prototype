@@ -38,7 +38,12 @@ require 'fastthread'
   def wami_play
     @user = current_user
   end
-
+  def upload
+    #uplode_frame
+    @user = current_user
+    #rendered_data=render_to_string(:partial => "upload_frame")  
+    render :partial => "upload_frame"
+  end
   def recorder        
     if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
       Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
@@ -98,7 +103,8 @@ require 'fastthread'
         sign_in @user
         flash[:success] = "Welcome to the Mazminim.com you can start using the service!"
         UserMailer.registration_confirmation(@user)
-        redirect_to @user
+        redirect_to categories_path
+        #redirect_to @user
         # Обработка успешного сохранения.
       else
         @title = "Please sign up"
@@ -171,14 +177,13 @@ require 'fastthread'
     else
       current_token=current_user.orders.last.token
       if !current_token.nil?
-        @invite_history=current_user.inviteHistorys.where(:token=>current_token)
-        report=render_to_string(:partial => "report/full_report_mail")    
-        UserMailer.report_on_completion(current_user,report,"User Report after calling process complited",params[:mail])
+        @invite_history=current_user.inviteHistorys.where(:token=>current_token)        
+        report=render_to_string(:partial => "user_mailer/final_report")      
+        UserMailer.report_on_completion(current_user,report,"Report after calling process complited",params[:mail])
         render :text => "Mail sent to #{params[:mail]}"
       end
     end 
   end
-  
   
   def ajax_payment_details
     @user=current_user

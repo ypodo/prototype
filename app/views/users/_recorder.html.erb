@@ -1,44 +1,59 @@
-<div class="span3 well">			
+<div class="span3" align="center">			
+		<div class="">	
 			<div id="applet_container">	
-			<% if !record_exist %>   
-				<span class="label label-warning">No audio recordings.</span>
-			<%end%>			
-		    <applet id="applet"  class="" archive="../module/nanogong.jar" code="gong.NanoGong" width="164" height="55" visable="true">
-			<param name="ShowSpeedButton" value="false" />
-			<param name="ShowSaveButton" value="true" />
-			<param name="AudioFormat" value="ImaADPCM" />
-			<param name="MaxDuration" value="60" />
-			<param name="SamplingRate" value="44100" />	
-			<param name="ShowRecordButton" value="true" />
-			<param name="ShowAllButtons" value="true" />
-			<param name="Color" value="#f5f5f5" />			
-			<% if record_exist %>   				
-				<param name="SoundFileURL" value="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav"/>
-			<%end%>
-			<audio controls>
-			  <source src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav" type="audio/wav">			  
-			Your browser does not support the audio element.
-			</audio>
-			</applet>	
-			<p></p>				
-				<button type="button" onclick="postAudio();remove_span();recorderReloade();" class="btn btn-block" data-toggle="tooltip" data-loading-text="Loading..." title="Press to save your record on server">
-				<h5 style="color: #069">Save your record on the server.</h5>
-				</button>	
-			  <script type="text/javascript">
-			  function remove_span(){
-			  	//This will remove spn in div applet_container
-			  	$("#applet_container > span").remove()
-			  }
-			  	$('#PayPalModal').on('hidden', function () {
-				 applet.width=120
-				})
-				;
 				
-				function recorderReloade(argument){
-					var url = applet.sendGongRequest('LoadFromURL', "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav")					
-				}	
-			  </script>
+				
+				<% if !record_exist %>   
+					<span class="label label-warning">No audio recordings.</span>
+				<%end%>			
+			
+			
+				<!-- swfobject is a commonly used library to embed Flash content -->
+				<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+				<!-- Setup the recorder interface -->
+				<script type="text/javascript" src="/assets/recorder.js"></script>
+				<!-- GUI code... take it or leave it -->
+				<script type="text/javascript" src="/assets/gui.js"></script>
+				<script>
+					function setupRecorder() {
+						Wami.setup({
+							id : "wami",
+							onReady : setupGUI
+						});
+					}
+				
+					function setupGUI() {
+						var gui = new Wami.GUI({
+							id : "wami",
+							recordUrl : "http://<%=request.host_with_port%>/wami/",
+							<% if !record_exist %>   
+								playUrl : "http://<%=request.host_with_port%>/no-record.wav"
+							<%else%>	   				
+								playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav"
+							<%end%>
+				
+						});
+				
+						gui.setPlayEnabled(true);
+						<% if !record_exist %>   
+							wamiNotificationArea.innerHTML = "Please record your message!";
+						<%else%>
+							wamiNotificationArea.innerHTML = "You have already recorded your message";
+						<%end%>			
+					}
+				</script>				
+				
+					<div id="wami"></div>
+					<noscript>WAMI requires Javascript</noscript>
+					<br>
+					<br><br><br><br><br><br><br>
+					<div id="wamiNotificationArea">
+						<script>setupRecorder();</script>
+					</div>				
+											
 		</div>
-</div>
+		
+	</div>
 
+</div>
 			

@@ -12,6 +12,7 @@
 			  <div class="tab-content">
 			    <div class="tab-pane active" id="tab1">	
 					  <%=render 'recorder'%>
+					  
 				  	<div class="span9 well">
 						<%=render 'speeches_eng'%>
 					</div>	
@@ -39,12 +40,10 @@
 				<div class="span3">
 					 <div class="control-list" style="background-color: #EEEEEE">			    		
 	                	<button type="button" id="green_submit" onclick="can_start();" class="btn btn-block" data-toggle="tooltip" data-loading-text="Loading..." title="Press to to start the process">
-							<img src="/assets/call.png">
-							
-						</button>
-						
+							<img src="/assets/call.png">							
+						</button>						
 				    </div>
-				    <!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark"></a></td></tr></table><!-- PayPal Logo -->
+				    <table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark"></a></td></tr></table><!-- PayPal Logo -->
 				</div>	
 				<div class="span8">	
 					<div class="alert alert-block alert-error fade in" id="notification" style="display: none">
@@ -75,21 +74,7 @@
 		</div>	
   </div> 
 </div>
-   
-<script>
-if (window.opener){
-	alert("window.close()");
-	window.close();
-	}
-	else if (top.dg.isOpen() == true){
-		alert("top.dg.closeFlow()");
-	top.dg.closeFlow();
-}
-</script>
-
-
-
-
+ 
 <!-- Add Digital goods in-context experience. Ensure that this script is added before the closing of html body tag -->
 
 <script src='https://www.paypalobjects.com/js/external/dg.js' type='text/javascript'></script>

@@ -20,6 +20,7 @@ Prototype::Application.routes.draw do
   match '/signin',  :to =>'pages#home'
   match '/signout', :to => 'sessions#destroy'
   match '/upload', :to => 'upload#upload'
+  match '/upload_audio', :to => 'upload#upload_audio'
   match '/google_contacts', :to => 'upload#google_contacts'
   
   #AJAX
@@ -30,6 +31,7 @@ Prototype::Application.routes.draw do
   match '/users/:id/ajax_report_sum' => 'users#ajax_report_sum'
   match '/history/show/:id' => 'history#ajax_history_invites_by_token'
   match '/users/:id/ajax_payment_details' => 'users#ajax_payment_details'
+  get '/upload_frame', :to => 'users#upload'
   #Post recorder
   match '/post.php', :to => 'users#recorder'
   match '/wami', :to => 'users#wami'
@@ -42,6 +44,7 @@ Prototype::Application.routes.draw do
   match '/help',    :to => 'pages#help'
   match '/support', :to => 'pages#support'
   match '/term_of_use', :to => 'pages#term_of_use'
+  #WAMI
   post '/wami', :to => 'users#wami'
   get '/wami_play', :to => 'users#wami_play'
   match '/recorder', :to => 'pages#recorder'
