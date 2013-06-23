@@ -37,7 +37,7 @@
 							<!-- Button to trigger modal -->
 							<a href="#GoogleModal" role="button" class="btn" data-toggle="modal"><input type="image"  src='/assets/google_search_icon_1.png' style="width: 20px;" /> Google contacts</a>							
 							<p></p>
-							<p class="">You can uploade Excel or CSV file.</p>
+							<p class="">You can upload Excel or CSV file.</p>
 							<p class="">Export from google/android phone contacts.</p>
 			    		</div>
 			    		<%=render 'upload_modal'%>
@@ -61,18 +61,18 @@
 				<div class="span8">	
 					<div class="alert alert-block alert-error fade in" id="notification" style="display: none">
 			            <button type="button" class="close" data-dismiss="alert">X</button>
-			            <h4 class="alert-heading">Oh! What wrong ?!</h4>
-			            <h3><p>To start using the service you should have minimum 1 invite and recorded audio message.</p></h3>
-			            <p>Navigate to Racord message tab to record the message.</p>
-			            <p>Navigate to Import contacts tab to add invites.</p>
-			              <a class="btn btn-info" onclick="tab1();">Record audio message</a> Or
+			            <h4 class="alert-heading">Oh! Something is wrong!</h4>
+			            <h3><p>To start using the service you must have at least 1 invite in the list and a recorded audio message.</p></h3>
+			            <p>Click the "Record message" tab to record your message.</p>
+			            <p>Click the "Import contacts" tab to add invites.</p>
+			              <a class="btn btn-info" onclick="tab1();">Record an audio message</a> Or
 			              <a class="btn btn-info" onclick="tab2();">Add invites</a>	
 			         </div>
 				         <div id="payment_details">
 				         	<%=render 'payment_details'%>	
 				         </div>
 			          <p>
-			          <font color="green"><h5>Press on green button to START the process !</h5></font>
+			          <font color="green"><h5>Press on the green button to start the calling process!</h5></font>
 			          </p>						
 				</div>
 		    </div>
@@ -80,7 +80,7 @@
 			      <%=render 'full_report'%>
 				</div>				  
 				<div class="tab-pane" id="tab5">
-					<h1>Skype tester will be hear</h1>
+					<h1>Skype tester will be here</h1>
 				</div>
 			</div>   
 	    </div>
