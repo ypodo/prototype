@@ -2,26 +2,27 @@
       <tbody>
         <tr>
           <td><strong>Deal description:</strong></td>
-          <td><%=@user.invites.count%>, invites will be executed, right after the payment will be completed.</td>                 
+          <td><%=@user.invites.count%> invite(s) total. Calling process starts right after the payment is completed.</td>                 
         </tr>
         <tr>                 
-          <td><strong>Total invites:</strong></td>
+          <td><strong>Invites count:</strong></td>
           <td><%=@user.invites.count%></td>                  
         </tr>
+        <hr>
         <tr>
-          <td><strong>Service amount:</strong></td>                  
-          <td><%=((@user.invites.count*unit_price)-(@user.invites.count*unit_price*0.18)).to_f.round(2)%> nis</td>          
+          <td><strong>Service charge:</strong></td>                  
+          <td><%=((@user.invites.count*unit_price)-(@user.invites.count*unit_price*0.18)).to_f.round(2)%>&#8362;</td>
         </tr>
         <tr>
-          <td><strong>VAT 18 %:</strong></td>                  
-          <td><%=(@user.invites.count*unit_price*0.18).to_f.round(2)%> nis</td>          
+          <td><strong>VAT 18%:</strong></td>                  
+          <td><%=(@user.invites.count*unit_price*0.18).to_f.round(2)%>&#8362;</td>          
         </tr>
         <tr>
           <td><strong>Total:</strong></td>                  
-          <td><%=(@user.invites.count*unit_price).to_f.round(2)%> nis, Including VAT</td>          
+          <td><%=(@user.invites.count*unit_price).to_f.round(2)%>&#8362; including VAT</td>          
         </tr>                    
         <tr>
-        	<td class="span3"><strong>Mail address to send report after completion:</strong></td>
+        	<td class="span3"><strong>Mail address used to send report upon completion:</strong></td>
         	<td><%=@user.email%></td>
         </tr>               
       </tbody>
