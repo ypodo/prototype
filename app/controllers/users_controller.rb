@@ -5,34 +5,24 @@ require 'fastthread'
   before_filter :authenticate, :only => [:index,:edit, :update,:destroy,:show]
   before_filter :correct_user, :only => [:edit, :update, :show]
   before_filter :admin_user,   :only => :destroy
+  before_filter :set_cache_buster
+
+  def set_cache_buster
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+
   def wami
-    #current_user
-    
-    
     if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
       Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
     end
-    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"), "w+b") do |f|
+    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","output.wav"), "w+b") do |f|
       #f.write("first attempt")
       f.write(request.env["rack.input"].read)
+      f.close()
     end
-
-    
-#    file = File.new("audio.wav", "w+b")
-#    file.write request.raw_post
-#    #file.write request.env["rack.input"].read
-#    @tmp_var2 = "done"
-#    file.close
-#    render :text => 'ok'
-
-
-#    if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-#      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
-#    end
-    
-#    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"), "w") do |f|
-#      f.write(@request.env["rack.input"].read)
-#    end
+    convert_audio_to_sln
   end
   
   def wami_play
@@ -111,7 +101,7 @@ require 'fastthread'
         render 'new'
       end
     else
-      flash[:error] ="User with same email already exist"
+      flash[:error] ="User with such email already exists"
       redirect_to root_path
     end
     

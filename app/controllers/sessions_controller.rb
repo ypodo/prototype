@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  include ActionView::Helpers::OutputSafetyHelper
 
   def new    
   end
@@ -19,8 +20,14 @@ class SessionsController < ApplicationController
     else
       user = User.authenticate(params[:session][:email], params[:session][:password])
       if user.nil?
-        flash.now[:error] = "Invalid email/password combination, please try again."        
+        #flash.now[:notice] = fading_flash_message("Thank you for your message.", 2)
+        flash.now[:error] = fading_flash_message("Invalid email/password combination, please try again")
+        #flash.now[:alert] = "Invalid email/password combination, please try again"
+      
+       
+
         render 'new'
+        
       else
         sign_in user
         redirect_to user
@@ -33,4 +40,26 @@ class SessionsController < ApplicationController
     redirect_to root_url, alert: "Authentication failed, please try again."
     #redirect wherever you want.
   end
+  
+  def fading_flash_message(text, seconds=3)
+  raw text +
+    <<-EOJS
+      <body onload="fadeOutFlashArea()"></body>
+      <script type='text/javascript'>
+        function fadeOutFlashArea() { 
+                 setTimeout(function() {
+                       $(function() {
+              $('#flash_field').delay(1000).fadeIn('normal', function() {
+              $(this).delay(2500).fadeOut();
+             });  
+              });
+          }, #{seconds*1000});   
+          
+           };
+           
+      </script>
+    EOJS
+  end
+  
+  
 end

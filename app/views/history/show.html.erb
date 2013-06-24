@@ -1,15 +1,15 @@
 <%if @orders.count == 0%>
-<strong>No orders found.</strong>
+<strong>Your orders history is empty</strong>
 <%else%>
 	<table class="table">
 	      <caption class="pull-left"></caption>
 	      <thead>
 	        <tr>
-	          <th>orders: <%=@orders.count%></th>          
-	          <th>Token</th>
+	          <th>Order count (<%=@orders.count%>)</th>          
+	          <th>Event ID</th>
 	          <th>Order date</th>
-	          <th>Amount</th>
-	          <th>More</th>
+	          <th>Price</th>
+	          <th>Details</th>
 	        </tr>
 	      </thead>
 	      <tbody>

@@ -23,7 +23,7 @@ require 'mail'
   
   def registration_confirmation(user)    
     @user=user
-    subject="Hello #{user.name}. Wellcome to mazminim."    
+    subject="Hello #{user.name} and welcome to mazminim.com!"    
     walcome_html=render_to_string(:partial => "user_mailer/welcome")
     send_mail(user, walcome_html, subject,'yuri.shterenberg@gmail.com')
   end

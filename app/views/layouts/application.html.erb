@@ -3,7 +3,7 @@
   <head>
   	<meta name="google-translate-customization" content="81ab2cb46a19f96a-2e7e93ba7d5836ac-gd00abb1cb6448259-12"></meta>
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />	
-	<title>אתר מזמינים: להתקשר, להזמין כמות גדולה של מוזמנים באופן אוטומטי,וידוי הגעה</title>
+	<title>אתר מזמינים: להתקשר, להזמין כמות גדולה של אורחים באופן אוטומטי,וידוא הגעת מוזמנים</title>
 	<meta name="description" content ="להתקשר לכל המוזמנים בו זמנית, ארגון חתונות, ארגון אירועים, ארגון כנסים, הזמנה של כמות גדולה של אורחים בלחיצת כפתור, ניתן לחסוך הרבה זמן על ידי שימוש באתר מזמינים, להקליט הזמנה  באתר ת אונליין">
 	<script src="https://raw.github.com/enyo/dropzone/master/downloads/dropzone.js"></script>
 	<%= stylesheet_link_tag "application"%>
@@ -20,7 +20,7 @@
       	<% if signed_in? %>    	
     	<%end%>   	
         <% flash.each do |key, value| %>
-          <div class="alert <%= key %>"><%= value %></div>
+          <div id="flash_field" class="alert alert-<%= key %>"><%= value %></div>
         <% end %>        
         <%= yield %>        
       </section>
