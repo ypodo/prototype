@@ -303,4 +303,9 @@ function show_history_invites_by_token(argument) {
 				
 				});
 }
-
+function check_google_translate_bar (argument) {
+  setTimeout(hide_google_frame, 3000);  
+}
+function hide_google_frame (argument) {
+  document.getElementById(":2.container").remove();
+}
