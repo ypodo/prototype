@@ -307,5 +307,18 @@ function check_google_translate_bar (argument) {
   setTimeout(hide_google_frame, 3000);  
 }
 function hide_google_frame (argument) {
-  document.getElementById(":2.container").remove();
+  try{ 
+  	document.getElementById(":2.container").remove();
+  }
+  catch(err) {}
 }
+
+function fadeOutFlashArea() { 
+  setTimeout(function() {
+    $(function() {
+       $('#flash_field').delay(1000).fadeIn('normal', function() {
+         $(this).delay(2500).fadeOut();
+       });  
+     });
+   }, 1000);   
+};
