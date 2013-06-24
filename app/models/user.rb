@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   #category
   #has_one :category
   
-  attr_accessor :password, :category
+  attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation, :agreement ,:provider, :uid, :category
   #Inite runtime
   has_many :invites
@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   validates :name,  :presence => true, :length => { :maximum => 50 }
   validates :email, :presence => true
   validates :password, :presence => true, :confirmation => true, :length => { :within => 2..40 }
-  before_save :encrypt_password
+  before_create :encrypt_password
+  #before_save :encrypt_password
   # Cosial
   has_many :authentications
   validates :name, :email, :presence => true
@@ -31,6 +32,7 @@ class User < ActiveRecord::Base
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
+    encrypt_password
     save(:validate => false)
     #save!
     UserMailer.password_reset(self).deliver
