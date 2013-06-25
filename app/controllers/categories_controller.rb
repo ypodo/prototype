@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    if !current_user.nil?
+    if !current_user.nil?      
       category=Category.find_by_id(params[:id])
       if !category.nil?
         current_user.skip_callbacks = true

@@ -1,8 +1,12 @@
 class PasswordResetsController < ApplicationController
   
   def create
-    user = User.find_by_email(params[:email])
-    user.send_password_reset if user
+    user = User.find_by_email(params[:email])         
+    if user
+      if user.provider.nil? #If user not created from sotial login 
+        user.send_password_reset
+      end      
+    end
     redirect_to root_url , :notice => "Email sent with password reset instructions."
   end
   
