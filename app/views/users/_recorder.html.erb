@@ -27,7 +27,7 @@
 							id : "wami",
 							recordUrl : "http://<%=request.host_with_port%>/wami/",
 							<% if !record_exist %>   
-								playUrl : "http://<%=request.host_with_port%>/no-record.wav"
+								playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav"
 							<%else%>	   				
 								playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav"
 							<%end%>
