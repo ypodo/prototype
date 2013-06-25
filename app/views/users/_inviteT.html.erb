@@ -17,7 +17,7 @@
 				<td><%=f.name %></td>
 				<td><%=f.mail %> </td>
 				<td><%=f.number %></td>	
-			    <td style="color: orange"><%= link_to 'Destroy', f, method: :delete ,:class=>"label label-important", :remote=>true, :onclick=>"delete_invite_ajax(#{f.id});", :id=>f.id%></td>			    	
+			    <td style="color: orange"><%= link_to 'Remove', f, method: :delete ,:class=>"label label-important", :remote=>true, :onclick=>"delete_invite_ajax(#{f.id});", :id=>f.id%></td>			    	
 			</tr>
 			<%end%>		
 		</td>	
