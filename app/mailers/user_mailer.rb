@@ -17,8 +17,14 @@ require 'mail'
   end
   
   
-  def report_on_completion(user, data, subject,to)      
-    send_mail(user, data, subject,to)
+  def report_on_completion(user)
+    if user
+      @user=user
+      data=render_to_string :partial => "user_mailer/final_report"
+      subject="Call process completed for #{user.name}."
+      send_mail(user, data, subject,to)  
+    end      
+    
   end
   
   def registration_confirmation(user)    
