@@ -6,7 +6,8 @@ module CallsHelper
     if !token.nil?
       if !create_phone_file(current_user,token).nil?
         create_call_files
-        copy_call_file_to_spool  
+        copy_call_file_to_spool
+        CompletionHelper.check_completion_status(token)  
       end
     else
       return nil  
