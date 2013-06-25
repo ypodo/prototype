@@ -1,5 +1,8 @@
 module CompletionHelper
  def check_completion_status(token)
+   #Thread function
+   #This thread will run for each runing call process and determining the completion
+   #Thread will update Order table to set status column to complet 
    timer=300000 # 5 min
    while true     
      complet=true
