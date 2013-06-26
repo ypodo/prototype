@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   has_many :orders, :dependent => :destroy
 
   #File hash
-  has_many :audio_file
+  has_one :audio_file
   has_many :orders, :dependent => :destroy
   
   validates :name,  :presence => true, :length => { :maximum => 50 }
