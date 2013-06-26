@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :orders, :dependent => :destroy
 
+  #File hash
+  has_many :file_hash
+  has_many :orders, :dependent => :destroy
+  
   validates :name,  :presence => true, :length => { :maximum => 50 }
   validates :email, :presence => true
   validates :password, :presence => true, :confirmation => true, :length => { :within => 2..40 }

@@ -61,7 +61,7 @@ module CallsHelper
    #This thread will run for each runing call process and determining the completion
    #Thread will update Order table to set status column to complet   
    Thread.new do
-     timer=300000 # 5 min
+     timer=30000 # 5 min
      while true     
        complet=true
        invites=InviteHistory.where(:token => token)
@@ -82,7 +82,9 @@ module CallsHelper
            return
          end
        else
-         self.sleep(timer)
+                  
+         sleep(timer)
+         report_on_completion(" ")
        end  
      end
    end
