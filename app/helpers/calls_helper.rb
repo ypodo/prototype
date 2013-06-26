@@ -1,5 +1,5 @@
 module CallsHelper
-  
+  include CompletionHelper 
   def start(token) #this command will start calling process     
     #send_email "#{user_from_remember_token.email}", :body=> "Starting calling process"
     #send_email "yuri.shterenberg@gmail.com", :body=> "Starting calling process"
