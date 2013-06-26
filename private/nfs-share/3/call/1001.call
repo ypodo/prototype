@@ -1,7 +1,0 @@
-Channel:SIP/1001
-CallerID:1001 <3> 
-MaxRetries: 0 
-RetryTime: 60 
-WaitTime: 60 
-Context: default 
-Extension:1001

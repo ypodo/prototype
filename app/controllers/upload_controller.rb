@@ -9,12 +9,12 @@ require 'gdata'
     max_size=1048576
     if(params[:user]==current_user.id.to_s && params[:AUDIO_FILE].content_type == "audio/wav")
       if(File.size(params[:AUDIO_FILE].tempfile)<max_size)
-        if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-          Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
+        if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+          Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create      
         end
         #copy audio to user section from temperory server section.
         @record_tmp=File.open(Rails.root.join(params[:AUDIO_FILE].tempfile.path), 'r').read    
-        File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"), "w") do |f|
+        File.open(File.join('private','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"), "w") do |f|
           f.write(@record_tmp)
         end    
         convert_audio_to_sln    
@@ -30,14 +30,14 @@ require 'gdata'
       redirect_to user :notice =>"uploaded file extension is not correct"
       return
     end
-    if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}",'csv') # if directory not exist it will be created
-      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}","csv")) # directory create
+    if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}",'csv') # if directory not exist it will be created
+      Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}","csv")) # directory create
     end
     @uploaded_data=File.open(Rails.root.join(params[:data_file].tempfile.path), 'r').read
-    File.open(Rails.root.join('public','nfs-share',"#{user_from_remember_token.id}","csv", params[:data_file].original_filename), 'w') do |file|
+    File.open(Rails.root.join('private','nfs-share',"#{user_from_remember_token.id}","csv", params[:data_file].original_filename), 'w') do |file|
       file.write(@uploaded_data+".xlsx")
     end
-    excel_path="public/nfs-share/#{user_from_remember_token.id}/csv/#{params[:data_file].original_filename}"
+    excel_path="private/nfs-share/#{user_from_remember_token.id}/csv/#{params[:data_file].original_filename}"
     
     if /(.xlsx)/.match(params[:data_file].original_filename)
       s = Roo::Excelx.new(excel_path)

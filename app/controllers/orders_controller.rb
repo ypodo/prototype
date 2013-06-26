@@ -60,7 +60,7 @@ include UsersHelper
         :currency_code => :ILS, # if nil, PayPal use USD as default
         :amount        => amount,
         :items => [{
-          :name => "Mazminim automatin calling system",
+          :name => "Mazminim automated calling system",
           :description => "Automation services",
           :amount => amount,
           :category => :Digital

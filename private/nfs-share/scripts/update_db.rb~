@@ -4,8 +4,7 @@
 # ARGV[1] Represents user_id
 # ARGV[2] DTMF 
 require 'sqlite3'
-#path="/var/www/prototype/db"
-path="/home/ubuntu/Documents/prototype/db"
+path="/var/www/prototype/db"
 begin
   invite_id = ARGV[0]
   user_id = ARGV[1]

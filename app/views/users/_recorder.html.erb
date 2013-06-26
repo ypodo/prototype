@@ -6,7 +6,7 @@
 				<% if !record_exist %>   
 					<span class="label label-warning">No audio recordings.</span>
 				<%end%>			
-			
+				
 			
 				<!-- swfobject is a commonly used library to embed Flash content -->
 				<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
@@ -26,10 +26,10 @@
 						var gui = new Wami.GUI({
 							id : "wami",
 							recordUrl : "http://<%=request.host_with_port%>/wami/",
-							<% if !record_exist %>   
-								playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav"
+							<% if !record_exist %>
+								playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file.audio_hash%>.wav"
 							<%else%>	   				
-								playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.id%>.wav"
+								playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file.audio_hash%>.wav"
 							<%end%>
 				
 						});
@@ -44,7 +44,7 @@
 				</script>				
 				
 					<div id="wami"></div>
-					<noscript>WAMI requires Javascript</noscript>
+					<noscript>WAMI requires Javascript.</noscript>
 					<br>
 					<br><br><br><br><br><br><br>
 					<div id="wamiNotificationArea">

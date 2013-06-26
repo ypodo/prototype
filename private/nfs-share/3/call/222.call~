@@ -1,7 +1,0 @@
-Channel:SIP/1000
-CallerID: "mazminim" <3>
-MaxRetries: 0
-RetryTime: 60
-WaitTime: 30
-Extension: 0501
-Priority: 2

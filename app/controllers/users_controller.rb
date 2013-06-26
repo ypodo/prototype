@@ -15,9 +15,12 @@ require 'fastthread'
 
   def wami
     if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
+      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
     end
-    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"), "w+b") do |f|
+    if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+      Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
+    end
+    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file.audio_hash}.wav"), "w+b") do |f|
       #f.write("first attempt")
       f.write(request.env["rack.input"].read)
       f.close()
@@ -36,20 +39,24 @@ require 'fastthread'
   end
   def recorder        
     if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
+      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
     end
+    if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+      Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
+    end
+
     #copy audio to user section from temperory server section.
     @record_tmp=File.open(Rails.root.join(params[:record].tempfile.path), 'r').read
     
-    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"), "w") do |f|
+    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file.audio_hash}.wav"), "w") do |f|
       f.write(@record_tmp)
     end    
     convert_audio_to_sln    
   end
   
   def convert_audio_to_sln
-    if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"))              
-      Kernel.system "public/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id}"        
+    if File.exist?(File.join('private','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file.audio_hash}.wav"))              
+      Kernel.system "private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id} #{user_from_remember_token.audio_file.audio_hash}"        
     end 
   end
   
