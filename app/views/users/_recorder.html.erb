@@ -27,9 +27,9 @@
 							id : "wami",
 							recordUrl : "http://<%=request.host_with_port%>/wami/",
 							<% if !record_exist %>
-								playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file.audio_hash%>.wav"
+								playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.wav"
 							<%else%>	   				
-								playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file.audio_hash%>.wav"
+								playUrl : "http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.wav"
 							<%end%>
 				
 						});
