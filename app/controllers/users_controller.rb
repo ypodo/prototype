@@ -100,9 +100,14 @@ require 'fastthread'
         sign_in @user
         flash[:success] = "Welcome to the Mazminim.com you can start using the service!"
         UserMailer.registration_confirmation(@user)
+        #Digest::SHA2.hexdigest("2")[0..32]
+        fileH=current_user.audio_file.new
+        fileH.audio_hash=Digest::SHA2.hexdigest(fileH.user_id.to_s)[0..32]
+        if !fileH.save
+          flash[:error] = "Error"
+        end
         redirect_to categories_path
-        #redirect_to @user
-        # Обработка успешного сохранения.
+        
       else
         @title = "Please sign up"
         render 'new'

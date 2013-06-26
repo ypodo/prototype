@@ -69,13 +69,15 @@ require 'gdata'
   def google_contacts
     login=params[:login]
     pass=params[:pass]
-    if login.nil? || login.nil?
+    if login.nil? || pass.nil?
       render :text => "Login or password is empty"
       return  
     end
     matching=0    
     raw_data=get_raw_data_from_google_contacts(login,pass)
     if raw_data.nil?
+      flash[:notice] = "Something goes wrong, please try again."
+      redirect_to current_user
       return
     end
     list=parse_name_number_email(raw_data)
@@ -212,11 +214,15 @@ require 'gdata'
     end
     
     def get_raw_data_from_google_contacts(login,password)
-      _CONTACTS_SCOPE = 'http://www.google.com/m8/feeds/'
-      _CONTACTS_FEED = _CONTACTS_SCOPE + 'contacts/default/full/?max-results=1000'
-      @client = GData::Client::Contacts.new
-      @client.clientlogin(login, password, @captcha_token, @captcha_response)      
-      feed = @client.get(_CONTACTS_FEED).to_xml
+      begin
+        _CONTACTS_SCOPE = 'http://www.google.com/m8/feeds/'
+        _CONTACTS_FEED = _CONTACTS_SCOPE + 'contacts/default/full/?max-results=1000'
+        @client = GData::Client::Contacts.new
+        @client.clientlogin(login, password, @captcha_token, @captcha_response)      
+        feed = @client.get(_CONTACTS_FEED).to_xml
+      rescue Exception => e                
+        return nil
+      end
     end
     
     
