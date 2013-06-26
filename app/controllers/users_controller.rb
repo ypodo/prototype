@@ -17,7 +17,7 @@ require 'fastthread'
     if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
       Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
     end
-    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","output.wav"), "w+b") do |f|
+    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"), "w+b") do |f|
       #f.write("first attempt")
       f.write(request.env["rack.input"].read)
       f.close()
