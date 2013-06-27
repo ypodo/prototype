@@ -3,20 +3,31 @@
          		<%count_yes=0%>
               	<%count_nil=0%>
               	<%count_not=0%>
+              	<%count_redialing_5=0%>
+              	<%count_redialing_10=0%>
+              	<%count_no_answer=0%>
+              	<%count_no_answer_provided=0%>
               	<%@invite_history.each do |elem|
-              		
               		if  (elem.arriving.nil?)
       					count_nil+=1
               		elsif (elem.arriving == 1)
         				count_yes+=1
       				elsif  (elem.arriving == 2)
-      					count_not+=1					
+      					count_not+=1		
+					elsif  (elem.arriving == -10)
+      					count_redialing_5+=1		
+  					elsif  (elem.arriving == -20)
+      					count_redialing_10+=1		
+  					elsif  (elem.arriving == -30)
+      					count_no_answer+=1
+  					elsif  (elem.arriving == -50)
+      					count_no_answer_provided+=1
       				end
   				end
       			%>
           <thead>
             <caption>
-            	Report summary.            
+            	Report summary            
             </caption>	            
           </thead>
           <tbody>
@@ -25,17 +36,34 @@
               <td style="font-weight: bold" id="total_invites_data_row"><%=@invite_history.count%></td>                  
             </tr>
             <tr class="error">              
-              <td style="font-weight: bold">Confirmed:</td>
-              <td style="font-weight: bold" id="comming_invites_data_row"><%=count_yes%></td>                  
+              <td style="font-weight: bold;background: #99FFCC">Confirmed:</td>
+              <td style="font-weight: bold;background: #99FFCC" id="comming_invites_data_row"><%=count_yes%></td>                  
             </tr>
-            <tr class="warning">              
-              <td style="font-weight: bold">No Answer:</td>
-              <td style="font-weight: bold" id="no_answer_data_row"><%=count_nil%></td>                  
-            </tr>       
             <tr class="">              
-              <td style="font-weight: bold">Declined:</td>
-              <td style="font-weight: bold" id="no_answer_data_row"><%=count_not%></td>                  
+              <td style="font-weight: bold;background: #FFCCCC">Declined:</td>
+              <td style="font-weight: bold;background: #FFCCCC" id="declined_data_row"><%=count_not%></td>                  
             </tr>      
+            <tr class="warning">              
+              <td style="font-weight: bold">In progress:</td>
+              <td style="font-weight: bold" id="in_progress_row"><%=count_nil%></td>                  
+            </tr>       
+            <tr class="warning">              
+              <td style="font-weight: bold">Redial (1st attempt):</td>
+              <td style="font-weight: bold" id="redial_5_row"><%=count_redialing_5%></td>                  
+            </tr>       
+            <tr class="warning">              
+              <td style="font-weight: bold">Redial (2nd attempt):</td>
+              <td style="font-weight: bold" id="refial_10_row"><%=count_redialing_10%></td>                  
+            </tr>       
+            <tr class="warning">              
+              <td style="font-weight: bold">No answer provided:</td>
+              <td style="font-weight: bold" id="no_answer_provided_row"><%=count_no_answer_provided%></td>                  
+            </tr>       
+            <tr class="warning">              
+              <td style="font-weight: bold;background: #99CCFF">Not reached:</td>
+              <td style="font-weight: bold;background: #99CCFF" id="no_answer_data_row"><%=count_no_answer%></td>                  
+            </tr>       
+
           </tbody>
 </table>
 <%else%>

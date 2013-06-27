@@ -59,7 +59,7 @@ function doAxaj(msg)
 	msg = msg || 0;
 	if($('#tab4').attr("class")=="tab-pane active"){		
 		document.getElementById("progress_bar").style.width= msg+"%";		
-		document.getElementById("progress_bar_lable").innerHTML = "Progress status percentage: "+msg+" % complited";
+		document.getElementById("progress_bar_lable").innerHTML = "<center>Progress status: "+msg+" % completed</center>";
 		update_report_table();
 		if(msg == "100"){
 	 		return; 		
@@ -285,9 +285,7 @@ function tab_data_sync(argument) {
 	}  
     
 }
-function mail_to(argument){
-	$.post("/ajax_report_mail/",{mail: '"'+argument+'"'})
-}
+
 function show_history_invites_by_token(argument) {
 //This function will get invite_history from history_controlle where token == argument
 // and show it on /history/show page
