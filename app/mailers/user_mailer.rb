@@ -19,19 +19,27 @@ require 'mail'
   
   def report_on_completion(user)
     if user
-      @user=user
-      data=render_to_string :partial => "user_mailer/final_report"
-      subject="Call process completed for #{user.name}."
-      send_mail(user, data, subject,to)  
+      begin
+        @user=user
+        data=render_to_string :partial => "user_mailer/final_report"
+        subject="Call process completed for #{user.name}."
+        send_mail(user, data, subject,to)
+      rescue Exception => e
+        logger.error { "message: #{e.message}" }
+      end          
     end      
     
   end
   
   def registration_confirmation(user)    
-    @user=user
-    subject="Hello #{user.name} and welcome to mazminim.com!"    
-    walcome_html=render_to_string(:partial => "user_mailer/welcome")
-    send_mail(user, walcome_html, subject,'yuri.shterenberg@gmail.com')
+    begin
+      @user=user
+      subject="Hello #{user.name} and welcome to mazminim.com!"    
+      walcome_html=render_to_string(:partial => "user_mailer/welcome")
+      send_mail(user, walcome_html, subject,'yuri.shterenberg@gmail.com')
+    rescue Exception => e
+      logger.error { "message: #{e.message}" }
+    end
   end
   
   private

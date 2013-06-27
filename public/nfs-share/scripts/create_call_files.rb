@@ -1,31 +1,31 @@
 #!/usr/bin/env ruby
 #create call files
-#/home/ubuntu/prototype/private/nfs-share/scripts
+#/home/ubuntu/prototype/public/nfs-share/scripts
 #ARGV[0] => user_id
 require 'fileutils'
-#path="/var/www/prototype/private/nfs-share/"
-path="/home/ubuntu/Documents/prototype/private/nfs-share/"
+path="/var/www/prototype/public/nfs-share/"
+path_dev="/home/ubuntu/Documents/prototype/public/nfs-share/"
 user_id = ARGV[0]
 attempt = ARGV[1]
 event_id = ARGV[2]
 #puts user_id
-#puts "private/nfs-share/"+user_id+"/phonenumbers.txt"
-if !File.directory?(path+user_id+"/call")
-  Dir.mkdir path+user_id+"/call"
+#puts "public/nfs-share/"+user_id+"/phonenumbers.txt"
+if !File.directory?(path_dev+user_id+"/call")
+  Dir.mkdir path_dev+user_id+"/call"
 else
-  FileUtils.rm Dir.glob path+user_id+"/call/*"
+  FileUtils.rm Dir.glob path_dev+user_id+"/call/*"
 end
-data=File.open path+user_id+"/phonenumbers.txt"
+data=File.open path_dev+user_id+"/phonenumbers.txt"
 
 data.each do |elem|
   elem=elem.gsub(/\n/,"")
   #puts elem.split(":")[0]
-  File.open(path+user_id+"/call/"+elem.split(":")[0]+"."+ attempt + ".missing-id.call", 'w') do |f| 
+  File.open(path_dev+user_id+"/call/"+elem.split(":")[0]+"."+ attempt + ".missing-id.call", 'w') do |f| 
     f.write("Channel:SIP/"+elem.split(":")[0] +"\n")    
     f.write("CallerID: mazminim"+ "\n")
     f.write("MaxRetries: 0 \n")
     f.write("RetryTime: 300 \n")
-    f.write("WaitTime: 20 \n")
+    f.write("WaitTime: 30 \n")
     f.write("Context: external \n")
     f.write("Extension:"+ elem.split(":")[0] +"\n")
     #f.write("Data:" + elem.split(":")[1])

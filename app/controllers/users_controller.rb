@@ -20,7 +20,7 @@ require 'fastthread'
     if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
       Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
     end
-    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file.audio_hash}.wav"), "w+b") do |f|
+    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w+b") do |f|
       #f.write("first attempt")
       f.write(request.env["rack.input"].read)
       f.close()
@@ -37,26 +37,25 @@ require 'fastthread'
     #rendered_data=render_to_string(:partial => "upload_frame")  
     render :partial => "upload_frame"
   end
-  def recorder        
-    if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
-    end
-    if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-      Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
-    end
-
-    #copy audio to user section from temperory server section.
-    @record_tmp=File.open(Rails.root.join(params[:record].tempfile.path), 'r').read
-    
-    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file.audio_hash}.wav"), "w") do |f|
-      f.write(@record_tmp)
-    end    
-    convert_audio_to_sln    
-  end
+#  def recorder        
+##      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
+#    end
+#    if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+#      Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
+#    end
+#
+#    #copy audio to user section from temperory server section.
+#    @record_tmp=File.open(Rails.root.join(params[:record].tempfile.path), 'r').read
+#    
+#    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w") do |f|
+#      f.write(@record_tmp)
+#    end    
+#    convert_audio_to_sln    
+#  end
   
   def convert_audio_to_sln
-    if File.exist?(File.join('private','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file.audio_hash}.wav"))              
-      Kernel.system "private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id} #{user_from_remember_token.audio_file.audio_hash}"        
+    if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"))              
+      Kernel.system "private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id} #{user_from_remember_token.audio_file[0].audio_hash}"        
     end 
   end
   
@@ -99,7 +98,6 @@ require 'fastthread'
       if @user.save      
         sign_in @user
         flash[:success] = "Welcome to the Mazminim.com you can start using the service!"
-        UserMailer.registration_confirmation(@user)
         #Digest::SHA2.hexdigest("2")[0..32]
         fileH=current_user.audio_file.new
         fileH.audio_hash=Digest::SHA2.hexdigest(fileH.user_id.to_s)[0..32]
@@ -107,7 +105,8 @@ require 'fastthread'
           flash[:error] = "Error"
         end
         redirect_to categories_path
-        
+        UserMailer.registration_confirmation(@user)
+                
       else
         @title = "Please sign up"
         render 'new'

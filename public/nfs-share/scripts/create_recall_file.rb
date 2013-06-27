@@ -3,8 +3,8 @@
 
 require 'fileutils'
 
-#path="/var/www/prototype/private/nfs-share/"
-path="/home/ubuntu/Documents/prototype/private/nfs-share/"
+#path="/var/www/prototype/public/nfs-share/"
+path="/home/ubuntu/Documents/prototype/public/nfs-share/"
 
 
 unless ARGV.length == 5
@@ -32,7 +32,7 @@ File.open(Dir.pwd+"/"+call_file, 'w') do |f|
   f.write("CallerID: mazminim"+ "\n")
   f.write("MaxRetries: 0 \n")
   f.write("RetryTime: 300 \n")
-  f.write("WaitTime: 25 \n")
+  f.write("WaitTime: 30 \n")
   f.write("Context: external \n")
   f.write("Extension:" + ext_out + "\n")
   f.write("Priority: 1 \n")
@@ -59,4 +59,4 @@ end
 puts "touching call file for + #{delay} "
 `touch -d "#{delay} seconds" #{call_file}`
 
-`mv #{call_file} /var/spool/asterisk/outgoing/`
+# shoul mv to /var/spool/.... 
