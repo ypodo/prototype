@@ -32,15 +32,18 @@ require 'mail'
   end
   
   def send_mail_to_recipient(mail_to_recipient,user,invites)
-    if mail_to_recipient
-      to=mail_to_recipient
-      @user=user
-      @invite_history=invites
-      data=render_to_string :partial => "user_mailer/final_report"
-      subject="Call process completed for #{user.name}."
-      send_mail(user, data, subject,to)  
-    end      
-    
+    begin
+      if mail_to_recipient
+        to=mail_to_recipient
+        @user=user
+        @invite_history=invites
+        data=render_to_string :partial => "user_mailer/final_report"
+        subject="Call process completed for #{user.name}."
+        send_mail(user, data, subject,to)  
+      end
+    rescue Exception => e
+      logger.error { "message: #{e.message}" }
+    end 
   end
   
   def registration_confirmation(user)    
