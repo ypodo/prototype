@@ -1,13 +1,4 @@
  <div class="row-fluid" id="full_report_div" > 	
- 	 	
- 	<form class="well well-small">
-	  <div class="input-append">
-	  <input class="" id="appendedInputButton" type="email" type="text">
-	  <button class="btn" type="button" for="inputIcon"  onclick="sendReport()">Send mail</button>	  
-	</div>
-	</form>		
-	            	
- 	<p></p>
  	<div class="control-list"> 	
  		<div class="row-fluid">
  			<div class="span7">
@@ -16,22 +7,35 @@
 			  <div class="bar bar-warning" style="width: 0%;" id="progress_bar"></div>			  
 			</div>
  		</div>
+
  		<div class="span5">
  			<div id="token">
 			  	<%if !@user.orders.last.nil?%>
-			  		<h5>Transaction id: <%=@user.orders.last.token%></h5>
+			  		<h5><p class="well">Transaction id: <%=@user.orders.last.token%></p></h5>
 				<%end%>		  	  
 		  	  </div>
  		</div>
- 		</div>
- 		
+
+		</div>
+
 	 	<div class="row-fluid">		 	
 		 	<div class="span3">
 	 	 		<!--Small report table on the right side-->
 	 	 		<%=render 'report'%>
-	 	 		<button class="btn btn-block" type="button" onclick="refresh_report_sum()">Refresh</button>
+	 	 		<button class="btn btn-block" type="button" onclick="refresh_report_sum()">Refresh summary</button>
+ 		
+
+ 	 	
+ 	<form class="well well-small">
+	  	<div class="input-append">
+		  <input class="" id="appendedInputButton" type="email" type="text" style="width:85px;height:15px">
+		  <button class="btn" type="button" for="inputIcon"  onclick="sendReport()" style="width:100px;height:25px;vertical-align: middle;">send by mail</button>	  
+		</div>
+	</form>		
 	 	 	</div>
-	 	 	
+
+
+ 	 	
 		 	<div class="span9">
 			 	<table class="table table-bordered table-hover">
 			  		<thead>
@@ -39,15 +43,14 @@
 		                  <th>Name</th>
 		                  <th>Email</th>
 		                  <th>Phone number</th>
-		                  <th>Acknowledge status</th>
+		                  <th>Acknowledgement status</th>
 		                </tr>
 				  	</thead>
 				  	<tbody id="full_report_table_body">
 			                <%=render 'invites_each'%>                
 			          </tbody>
-			  	</table>	
+			  	</table>
 		 	</div>		 	
-	 	 	
 	 	 	
 	 	</div>
  	</div> 	

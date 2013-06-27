@@ -59,7 +59,7 @@ function doAxaj(msg)
 	msg = msg || 0;
 	if($('#tab4').attr("class")=="tab-pane active"){		
 		document.getElementById("progress_bar").style.width= msg+"%";		
-		document.getElementById("progress_bar_lable").innerHTML = "Progress status percentage: "+msg+" % complited";
+		document.getElementById("progress_bar_lable").innerHTML = "<center>Progress status: "+msg+" % completed</center>";
 		update_report_table();
 		if(msg == "100"){
 	 		return; 		
