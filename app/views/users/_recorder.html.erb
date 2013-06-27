@@ -1,16 +1,13 @@
 <div class="span3" align="center">			
 		<div class="row-fluid">	
 			<div id="applet_container">	
-				
-				
 				<% if !record_exist %>   
 					<span class="label label-warning">No audio recordings.</span>
-				<%end%>			
-				
-			
+				<%end%>	
 				<!-- swfobject is a commonly used library to embed Flash content -->
 				<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 				<!-- Setup the recorder interface -->
+				
 				<script type="text/javascript" src="/assets/recorder.js"></script>
 				<!-- GUI code... take it or leave it -->
 				<script type="text/javascript" src="/assets/gui.js"></script>
