@@ -285,9 +285,7 @@ function tab_data_sync(argument) {
 	}  
     
 }
-function mail_to(argument){
-	$.post("/ajax_report_mail/",{mail: '"'+argument+'"'})
-}
+
 function show_history_invites_by_token(argument) {
 //This function will get invite_history from history_controlle where token == argument
 // and show it on /history/show page

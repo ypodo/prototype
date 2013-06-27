@@ -4,14 +4,14 @@
 	 		<div class="progress progress-striped active">
 			  <div class="bar bar-warning" style="width: 0%;" id="progress_bar"></div>
 			</div>
-			<img src="http://<%=request.host_with_port%>/assets/logo.gif" />
+			<!--to do-->
+			<img src="http://mazminim.com:3000/assets/logo.gif" height="60" width="200" />
 		<br />		
 		<br />
-		<strong>Final report for:</strong>
+		<strong>Final report for:<%=@user.name%></strong>
 		<br />
 		<%link_to "Mazminim.com", root_path%>
-	 	<div class="row-fluid">		 	
-			
+	 	<div class="row-fluid">	
 	 	 		<!--Small report table on the right side-->
 	 	 		
 	 	 		<%if !@invite_history.nil?%>
@@ -19,6 +19,11 @@
          		<%count_yes=0%>
               	<%count_nil=0%>
               	<%count_not=0%>
+              	<%count_redialing_5=0%>
+              	<%count_redialing_10=0%>
+              	<%count_redialing_20=0%>
+              	<%count_no_answer=0%>
+              	<%count_no_answer_provided=0%>
               	<%@invite_history.each do |elem|
               		
               		if  (elem.arriving.nil?)
@@ -26,7 +31,17 @@
               		elsif (elem.arriving == 1)
         				count_yes+=1
       				elsif  (elem.arriving == 2)
-      					count_not+=1					
+      					count_not+=1		
+					elsif  (elem.arriving == -10)
+      					count_redialing_5+=1		
+  					elsif  (elem.arriving == -20)
+      					count_redialing_10+=1		
+  					elsif  (elem.arriving == -30)
+      					count_redialing_20+=1		
+  					elsif  (elem.arriving == -40)
+      					count_no_answer+=1
+  					elsif  (elem.arriving == -50)
+      					count_no_answer_provided+=1
       				end
   				end
       			%>
@@ -68,7 +83,7 @@
             </tr>
 	  	</thead>
 	  	<tbody id="full_report_table_body">
-            <%=render 'invites_each'%>                
+            <%=render 'users/invites_each'%>                
           </tbody>
   	</table>	
  	 	 	

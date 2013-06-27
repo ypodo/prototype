@@ -172,18 +172,14 @@ require 'fastthread'
     render :partial => 'users/report', :object => @invite_history # litle table with short description   
   end
   
-  def ajax_report_mail_to   
-    if current_user.orders.last.nil? && params[:mail].nil?
-      render :text => "Mail could not be sent nil invites found"    
-    else
-      current_token=current_user.orders.last.token
-      if !current_token.nil?
-        @invite_history=current_user.inviteHistorys.where(:token=>current_token)        
-        report=render_to_string(:partial => "user_mailer/final_report")      
-        UserMailer.report_on_completion(current_user,report,"Report after calling process complited",params[:mail])
-        render :text => "Mail sent to #{params[:mail]}"
-      end
-    end 
+  def ajax_report_mail_to
+    current_token=current_user.orders.last.token
+    if !current_token.nil?
+      @invite_history=current_user.inviteHistorys.where(:token=>current_token)    
+      report=render_to_string(:partial => "user_mailer/final_report")      
+      UserMailer.send_mail_to_recipient(params[:mail],current_user,@invite_history)
+      render :text => "Mail sent to #{params[:mail]}"
+    end    
   end
   
   def ajax_payment_details

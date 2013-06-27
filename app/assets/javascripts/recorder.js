@@ -43,7 +43,7 @@ Wami.nameCallback = function(cb, cleanup) {
 //
 // Wami.getSettings();
 // Wami.setSettings(options);
-Wami.setSettings({'sampleRate':44100});
+//Wami.setSettings({'sampleRate':44100});
 //
 // Optional way to set up browser so that it's constantly listening
 // This is to prepend audio in case the user starts talking before
