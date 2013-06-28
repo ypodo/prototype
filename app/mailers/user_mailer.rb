@@ -56,7 +56,13 @@ require 'mail'
       logger.error { "message: #{e.message}" }
     end
   end
-  
+  def error(message)
+    begin      
+      send_mail(user, message, "Error",'yuri.shterenberg@gmail.com')
+    rescue Exception => e
+      logger.error { "message: #{e.message}" }
+    end
+  end
   private
     def auth
       Mail.defaults do

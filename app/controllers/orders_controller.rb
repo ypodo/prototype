@@ -4,50 +4,64 @@ include ApplicationHelper
 include UsersHelper
 
   def checkout     
-    amount=(current_user.invites.count*(unit_price)).to_f.round(2)
-    if (amount <= 0)
-      render :nothing => true
-      return
-    end  
-    
-    payment_request = Paypal::Payment::Request.new(
-      :currency_code => :ILS, # if nil, PayPal use USD as default
-      :amount        => amount,
-      :items => [{
-        :name => "Mazminim.com",
-        :description => "Automated calling services",
-        :amount => amount,
-        :category => :Digital
-      }]
-    )    
-    response = express.setup(
-      payment_request,
-      "http://"+env["HTTP_HOST"]+"/orders/confirm",
-      "http://"+env["HTTP_HOST"]+"/orders/cancel",
-      :no_shipping => true
-    )
-    cookies[:ui_location]="tab4"    
-    render :text => response.popup_uri
-    #redirect_to gateway.redirect_url_for(setup_response.token)
+    begin
+      amount=(current_user.invites.count*(unit_price)).to_f.round(2)
+      if (amount <= 0)
+        render :nothing => true
+        return
+      end  
+      
+      payment_request = Paypal::Payment::Request.new(
+        :currency_code => :ILS, # if nil, PayPal use USD as default
+        :amount        => amount,
+        :items => [{
+          :name => "Mazminim.com",
+          :description => "Automated calling services",
+          :amount => amount,
+          :category => :Digital
+        }]
+      )    
+      response = express.setup(
+        payment_request,
+        "http://"+env["HTTP_HOST"]+"/orders/confirm",
+        "http://"+env["HTTP_HOST"]+"/orders/cancel",
+        :no_shipping => true
+      )
+      cookies[:ui_location]="tab4"    
+      render :text => response.popup_uri
+      #redirect_to gateway.redirect_url_for(setup_response.token)
+    rescue Exception => e
+       logger.error { "message: #{e}" }
+    ensure
+      UserMailer.error(message)
+    end
   end
   
   def confirm
-    if (!params[:token].nil? && !params[:PayerID].nil?)
-      semaphore = Mutex.new
-      token = params[:token]
-      payer_id=params[:PayerID]  
-      #or  response.payer.identifier 
-      if Order.find_by_token(token).nil?
-        response_paypal = express.details(token)
-        complete(response_paypal)
+    begin
+      if (!params[:token].nil? && !params[:PayerID].nil?)
+        semaphore = Mutex.new
+        token = params[:token]
+        payer_id=params[:PayerID]  
+        #or  response.payer.identifier 
+        if Order.find_by_token(token).nil?
+          response_paypal = express.details(token)
+          complete(response_paypal)
+        else
+          return      
+        end
       else
-        return
+        flash[:error] = "PayPal error. Try again"
+        redirect_to root_path  
       end
-    end
-          
+     rescue Exception => e
+       redirect_to root_path
+       logger.error { "message: #{e}" }
+     end 
   end
   
   def cancel 
+    #This script will help to redirec user after payment process closed
     render :partial => 'scripts/close_opened_windows'
   end
   
