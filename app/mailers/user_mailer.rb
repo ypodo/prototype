@@ -57,9 +57,9 @@ require 'mail'
     end
   end
   def error(message)
-    begin      
-      send_mail(user, message, "Error",'yuri.shterenberg@gmail.com')
-    rescue Exception => e
+    begin          
+      send_error_mail(message, "Error",'mazminim.com@gmail.com')
+    rescue
       logger.error { "message: #{e.message}" }
     end
   end
@@ -80,6 +80,23 @@ require 'mail'
       data ||="Body"
       subject ||= "deafult subject"
       to ||=user.email
+      auth
+      mail = Mail.new do
+        from    'Mazminim automatic calling system'
+        to      to
+        subject subject
+        
+        html_part do
+          content_type 'text/html; charset=UTF-8'
+          body data
+        end
+            
+      end
+      mail.deliver!      
+    end
+    def send_error_mail(data,subject,to)      
+      data ||="Body"
+      subject ||= "deafult subject"      
       auth
       mail = Mail.new do
         from    'Mazminim automatic calling system'
