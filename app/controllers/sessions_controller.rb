@@ -16,19 +16,14 @@ class SessionsController < ApplicationController
         user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
         session[:user_id] = user.id
         sign_in user
-        redirect_to user, :notice => "Signed in!"
-         
+        redirect_to user, :notice => "Signed in!"         
       else
         user = User.authenticate(params[:session][:email], params[:session][:password])
         if user.nil?
           #flash.now[:notice] = fading_flash_message("Thank you for your message.", 2)
           flash.now[:error] = "Invalid email/password combination, please try again"
-          #flash.now[:alert] = "Invalid email/password combination, please try again"
-        
-         
-  
-          render 'new'
-          
+          #flash.now[:alert] = "Invalid email/password combination, please try again"  
+          render 'new'          
         else
           sign_in user
           redirect_to user
