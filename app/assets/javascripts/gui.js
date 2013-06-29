@@ -58,6 +58,7 @@ Wami.GUI = function(options) {
 			playButton = new Button(pid, PLAY_BUTTON, options.buttonUrl);
 			playButton.onstart = startPlaying;
 			playButton.onstop = stopPlaying;
+			
 		}
 	}
 
@@ -65,8 +66,8 @@ Wami.GUI = function(options) {
 	 * These methods are called on clicks from the GUI.
 	 */
 	function startRecording() {
-		if (!options.recordUrl) {
-			alert("No record Url specified!");
+		while (Wami.getSettings('sampleRate').sampleRate != 44100) {
+			Wami.setSettings({'sampleRate':44100});
 		}
 		recordButton.setActivity(0);
 		playButton.setEnabled(false);

@@ -28,5 +28,8 @@ skip_before_filter  :verify_authenticity_token
     @user = current_user
   end
   
+  def unavailable
+    
+  end
     
 end

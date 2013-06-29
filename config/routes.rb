@@ -67,7 +67,7 @@ Prototype::Application.routes.draw do
   resources :password_resets
   resources :locations
   
-  root :to => 'pages#home'
+  root :to => 'pages#unavailable'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
