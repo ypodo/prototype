@@ -52,7 +52,7 @@
 	
 
 <br />
-		<iframe class="span* well" src="/upload_frame" frameborder="0" scrolling="no" align="left" height="130" id="upload_frame">
+		<iframe class="" src="/upload_frame" frameborder="0" scrolling="no" align="left" height="130" id="upload_frame">
 			<%= form_tag({:action => :upload_audio, :controller=> :upload}, :method => 'post', :multipart => true, :remote => true, :id=>"uploade_audio_form" ) do %>
 			  <%= file_field_tag :data_file ,:required => true, :accept=>"*.", :name=>"MAX_FILE_SIZE", :value=>"1048576"%>
 			  <%= hidden_field_tag('user', value = @user.id)%>

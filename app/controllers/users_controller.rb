@@ -188,8 +188,7 @@ require 'fastthread'
   end
   
   def ajax_payment_details
-    @user=current_user
-    
+    @user=current_user    
     render :partial => 'payment_details',:object =>@user
   end
   
