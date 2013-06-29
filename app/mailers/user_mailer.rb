@@ -63,6 +63,13 @@ require 'mail'
       logger.error { "message: #{e.message}" }
     end
   end
+  def notify(message)
+    begin          
+      send_error_mail(message, "Notification",'mazminim.com@gmail.com')
+    rescue
+      logger.error { "message: #{e.message}" }
+    end
+  end
   private
     def auth
       Mail.defaults do

@@ -4,7 +4,7 @@
 #ARGV[0] => user_id
 require 'fileutils'
 #path="/var/www/prototype/private/nfs-share/"
-path="/home/ubuntu/Documents/prototype/private/nfs-share/"
+path="private/nfs-share/"
 user_id = ARGV[0]
 attempt = ARGV[1]
 event_id = ARGV[2]
