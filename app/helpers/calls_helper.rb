@@ -33,15 +33,15 @@ module CallsHelper
       @result=system "ruby private/nfs-share/scripts/ssh_command_copy_to_spool.rb #{user_from_remember_token.id}"
       if !@result        
         #script error execution
-        logger.error("Script execution error in copy_call_file_to_spool:")
-        UserMailer.error("Script execution error in copy_call_file_to_spool:")
+        logger.error("Script execution error in copy_call_file_to_spool:, return parameter false")
+        UserMailer.error("Script execution error in copy_call_file_to_spool: return parameter false user_id: #{current_user.id}")
         return false
       else
         return true
       end   
     rescue Exception => e
       logger.error { "#{e}" }
-      UserMailer.error("Script execution error in copy_call_file_to_spool: #{e}")
+      UserMailer.error("Script Exeption error in copy_call_file_to_spool: user_id #{current_user.id}, #{e}")
     end
   end
   
