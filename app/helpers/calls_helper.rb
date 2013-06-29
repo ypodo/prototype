@@ -5,9 +5,14 @@ module CallsHelper
     begin
       if !token.nil?
         if !create_phone_file(current_user,token).nil?
-          create_call_files
-          copy_call_file_to_spool
-          check_completion_status(token)  
+          if create_call_files
+            if copy_call_file_to_spool
+              check_completion_status(token)  
+            else
+              #to do
+              return false
+            end
+          end
         end
       else
         return nil  
@@ -24,15 +29,36 @@ module CallsHelper
   end
   
   def copy_call_file_to_spool
-    @result=system "ruby private/nfs-share/scripts/ssh_command_copy_to_spool.rb #{user_from_remember_token.id}"
+    begin
+      @result=system "ruby private/nfs-share/scripts/ssh_command_copy_to_spool.rb #{user_from_remember_token.id}"
+      if !@result        
+        #script error execution
+        logger.error("Script execution error in copy_call_file_to_spool:")
+        UserMailer.error("Script execution error in copy_call_file_to_spool:")
+        return false
+      else
+        return true
+      end   
+    rescue Exception => e
+      logger.error { "#{e}" }
+      UserMailer.error("Script execution error in copy_call_file_to_spool: #{e}")
+    end
   end
+  
   def create_call_files
     #before_create_remove_all_prev in /private/nfs-share/user_id/call.
     if !File.exist?(File.join('private','nfs-share', "#{user_from_remember_token.id}",'call'))
       Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}",'call')) # directory create              
     end    
     @result= system "ruby private/nfs-share/scripts/create_call_files.rb #{user_from_remember_token.id} 1 12345"
-    ##{current_user.orders.last.token}    
+    if !@result        
+      #script error execution
+      logger.error("Script execution error in create_call_files")
+      UserMailer.error("Script execution error in create_call_files")
+      return false
+    else
+      return true
+    end       
   end
   
   def create_phone_file(user,token)
