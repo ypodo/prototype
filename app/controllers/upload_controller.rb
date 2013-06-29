@@ -12,6 +12,10 @@ require 'gdata'
         if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
           Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create      
         end
+        
+        if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+          Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
+        end
         #copy audio to user section from temperory server section.
         @record_tmp=File.open(Rails.root.join(params[:AUDIO_FILE].tempfile.path), 'r').read    
         File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w") do |f|
