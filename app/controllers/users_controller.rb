@@ -174,12 +174,16 @@ require 'fastthread'
   end
   
   def ajax_report_mail_to
-    current_token=current_user.orders.last.token
-    if !current_token.nil?
-      @invite_history=current_user.inviteHistorys.where(:token=>current_token)    
-      report=render_to_string(:partial => "user_mailer/final_report")      
-      UserMailer.send_mail_to_recipient(params[:mail],current_user,@invite_history)
-      render :text => "Mail sent to #{params[:mail]}"
+    begin
+      current_token=current_user.orders.last.token
+      if !current_token.nil?
+        @invite_history=current_user.inviteHistorys.where(:token=>current_token)    
+        report=render_to_string(:partial => "user_mailer/final_report")      
+        UserMailer.send_mail_to_recipient(params[:mail],current_user,@invite_history)
+        render :text => "Mail sent to #{params[:mail]}"
+      end
+    rescue Exception => e
+      logger.error { "message: #{e}" }
     end    
   end
   

@@ -128,7 +128,9 @@ function sendReport(argument){ // This function not works
 		return;
 	}
 	$.post("/ajax_report_mail/", { mail: '"'+addr+'"'})
-	.done(function(data) {	  
+	.done(function(data) {
+		alert("Mail sent: "+addr);			 
+		document.getElementById("flash_field"); 
 	});
 }
 function tab2 () {

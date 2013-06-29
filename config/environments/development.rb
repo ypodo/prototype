@@ -31,7 +31,7 @@ Prototype::Application.configure do
   config.assets.debug = true
   
   #password reset: http://railscasts.com/episodes/274-remember-me-reset-password
-  config.action_mailer.default_url_options = { :host => "mazminim:3000" }
+  config.action_mailer.default_url_options = { :host => "mazminim" }
   
   # Add the fonts path
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')

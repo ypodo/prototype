@@ -73,6 +73,11 @@ class User < ActiveRecord::Base
       user.name = auth["info"]["name"]
       user.password=auth["uid"]
     end
+    user=User.find_by_email(auth["info"]["email"])
+    fileH=user.audio_file.new
+    fileH.audio_hash=Digest::SHA2.hexdigest(fileH.user_id.to_s)[0..32]
+    fileH.save
+    user
   end
   private
 

@@ -2,18 +2,20 @@
  	<div class="control-list"> 	
  		<div class="row-fluid">
  			<div class="span7">
- 			<h6><div id="progress_bar_lable"></div></h6>
-	 		<div class="progress progress-striped active">
+	 			
+	 			<h6><div id="progress_bar_lable"></div></h6>
+		 		<div class="progress progress-striped active">
 			  <div class="bar bar-warning" style="width: 0%;" id="progress_bar"></div>			  
 			</div>
  		</div>
 
- 		<div class="span5">
+ 			<div class="span5">
  			<div id="token">
-			  	<%if !@user.orders.last.nil?%>
-			  		<h5><p class="well">Transaction id: <%=@user.orders.last.token%></p></h5>
+			  	<%if !@user.orders.last.nil?%>			  		
+			  		<br />
+			  		<h5><p class="well well-small">Transaction id: <%=@user.orders.last.token%></p></h5>
 				<%end%>		  	  
-		  	  </div>
+	  	  	</div>
  		</div>
 
 		</div>
@@ -22,21 +24,17 @@
 		 	<div class="span3">
 	 	 		<!--Small report table on the right side-->
 	 	 		<%=render 'report'%>
-	 	 		<button class="btn btn-block" type="button" onclick="refresh_report_sum()">Refresh summary</button>
- 		
-
- 	 	
- 	<form class="well well-small">
-	  	<div class="input-append">
-		  <input class="" id="appendedInputButton" type="email" type="text" style="width:85px;height:15px">
-		  <button class="btn" type="button" for="inputIcon"  onclick="sendReport()" style="width:100px;height:25px;vertical-align: middle;">send by mail</button>	  
-		</div>
-	</form>		
+	 	 		<button class="btn btn-block" type="button" onclick="refresh_report_sum()">Refresh summary</button> 	
+	 	 		
 	 	 	</div>
 
-
- 	 	
 		 	<div class="span9">
+		 		<form class="well well-small">
+				  	<div class="input-append">
+					  <input class="span*" id="appendedInputButton" type="email" type="text">
+					  <button class="btn" type="button" for="inputIcon"  onclick="sendReport()">send by mail</button>					  	  
+					</div>
+				</form>		
 			 	<table class="table table-bordered table-hover">
 			  		<thead>
 		                <tr>                  

@@ -19,7 +19,9 @@ gem "therubyracer"
 gem "bootstrap-sass", "~> 2.3.1.0"
 gem "twitter-bootstrap-rails"
 #PayPal
+#https://github.com/nov/paypal-express/wiki/Digital-Goods
 gem "paypal-express"
+
 #excel
 # Gems used only for assets and not required
 # in production environments by default.

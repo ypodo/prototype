@@ -2,16 +2,19 @@ module CallsHelper
   def start(token) #this command will start calling process     
     #send_email "#{user_from_remember_token.email}", :body=> "Starting calling process"
     #send_email "yuri.shterenberg@gmail.com", :body=> "Starting calling process"
-    if !token.nil?
-      if !create_phone_file(current_user,token).nil?
-        create_call_files
-        copy_call_file_to_spool
-        check_completion_status(token)  
+    begin
+      if !token.nil?
+        if !create_phone_file(current_user,token).nil?
+          create_call_files
+          copy_call_file_to_spool
+          check_completion_status(token)  
+        end
+      else
+        return nil  
       end
-    else
-      return nil  
+    rescue
+      UserMailer.error("module CallsHelper  error start(#{token})")
     end
-    
     #while this command executing asterisk will satrt call and generate report files 
     #@result=system "ruby private/nfs-share/scripts/ssh_command_copy_to_spool.rb #{user_from_remember_token.id}"
     #@result= system "ruby private/nfs-share/scripts/ssh_command_copy_to_spool.rb  #{user_from_remember_token.id}"    
@@ -60,34 +63,41 @@ module CallsHelper
    #Thread function
    #This thread will run for each runing call process and determining the completion
    #Thread will update Order table to set status column to complet   
-   Thread.new do
-     timer=30000 # 5 min
-     while true     
-       complet=true
-       invites=InviteHistory.where(:token => token)
-       invites.each do |elem|
-         if elem.arriving.nil? || elem.arriving < -30
-           complet=false
-           break
+   begin
+       Thread.new do
+       timer=30000 # 5 min
+       while true     
+         complet=true
+         invites=InviteHistory.where(:token => token)
+         invites.each do |elem|
+           if elem.arriving.nil? || elem.arriving < -30
+             complet=false
+             break
+           end
          end
+         
+         if complet
+           order=Order.find_by_token(token)
+           order.status="completed"
+           if order.save
+             #call other function
+             user=User.find_by_id(order.user_id)
+             UserMailer.report_on_completion(user)
+             return
+           end
+         else
+                    
+           sleep(timer)
+           report_on_completion(" ")
+         end  
        end
-       
-       if complet
-         order=Order.find_by_token(token)
-         order.status="completed"
-         if order.save
-           #call other function
-           user=User.find_by_id(order.user_id)
-           UserMailer.report_on_completion(user)
-           return
-         end
-       else
-                  
-         sleep(timer)
-         report_on_completion(" ")
-       end  
      end
+   rescue Exception => e
+     UserMailer(e)
+     logger.error { "message: #{e}" }
    end
- end
+   
+ 
+  end
   
 end
