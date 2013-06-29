@@ -62,17 +62,23 @@ module CallsHelper
   end
   
   def create_phone_file(user,token)
-    if !token.nil?      
-      @invite_history=user.inviteHistorys.where(:token=>token)
-      File.open(File.join('private', 'nfs-share',"#{user_from_remember_token.id}",'phonenumbers.txt'), 'w') do |f|
-      @invite_history.each do |elem|
-        f.write( "#{elem.number}"+ ":" + "#{elem.id}" + "\n")  
+    begin
+      if !token.nil?      
+        @invite_history=user.inviteHistorys.where(:token=>token)
+        File.open(File.join('private', 'nfs-share',"#{user_from_remember_token.id}",'phonenumbers.txt'), 'w') do |f|
+        @invite_history.each do |elem|
+          f.write( "#{elem.number}"+ ":" + "#{elem.id}" + "\n")  
+        end
+        return true      
+      end     
+      else
+        return false
       end
-      return true      
-    end     
-    else
-      return nil
-    end    
+    rescue Exception => e
+      logger.error { "#{e}" }
+      return false
+    end
+    
     #@invites=Invite.find_all_by_user_id(user_from_remember_token.id)
          
   end
