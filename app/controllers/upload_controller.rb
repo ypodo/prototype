@@ -14,14 +14,17 @@ require 'gdata'
         end
         #copy audio to user section from temperory server section.
         @record_tmp=File.open(Rails.root.join(params[:AUDIO_FILE].tempfile.path), 'r').read    
-        File.open(File.join('private','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"), "w") do |f|
+        File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w") do |f|
           f.write(@record_tmp)
         end    
         convert_audio_to_sln    
       end
+       @color="green"
+    else
+       @color="red"
     end      
-    @user = current_user
-    render :partial => "users/upload_frame"    
+    @user = current_user   
+    render :partial => "users/upload_frame", :color => @color  
   end
   
   def upload  #action 
