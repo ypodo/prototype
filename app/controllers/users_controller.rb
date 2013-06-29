@@ -97,7 +97,7 @@ require 'fastthread'
       @invites=@user.invites
       if @user.save      
         sign_in @user
-        flash[:success] = "Welcome to the Mazminim.com you can start using the service!"        
+        flash[:success] = "Welcome to Mazminim.com you can start using the service!"        
 
         #Digest::SHA2.hexdigest("2")[0..32]
         fileH=current_user.audio_file.new

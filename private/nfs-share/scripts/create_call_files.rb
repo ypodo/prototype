@@ -1,15 +1,17 @@
 #!/usr/bin/env ruby
-#create call files
-#/home/ubuntu/prototype/private/nfs-share/scripts
-#ARGV[0] => user_id
+
 require 'fileutils'
 #path="/var/www/prototype/private/nfs-share/"
+<<<<<<< HEAD
 path="private/nfs-share/"
+=======
+path="/home/ubuntu/Documents/prototype/private/nfs-share/"
+
+>>>>>>> 88bacb4da312f6917b9e2e3a92a1aceb1b1028b5
 user_id = ARGV[0]
 attempt = ARGV[1]
 event_id = ARGV[2]
-#puts user_id
-#puts "private/nfs-share/"+user_id+"/phonenumbers.txt"
+
 if !File.directory?(path+user_id+"/call")
   Dir.mkdir path+user_id+"/call"
 else
@@ -19,7 +21,6 @@ data=File.open path+user_id+"/phonenumbers.txt"
 
 data.each do |elem|
   elem=elem.gsub(/\n/,"")
-  #puts elem.split(":")[0]
   File.open(path+user_id+"/call/"+elem.split(":")[0]+"."+ attempt + ".missing-id.call", 'w') do |f| 
     f.write("Channel:SIP/"+elem.split(":")[0] +"\n")    
     f.write("CallerID: mazminim"+ "\n")
@@ -28,7 +29,6 @@ data.each do |elem|
     f.write("WaitTime: 20 \n")
     f.write("Context: external \n")
     f.write("Extension:"+ elem.split(":")[0] +"\n")
-    #f.write("Data:" + elem.split(":")[1])
     f.write("Priority: 1 \n")
     f.write("Setvar: invite_id="+elem.split(":")[1]+"\n" )
     f.write("Setvar: user_id="+user_id+"\n" )

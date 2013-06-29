@@ -57,9 +57,7 @@ include UsersHelper
       end
     rescue Paypal::Exception::APIError => e
      redirect_to root_path
-     logger.error { "message: #{e}" }
-    ensure
-      UserMailer.notify("Order confirm: user_id #{current_user.id} ")
+     logger.error { "message: #{e}" }    
     end 
   end
   
