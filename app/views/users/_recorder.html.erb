@@ -2,7 +2,7 @@
 		<div class="row-fluid">	
 			<div id="applet_container">	
 				<% if !record_exist %>   
-					<span class="label label-warning">No audio recordings.</span>
+					<span class="label label-warning">No audio recorded</span>
 				<%end%>	
 				<!-- swfobject is a commonly used library to embed Flash content -->
 				<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
@@ -35,7 +35,7 @@
 						<% if !record_exist %>   
 							wamiNotificationArea.innerHTML = "Please record your message!";
 						<%else%>
-							wamiNotificationArea.innerHTML = "You have already recorded your message";
+							wamiNotificationArea.innerHTML = "You have a recorded message";
 						<%end%>			
 					}
 				</script>				
@@ -44,7 +44,7 @@
 					<noscript>WAMI requires Javascript.</noscript>
 					<br>
 					<br><br><br><br><br><br><br>
-					<div id="wamiNotificationArea">
+					<div id="wamiNotificationArea" class="label label-info">
 						<script>setupRecorder();</script>
 					</div>				
 											

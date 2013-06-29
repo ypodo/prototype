@@ -2,12 +2,8 @@
 
 require 'fileutils'
 #path="/var/www/prototype/private/nfs-share/"
-<<<<<<< HEAD
-path="private/nfs-share/"
-=======
 path="/home/ubuntu/Documents/prototype/private/nfs-share/"
 
->>>>>>> 88bacb4da312f6917b9e2e3a92a1aceb1b1028b5
 user_id = ARGV[0]
 attempt = ARGV[1]
 event_id = ARGV[2]
@@ -39,3 +35,4 @@ data.each do |elem|
     f.write("Archive: yes\n" )
   end
 end
+

@@ -3,6 +3,10 @@
 
 require 'fileutils'
 
+#path="/var/www/prototype/private/nfs-share/"
+path="/home/ubuntu/Documents/prototype/private/nfs-share/"
+
+
 unless ARGV.length == 5
   puts "Illegal number of arguments. Should be <ext_out> <invite_id> <user_id> <attempt> <event_id>..."
   exit
@@ -24,7 +28,7 @@ end
 call_file = "redial/" + ext_out + "."+ invite_id + "." + user_id + "." + attempt + "." + event_id + ".call"
 
 File.open(Dir.pwd+"/"+call_file, 'w') do |f| 
-  f.write("Channel:IAX2/" + ext_out + "\n")    
+  f.write("Channel:SIP/" + ext_out + "\n")    
   f.write("CallerID: mazminim"+ "\n")
   f.write("MaxRetries: 0 \n")
   f.write("RetryTime: 300 \n")
@@ -56,4 +60,3 @@ puts "touching call file for + #{delay} "
 `touch -d "#{delay} seconds" #{call_file}`
 
 `mv #{call_file} /var/spool/asterisk/outgoing/`
-
