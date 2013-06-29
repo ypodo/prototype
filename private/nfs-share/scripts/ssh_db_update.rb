@@ -8,10 +8,10 @@
 require 'rubygems'
 require 'net/ssh'
 
-ip="192.168.56.102"
+ip="192.168.56.101"
 
-path="/var/www/prototype/private/nfs-share/"
-#path="/home/ubuntu/Documents/prototype/private/nfs-share/"
+#path="/var/www/prototype/public/nfs-share/"
+path="/home/ubuntu/Documents/prototype/private/nfs-share/"
 
 invite_id = ARGV[0]
 user_id = ARGV[1]

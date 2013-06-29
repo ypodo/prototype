@@ -1,8 +1,0 @@
-Channel:0546519394
-CallerID:34 <11> 
-MaxRetries: 0 
-RetryTime: 3 
-WaitTime: 60 
-Context: proto 
-Extension:0546519394
-Priority: 1 
