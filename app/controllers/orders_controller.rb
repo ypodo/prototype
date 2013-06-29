@@ -3,7 +3,7 @@ include CallsHelper
 include ApplicationHelper
 include UsersHelper
 #https://github.com/nov/paypal-express/wiki/_pages
-https://developer.paypal.com/webapps/developer/applications/myapps
+#https://developer.paypal.com/webapps/developer/applications/myapps
   def checkout     
     begin
       amount=(current_user.invites.count*(unit_price)).to_f.round(2)
@@ -34,14 +34,14 @@ https://developer.paypal.com/webapps/developer/applications/myapps
     rescue Paypal::Exception::APIError => e
        logger.error { "message: #{e}" }
     ensure
-      UserMailer.error(message)
+      UserMailer.notify("Order started: user_id #{current_user.id} , #{response.popup_uri}")
     end
   end
   
   def confirm
     begin
       if (!params[:token].nil? && !params[:PayerID].nil?)
-        semaphore = Mutex.new
+        #semaphore = Mutex.new
         token = params[:token]
         payer_id=params[:PayerID]  
         #or  response.payer.identifier 
@@ -57,13 +57,14 @@ https://developer.paypal.com/webapps/developer/applications/myapps
       end
     rescue Paypal::Exception::APIError => e
      redirect_to root_path
-     logger.error { "message: #{e}" }
+     logger.error { "message: #{e}" }    
     end 
   end
   
   def cancel 
     #This script will help to redirec user after payment process closed
-    render :partial => 'scripts/close_opened_windows'
+    #flash[:notice]="Paypal process was canceled."
+    render :partial => 'scripts/close_opened_windows'    
   end
   
   private
@@ -104,6 +105,7 @@ https://developer.paypal.com/webapps/developer/applications/myapps
         end
       rescue Paypal::Exception::APIError => e
         logger.error { "#{e}" }
+        UserMailer.error("#{e}")
       end
       
             
