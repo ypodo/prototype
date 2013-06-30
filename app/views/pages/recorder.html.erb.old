@@ -42,7 +42,7 @@
 	<noscript>WAMI requires Javascript</noscript>
 <br>
 <br><br><br><br><br><br><br>
-<div id="wamiNotificationArea">
+<div id="wamiNotificationArea" class="warning">
 </div>
 
 </body>

@@ -35,4 +35,3 @@ rescue SQLite3::Exception => e
 ensure
     db.close if db    
 end
-

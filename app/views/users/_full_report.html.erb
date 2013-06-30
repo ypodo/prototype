@@ -29,12 +29,6 @@
 	 	 	</div>
 
 		 	<div class="span9">
-		 		<form class="well well-small">
-				  	<div class="input-append">
-					  <input class="span*" id="appendedInputButton" type="email" type="text">
-					  <button class="btn" type="button" for="inputIcon"  onclick="sendReport()">send by mail</button>					  	  
-					</div>
-				</form>		
 			 	<table class="table table-bordered table-hover">
 			  		<thead>
 		                <tr>                  
@@ -48,6 +42,13 @@
 			                <%=render 'invites_each'%>                
 			          </tbody>
 			  	</table>
+			  	<form class="well well-small">
+				  	<div class="input-append">
+					  <input class="span*" id="appendedInputButton" type="email" type="text">
+					  <button class="btn" type="button" for="inputIcon"  onclick="sendReport()">send report by mail</button>					  	  
+					</div>
+				</form>		
+
 		 	</div>		 	
 	 	 	
 	 	</div>

@@ -66,12 +66,9 @@ Wami.GUI = function(options) {
 	 * These methods are called on clicks from the GUI.
 	 */
 	function startRecording() {
-		while (Wami.getSettings('sampleRate').sampleRate != 44100) {
-			Wami.setSettings({'sampleRate':44100});
-		}
 		recordButton.setActivity(0);
 		playButton.setEnabled(false);
-		wamiNotificationArea.innerHTML = "<font class=info>Recording your message..</font>";
+		wamiNotificationArea.innerHTML = "Recording your message..";
 		Wami.startRecording(options.recordUrl,
 				Wami.nameCallback(onRecordStart), 
 				Wami.nameCallback(onRecordFinish),
@@ -80,13 +77,14 @@ Wami.GUI = function(options) {
 	}
 
 	function stopRecording() {
-		wamiNotificationArea.innerHTML = "<font class=info>Uploading file. Please wait...</font>";
+		wamiNotificationArea.innerHTML = "Uploading file. Please wait...";
 		Wami.stopRecording();
 		clearInterval(recordInterval);
 		recordButton.setEnabled(true);
 	}
 
 	function startPlaying() {
+		wamiNotificationArea.innerHTML = "Downloading. Please wait...";
 		if (!options.playUrl) {
 			return;
 			//alert('No play URL specified!');
@@ -100,6 +98,7 @@ Wami.GUI = function(options) {
 	}
 
 	function stopPlaying() {
+		wamiNotificationArea.innerHTML = "Stopped";
 		Wami.stopPlaying();
 	}
 
@@ -126,7 +125,7 @@ Wami.GUI = function(options) {
 	function onError(e) {
 		//alert(e); something wrong
 		recordButton.setEnabled(true);
-		wamiNotificationArea.innerHTML = "<font class=error>Please record your message first!</font>";
+		wamiNotificationArea.innerHTML = "Please record your message first!";
 	}
 
 	function onRecordStart() {
@@ -143,13 +142,14 @@ Wami.GUI = function(options) {
 
 	function onRecordFinish() {
 		playButton.setEnabled(true);
-			wamiNotificationArea.innerHTML = "<font class=info>File uploaded successfully</font>";
+			wamiNotificationArea.innerHTML = "File uploaded successfully";
 		if (options.onRecordFinish) {
 			options.onRecordFinish();
 		}
 	}
 
 	function onPlayStart() {
+		wamiNotificationArea.innerHTML = "Playing";
 		playInterval = setInterval(function() {
 			if (playButton.isActive()) {
 				var level = Wami.getPlayingLevel();
@@ -162,6 +162,7 @@ Wami.GUI = function(options) {
 	}
 
 	function onPlayFinish() {
+		wamiNotificationArea.innerHTML = "Stopped";
 		clearInterval(playInterval);
 		recordButton.setEnabled(true);
 		playButton.setEnabled(true);
