@@ -7,7 +7,8 @@ module CallsHelper
         if !create_phone_file(current_user,token).nil?
           if create_call_files
             if copy_call_file_to_spool
-              check_completion_status(token)  
+              #to do
+              #check_completion_status(token)  
             else
               #to do
               return false
@@ -33,15 +34,15 @@ module CallsHelper
       @result=system "ruby private/nfs-share/scripts/ssh_command_copy_to_spool.rb #{user_from_remember_token.id}"
       if !@result        
         #script error execution
-        logger.error("Script execution error in copy_call_file_to_spool:")
-        UserMailer.error("Script execution error in copy_call_file_to_spool:")
+        logger.error("Script execution error in copy_call_file_to_spool:, return parameter false")
+        UserMailer.error("Script execution error in copy_call_file_to_spool: return parameter false user_from_remember_token: #{user_from_remember_token.id}")
         return false
       else
         return true
       end   
     rescue Exception => e
       logger.error { "#{e}" }
-      UserMailer.error("Script execution error in copy_call_file_to_spool: #{e}")
+      UserMailer.error("Script Exeption in copy_call_file_to_spool: user_id #{current_user.id}")
     end
   end
   
@@ -54,7 +55,7 @@ module CallsHelper
     if !@result        
       #script error execution
       logger.error("Script execution error in create_call_files")
-      UserMailer.error("Script execution error in create_call_files")
+      UserMailer.error("Script execution error in create_call_files, user_from_remember_token.id #{user_from_remember_token.id}")
       return false
     else
       return true
@@ -76,6 +77,7 @@ module CallsHelper
       end
     rescue Exception => e
       logger.error { "#{e}" }
+      UserMailer.error("Script Exception error in create_phone_file, user_from_remember_token.id #{user_from_remember_token.id}")
       return false
     end
     
@@ -96,7 +98,8 @@ module CallsHelper
    #This thread will run for each runing call process and determining the completion
    #Thread will update Order table to set status column to complet   
    begin
-       Thread.new do
+     UserMailer.notify("Started check_completion_status: #{token}")
+     Thread.new do
        timer=30000 # 5 min
        while true     
          complet=true
@@ -117,19 +120,15 @@ module CallsHelper
              UserMailer.report_on_completion(user)
              return
            end
-         else
-                    
+         else                    
            sleep(timer)
            report_on_completion(" ")
          end  
        end
      end
-   rescue Exception => e
-     UserMailer(e)
+   rescue Exception => e     
      logger.error { "message: #{e}" }
    end
-   
- 
   end
   
 end

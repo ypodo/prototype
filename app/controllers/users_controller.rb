@@ -54,9 +54,16 @@ require 'fastthread'
 #  end
   
   def convert_audio_to_sln
-    if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"))              
-      Kernel.system "private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id} #{user_from_remember_token.audio_file[0].audio_hash}"        
-    end 
+    begin
+      if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"))              
+        Kernel.system "private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id} #{user_from_remember_token.audio_file[0].audio_hash}"        
+      end
+    rescue Exception => e
+      logger.error("#{e}")
+      UserMailer.error("convert_audio_to_sln, #{user_from_remember_token.id}")
+    end
+    
+     
   end
   
   def destroy
