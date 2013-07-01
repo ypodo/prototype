@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class DevOrderController < ApplicationController
 include CallsHelper
 include ApplicationHelper
 include UsersHelper
@@ -8,9 +8,7 @@ include UsersHelper
     begin
       amount=(current_user.invites.count*(unit_price)).to_f.round(2)
       if (amount <= 0)
-        #if amount les then 0 return to page with notice
-        render :nothing => true, :notice => amount
-        UserMailer.notify("Order checkout #{amount}, amount  user_id #{current_user.id} , #{response.popup_uri}")
+        render :nothing => true
         return
       end  
       
@@ -30,15 +28,13 @@ include UsersHelper
         "http://"+env["HTTP_HOST"]+"/orders/cancel",
         :no_shipping => true
       )
-      #set location in cookies. client side will use it to route to wrigth tab
       cookies[:ui_location]="tab4"    
       render :text => response.popup_uri
       #redirect_to gateway.redirect_url_for(setup_response.token)
     rescue Paypal::Exception::APIError => e
        logger.error { "message: #{e}" }
-       UserMailer.notify("Order Exception checkout user_id #{current_user.id} , #{response.popup_uri}")
     ensure
-      UserMailer.notify("Order checkout user_id #{current_user.id} , #{response.popup_uri}: , #{e}")
+      UserMailer.notify("Order started: user_id #{current_user.id} , #{response.popup_uri}")
     end
   end
   
@@ -141,20 +137,11 @@ include UsersHelper
     def express
       #set sandbox mode
       #to do
-      Paypal.sandbox=false
+      Paypal.sandbox=true
       Paypal::Express::Request.new(
-      :username => 'mazminim.com_api1.gmail.com', 
-      :password => 'J4L5RTB4SNKAVUEM', 
-      :signature => 'AFcWxV21C7fd0v3bYYYRCpSSRl31AI5pQo19r5uiucQs8g3761k-f6Ng' 
+      :username => 'mazminim.com-facilitator_api1.gmail.com', 
+      :password => '1366565411', 
+      :signature => 'AFcWxV21C7fd0v3bYYYRCpSSRl31AUS9RX-zEZtLQLv1Dp1odN9RwOeR' 
       ) 
     end
 end
-#lev
-#lefontiy_api1.gmail.com
-#HQ3CNVX486425GL6
-#AFcWxV21C7fd0v3bYYYRCpSSRl31AzGeNVQV2CTY6pLh3SaZQuwei0PL
-#yuri
-#:login => 'yuri.shterenberg_api1.gmail.com', 
-#:password => '683ZWNFL5LNHDKSL', 
-#:signature => 'A3AU4NDVw7j.oSslgS-kreIwyR6TABxWlJoOrTPWr-YUcK1BXX41dur8' 
-

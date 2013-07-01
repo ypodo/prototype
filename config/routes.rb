@@ -54,11 +54,17 @@ Prototype::Application.routes.draw do
   match '/auth/failure', :to => 'sessions#omniauth_failure'
   match 'signout', :to => 'sessions#destroy', as: 'signout'
   
-  #paypal-express
+  #paypal-express production
   match '/orders/checkout', :to => 'orders#checkout'
   match '/orders/new', :to => 'orders#new'
   match '/orders/cancel', :to => 'orders#cancel'
   match '/orders/confirm', :to => 'orders#confirm'
+  
+  #paypal-express development
+  match '/dev_order/checkout', :to => 'dev_order#checkout'
+  match '/dev_order/new', :to => 'dev_order#new'
+  match '/orders/cancel', :to => 'dev_order#cancel'
+  match '/orders/confirm', :to => 'dev_order#confirm'
   
   #reset password
   #get "logout" => "sessions#destroy", :as => "logout"

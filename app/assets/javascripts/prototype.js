@@ -69,7 +69,7 @@ function doAxaj(msg)
 	}
 	
 }
-function can_start(){
+function can_start(mode){
 	//1. ask server about all requerment before start could be started
 	//document.getElementById("green_submit").disabled=true;	
 	var can_start=$.ajax(window.location.pathname+"/can_start").done(function(){
@@ -81,11 +81,12 @@ function can_start(){
 			}
 						
 		else{	
+				//Starting calling process
 				document.getElementById("green_submit").disabled=true;
 				var elem=$('.control-list[style="background-color: red;"]');
 				elem.css("background-color","#eeeeee");
 				$(".alert").alert('close');						
-				checkout();	
+				checkout(mode);	
 			}
 				
 		}		
@@ -234,7 +235,9 @@ function delete_all_invites_html_table(argument) {
 	
 }
 function checkout (argument) {  
-  var respons=$.ajax({
+  //to do
+  if(argument=="prod" || argument==""||argument==null){
+  	var respons=$.ajax({
 		url:"/orders/checkout",
 		type:"POST",
 		data:$("#ajax_trigger").serialize()	
@@ -243,7 +246,21 @@ function checkout (argument) {
 				dg.startFlow(respons.responseText);
 				post_payment_process();				
 				document.getElementById("green_submit").disabled=false;				
+				});	
+  } 
+  else if (argument=="dev") {
+  	var respons=$.ajax({
+		url:"/dev_order/checkout",
+		type:"POST",
+		data:$("#ajax_trigger").serialize()	
+			}).done(function() {				
+				//alert(respons.responseText);
+				dg.startFlow(respons.responseText);
+				post_payment_process();				
+				document.getElementById("green_submit").disabled=false;				
 				});
+  };
+  
 				
 }
 function post_payment_process(argument) {
