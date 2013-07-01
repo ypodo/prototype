@@ -8,11 +8,10 @@ require 'gdata'
   def upload_audio
     max_size=1048576
     if(params[:user]==current_user.id.to_s && params[:AUDIO_FILE].content_type == "audio/wav")
-      if(File.size(params[:AUDIO_FILE].tempfile)<max_size)
+      if(File.size(params[:AUDIO_FILE].tempfile)<max_size)        
         if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
           Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create      
-        end
-        
+        end        
         if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
           Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
         end

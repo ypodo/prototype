@@ -61,9 +61,7 @@ require 'fastthread'
     rescue Exception => e
       logger.error("#{e}")
       UserMailer.error("convert_audio_to_sln, #{user_from_remember_token.id}")
-    end
-    
-     
+    end 
   end
   
   def destroy
