@@ -3,7 +3,7 @@
 		<td id="">
 			<div class="input-append input-prepend span1 columns">
 				<span class="add-on" id="total_invites">Total invites: <%=@invites.count%></span>
-				<span class="add-on" id="payments">nis: <%=(@user.invites.count*unit_price).to_f.round(2)%></span>
+				<span class="add-on" id="payments">&#8362;<%=(@user.invites.count*unit_price).to_f.round(2)%> ILS</span>
 			</div>									
 			<tr>
 				<th>Name</th>

@@ -1,15 +1,18 @@
-<strong>Or upload already recorded file</strong>
-<div style="background: <%=@color%>">
+<div class="well well-small">
+<hr size="0">
+Or upload a recorded file (wav)
+<div style="background: #CDCDCD" style="border-style: dotted">
 	
 <%= form_tag({:action => :upload_audio, :controller=> :upload}, :method => 'post', :multipart => true, :remote => true, :id=>"uploade_audio_form" ) do %>
 	  <%= file_field_tag :data_file ,:required => true, :accept=>"*.", :name=>"AUDIO_FILE", :value=>"1048576"%>
 	  <%= hidden_field_tag('user', value = @user.id)%>
 	  <br />
-	  <%= submit_tag 'Upload', :class=>"btn", :required => true, :temote=>true, :onclick=>"recorderReloade();"%>		
+	  <center><%= submit_tag 'Upload', :class=>"button", :required => true%></center>		
 <% end %>
-<%if @color == "red"%>
-	<p class="label-warning">File can't be uploaded</p>
-<%elsif @color == "green"%>
-	<p class="label-info">Successfully uploaded</p>
+<%if @color == "false"%>
+	<h6>File can't be uploaded (wav extension only; less than 1MB)</h6>
+<%elsif @color == "true"%>
+	<p class="label-info"><h5>Successfully uploaded</h5></p>
 <%end%>
+</div>
 </div>

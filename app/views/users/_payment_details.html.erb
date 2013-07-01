@@ -11,15 +11,15 @@
         <hr>
         <tr>
           <td><strong>Service charge:</strong></td>                  
-          <td><%=((@user.invites.count*unit_price)-(@user.invites.count*unit_price*0.18)).to_f.round(2)%>&#8362;</td>
+          <td>&#8362;<%=((@user.invites.count*unit_price)-(@user.invites.count*unit_price*0.18)).to_f.round(2)%> ILS</td>
         </tr>
         <tr>
           <td><strong>VAT 18%:</strong></td>                  
-          <td><%=(@user.invites.count*unit_price*0.18).to_f.round(2)%>&#8362;</td>          
+          <td>&#8362;<%=(@user.invites.count*unit_price*0.18).to_f.round(2)%> ILS</td>          
         </tr>
         <tr>
           <td><strong>Total:</strong></td>                  
-          <td><%=(@user.invites.count*unit_price).to_f.round(2)%>&#8362; including VAT</td>          
+          <td>&#8362;<%=(@user.invites.count*unit_price).to_f.round(2)%> ILS including VAT</td>          
         </tr>                    
         <tr>
         	<td class="span3"><strong>Mail address used to send report upon completion:</strong></td>
