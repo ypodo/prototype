@@ -2,11 +2,27 @@
 user_id=$1
 user_hash=$2
 
-nfs_path_private="/var/www/prototype/private/nfs-share"
-nfs_path_public="/var/www/prototype/public/nfs-share"
+EXPECTED_ARGS=2
+E_BADARGS=-1
 
-#nfs_path_private="/home/ubuntu/Documents/prototype/private/nfs-share/"
-#nfs_path_public="/home/ubuntu/Documents/prototype/public/nfs-share/"
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: `basename $0` <user_id> <user_hash>"
+  exit $E_BADARGS
+fi
+
+#nfs_path_private="/var/www/prototype/private/nfs-share"
+#nfs_path_public="/var/www/prototype/public/nfs-share"
+
+nfs_path_private="/home/ubuntu/Documents/prototype/private/nfs-share/"
+nfs_path_public="/home/ubuntu/Documents/prototype/public/nfs-share/"
+
+
+if [ ! -f "$nfs_path_public"/"$user_id"/"$user_hash".wav ]; then
+    echo "File not found!"
+	exit $E_BADARGS
+fi
+
 
 
 echo Make a copy of the original file
@@ -35,5 +51,4 @@ rm -f "$nfs_path_private"/"$user_id"/"$user_id".inc.wav
 
 echo Done
 
-exit
-
+exit 0

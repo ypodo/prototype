@@ -57,7 +57,7 @@
 			  <%= file_field_tag :data_file ,:required => true, :accept=>"*.", :name=>"MAX_FILE_SIZE", :value=>"1048576"%>
 			  <%= hidden_field_tag('user', value = @user.id)%>
 			  <br />
-			  <%= submit_tag 'Upload', :class=>"btn", :required => true, :temote=>true, :onclick=>"recorderReloade();"%>		
+			  <%= submit_tag 'Upload', :class=>"btn", :required => true, :remote=>true, :onclick=>"recorderReloade();"%>		
 			<% end %>
 		</iframe>
 

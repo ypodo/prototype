@@ -22,9 +22,9 @@ require 'gdata'
         end    
         convert_audio_to_sln    
       end
-       @color="green"
+       @color="true"
     else
-       @color="red"
+       @color="false"
     end      
     @user = current_user   
     render :partial => "users/upload_frame", :color => @color  

@@ -8,7 +8,7 @@ Wami.GUI = function(options) {
 
 	setOptions(options);
 	setupDOM();
-
+ 
 	var recordButton, playButton;
 	var recordInterval, playInterval;
 

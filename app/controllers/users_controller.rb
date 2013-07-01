@@ -109,7 +109,20 @@ require 'fastthread'
         fileH.audio_hash=Digest::SHA2.hexdigest(fileH.user_id.to_s)[0..32]
         if !fileH.save
           flash[:error] = "Error"
+        end
+        
+        if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+          Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
+        end
+        if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+          Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
+        end
+        File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w+b") do |f|
+          f.write("")
+          f.close()
         end        
+       
+        
         redirect_to categories_path
         UserMailer.registration_confirmation(@user)
 
