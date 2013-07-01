@@ -272,8 +272,10 @@ function tab_data_sync(argument) {
 		break;
 		
 		case "#tab4":
+		if (!document.getElementById("past_activity")) {
 			progress_bar();	
 			refresh_report_sum();		
+		}
 		break;
 		
 		case "#tab2":
