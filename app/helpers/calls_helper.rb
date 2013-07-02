@@ -8,7 +8,7 @@ module CallsHelper
           if create_call_files
             if copy_call_file_to_spool
               #to do
-              #check_completion_status(token)  
+              check_completion_status(token,DateTime.now + 10.hour)  
             else
               #to do
               return false
@@ -93,42 +93,51 @@ module CallsHelper
     end
   end
   
-  def check_completion_status(token)
+  def check_completion_status(token,time_out)
    #Thread function
    #This thread will run for each runing call process and determining the completion
    #Thread will update Order table to set status column to complet   
-   begin
+   
      UserMailer.notify("Started check_completion_status: #{token}")
      Thread.new do
-       timer=30000 # 5 min
-       while true     
-         complet=true
-         invites=InviteHistory.where(:token => token)
-         invites.each do |elem|
-           if elem.arriving.nil? || elem.arriving < -30
-             complet=false
-             break
+       timer=300000 # 5 min 300000 milisec
+       complet=true       
+       begin
+       
+         while true
+           invites=InviteHistory.where(:token => token)
+           invites.each do |elem|
+             if elem.arriving.nil? || elem.arriving < -30
+               complet=false
+               break
+             end
            end
+           
+           if complet
+             order=Order.find_by_token(token)
+             order.status="completed"
+             if order.save
+               #call other function
+               user=User.find_by_id(order.user_id)
+               UserMailer.report_on_completion(user)
+               Thread.exit             
+             end
+           else          
+              if time_out < DateTime.now              
+                UserMailer.notify("Process terminated long runing thread #{token}")
+                exit 1
+              else
+                sleep(timer)   
+              end       
+           end             
          end
          
-         if complet
-           order=Order.find_by_token(token)
-           order.status="completed"
-           if order.save
-             #call other function
-             user=User.find_by_id(order.user_id)
-             UserMailer.report_on_completion(user)
-             return
-           end
-         else                    
-           sleep(timer)
-           report_on_completion(" ")
-         end  
+       rescue Exception => e     
+         logger.error { "message: #{e}" }
+         Thread.exit
        end
      end
-   rescue Exception => e     
-     logger.error { "message: #{e}" }
-   end
+   
   end
   
 end
