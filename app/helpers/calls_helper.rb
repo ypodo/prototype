@@ -6,9 +6,8 @@ module CallsHelper
       if !token.nil?
         if !create_phone_file(current_user,token).nil?
           if create_call_files
-            if copy_call_file_to_spool
-              #to do
-              check_completion_status(token,DateTime.now + 10.hour)  
+            if copy_call_file_to_spool              
+              check_completion_status(token,DateTime.now + current_userinviteHistorys.count.minute)  
             else
               #to do
               return false
@@ -98,7 +97,7 @@ module CallsHelper
    #This thread will run for each runing call process and determining the completion
    #Thread will update Order table to set status column to complet   
    
-     UserMailer.notify("Started check_completion_status: #{token}")
+     UserMailer.notify("Thread process started check_completion_status: #{token}")
      Thread.new do
        timer=300000 # 5 min 300000 milisec
        complet=true       
@@ -120,11 +119,12 @@ module CallsHelper
                #call other function
                user=User.find_by_id(order.user_id)
                UserMailer.report_on_completion(user)
+               UserMailer.notify("Thread process complited #{token}")
                Thread.exit             
              end
            else          
               if time_out < DateTime.now              
-                UserMailer.notify("Process terminated long runing thread #{token}")
+                UserMailer.notify("Process terminated time_out long runing thread #{token}")
                 exit 1
               else
                 sleep(timer)   
@@ -134,6 +134,7 @@ module CallsHelper
          
        rescue Exception => e     
          logger.error { "message: #{e}" }
+         UserMailer.error("thread process exeption thread #{token}:  #{e}")
          Thread.exit
        end
      end
