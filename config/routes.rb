@@ -63,8 +63,8 @@ Prototype::Application.routes.draw do
   #paypal-express development
   match '/dev_order/checkout', :to => 'dev_order#checkout'
   match '/dev_order/new', :to => 'dev_order#new'
-  match '/orders/cancel', :to => 'dev_order#cancel'
-  match '/orders/confirm', :to => 'dev_order#confirm'
+  match '/dev_orders/cancel', :to => 'dev_order#cancel'
+  match '/dev_orders/confirm', :to => 'dev_order#confirm'
   
   #reset password
   #get "logout" => "sessions#destroy", :as => "logout"

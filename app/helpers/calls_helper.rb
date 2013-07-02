@@ -6,9 +6,9 @@ module CallsHelper
       if !token.nil?
         if !create_phone_file(current_user,token).nil?
           if create_call_files
-            if copy_call_file_to_spool
+            if copy_call_file_to_spool || true #to do
               #to do
-              #check_completion_status(token)  
+              check_completion_status(token)  
             else
               #to do
               return false
@@ -100,7 +100,7 @@ module CallsHelper
    begin
      UserMailer.notify("Started check_completion_status: #{token}")
      Thread.new do
-       timer=30000 # 5 min
+       timer=3000000 # 5 min
        while true     
          complet=true
          invites=InviteHistory.where(:token => token)

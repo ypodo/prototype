@@ -12,7 +12,18 @@ require 'fastthread'
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
-
+  def set_language
+    #change user language in User 
+    begin
+      laguage=params[:user][:language]
+      current_user.skip_callbacks = true
+      current_user.update_attribute(:language, language)
+      current_user.skip_callbacks = false
+    rescue Exception => e
+      logger.error { "#{e}" }  
+    end
+  end
+  
   def wami
     if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
       Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
