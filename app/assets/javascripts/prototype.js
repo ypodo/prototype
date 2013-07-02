@@ -83,6 +83,8 @@ function can_start(mode){
 		else{	
 				//Starting calling process
 				document.getElementById("green_submit").disabled=true;
+				document.getElementById("full_report_table_div_empty").style.display = 'none';
+				document.getElementById("full_report_table_div_full").style.display = 'block';
 				var elem=$('.control-list[style="background-color: red;"]');
 				elem.css("background-color","#eeeeee");
 				$(".alert").alert('close');						
@@ -289,7 +291,7 @@ function tab_data_sync(argument) {
 		break;
 		
 		case "#tab4":
-		if (!document.getElementById("past_activity")) {
+		if (document.getElementById("full_report_table_div_full").style.display=="block") {
 			progress_bar();	
 			refresh_report_sum();		
 		}

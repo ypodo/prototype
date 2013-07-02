@@ -32,6 +32,7 @@ Prototype::Application.routes.draw do
   match '/history/show/:id' => 'history#ajax_history_invites_by_token'
   match '/users/:id/ajax_payment_details' => 'users#ajax_payment_details'
   get '/upload_frame', :to => 'users#upload'
+  get '/load_recorder', :to => 'users#load_recorder'
   #Post recorder
   match '/post.php', :to => 'users#recorder'
   match '/wami', :to => 'users#wami'
@@ -63,8 +64,8 @@ Prototype::Application.routes.draw do
   #paypal-express development
   match '/dev_order/checkout', :to => 'dev_order#checkout'
   match '/dev_order/new', :to => 'dev_order#new'
-  match '/orders/cancel', :to => 'dev_order#cancel'
-  match '/orders/confirm', :to => 'dev_order#confirm'
+  match '/dev_orders/cancel', :to => 'dev_order#cancel'
+  match '/dev_orders/confirm', :to => 'dev_order#confirm'
   
   #reset password
   #get "logout" => "sessions#destroy", :as => "logout"

@@ -24,8 +24,8 @@ include UsersHelper
       )    
       response = express.setup(
         payment_request,
-        "http://"+env["HTTP_HOST"]+"/orders/confirm",
-        "http://"+env["HTTP_HOST"]+"/orders/cancel",
+        "http://"+env["HTTP_HOST"]+"/dev_orders/confirm",
+        "http://"+env["HTTP_HOST"]+"/dev_orders/cancel",
         :no_shipping => true
       )
       cookies[:ui_location]="tab4"    
