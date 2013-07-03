@@ -89,7 +89,7 @@ require 'mail'
       to ||=user.email
       auth
       mail = Mail.new do
-        from    'Mazminim automatic calling system'
+        from    'Mazminim, automatic calling system'
         to      to
         subject subject
         

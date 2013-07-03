@@ -1,12 +1,8 @@
 module PagesHelper
-  def help
-    
+  def help    
+  end  
+  def news   
   end
   
-  def news
-   
-  end
-  def record_exist
-    return false
-  end
+  
 end
