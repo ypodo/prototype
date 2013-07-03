@@ -32,6 +32,7 @@ Prototype::Application.routes.draw do
   match '/history/show/:id' => 'history#ajax_history_invites_by_token'
   match '/users/:id/ajax_payment_details' => 'users#ajax_payment_details'
   get '/upload_frame', :to => 'users#upload'
+  get '/load_recorder', :to => 'users#load_recorder'
   #Post recorder
   match '/post.php', :to => 'users#recorder'
   match '/wami', :to => 'users#wami'

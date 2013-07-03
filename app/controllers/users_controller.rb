@@ -48,6 +48,12 @@ require 'fastthread'
     #rendered_data=render_to_string(:partial => "upload_frame")  
     render :partial => "upload_frame"
   end
+  
+  def load_recorder
+    @user = current_user
+    render :partial => "wami_recorder"
+  end
+    
 #  def recorder        
 ##      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
 #    end
