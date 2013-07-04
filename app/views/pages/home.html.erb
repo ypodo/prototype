@@ -7,38 +7,38 @@
 		<% if !signed_in? %>
 		<div class="span11 well well-small">		
 			<div class="control-group">
-			<p>Registration</p>			
+			<p>הרשמה</p>			
 			<%= form_for(@user) do |f| %>
 			<%= render 'shared/error_messages', :object => f.object %>			    
-			    <%= f.text_field :name ,:placeholder=>"Name" ,:required => true, :value=>""%>			  
-			    <%= f.text_field :email, :placeholder=>"Email@" ,:required => true, :value=>"",:type=>"email"%>			  
-			    <%= f.password_field :password, :placeholder=>"Password" ,:required => true%>			  
-			    <%= f.password_field :password_confirmation, :placeholder=>"Confirm password" ,:required => true%>
+			    <%= f.text_field :name ,:placeholder=>"שם משתמש" ,:required => true, :value=>""%>			  
+			    <%= f.text_field :email, :placeholder=>"דואר אלקטרוני" ,:required => true, :value=>"",:type=>"email"%>			  
+			    <%= f.password_field :password, :placeholder=>"סיסמא" ,:required => true%>			  
+			    <%= f.password_field :password_confirmation, :placeholder=>"אימות סיסמא" ,:required => true%>
 			    <p>
-			    <%= f.submit "Sign up", :class=>"btn btn-primary inline",:onclick => 'agreementValid();'%>		
+			    <%= f.submit "הרשם!", :class=>"btn btn-primary inline",:onclick => 'agreementValid();'%>		
 		      	
 		      	<label class="checkbox inline" >
-		      		<%= f.check_box :agreement, :calss=>"inline", :id=>"agreement" ,:required => true%>
-      				<a href="#term" data-toggle="modal" id="agreementText"> Agreements.</a>
+		      		<%= f.check_box :agreement, :class=>"inline", :id=>"agreement" ,:required => true%>
+      				<a href="#term" data-toggle="modal" id="agreementText"> תנאי שימוש</a>
     			</label>
 			  	</div>
 			<% end %>
 			<hr />			
 			<%=render 'pages/terms_mudal'%>
 			<div class="control-group">
-				<p>Login</p>
+				<p>התחברות</p>
 				<%= form_for(:session, :url => sessions_path) do |f| %>			  
-			    <%= f.text_field :email, :placeholder=>"Email@",:type=>"email", :value=>"", :required => true,'data-toggle'=>'tooltip', 'title'=>"Enter your registed email to login"%>			  
-			    <%= f.password_field :password,:placeholder=>"Password" ,:required => true, 'data-toggle'=>'tooltip', 'title'=>"Enter your password to login the system"%>				    
+			    <%= f.text_field :email, :placeholder=>"דואר אלקטרוני",:type=>"email", :value=>"", :required => true,'data-toggle'=>'tooltip', 'title'=>"הכנס כתובת דואר אלקטרוני"%>			  
+			    <%= f.password_field :password,:placeholder=>"סיסמא" ,:required => true, 'data-toggle'=>'tooltip', 'title'=>"הכנס סיסמא"%>				    
 			    <div class="inline">
-				    <%= f.submit "Login", :class=>"btn btn-primary" %>
+				    <%= f.submit "התחבר!", :class=>"btn btn-primary" %>
 				    <% end %>
-				    <%= link_to "forgot the password?", "#", :class=>"label label-warning", :data => {:toggle => "modal"}, :href => "#myModal"%>	
+				    <%= link_to "שכחת סיסמא?", "#", :class=>"label label-warning", :data => {:toggle => "modal"}, :href => "#myModal"%>	
 					
 					<p></p>				   
-				    <a type="button" href="/auth/facebook">Facebook login</a>
+				    <a type="button" href="/auth/facebook">התחבר עם חשבון Facebook</a>
 				    <p></p>
-				   	<a type="button" href="/auth/google_oauth2">Google login</a>
+				   	<a type="button" href="/auth/google_oauth2">התחבר עם חשבון Google</a>
 				   	
 			    </div>	
 		  	</div>		  	

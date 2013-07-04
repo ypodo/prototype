@@ -7,11 +7,11 @@
   <img src="http://cdn1.iconfinder.com/data/icons/android-png/256/Android-Contacts.png" />
   <div class="modal-body">
   	<fieldset>
-  		<legend>Android phone contacts</legend>
+  		<legend>ייבוא רשימת אנשי קשר מחשבון גוגל</legend>
 	<%= form_tag('/google_contacts') do%>	    
-	    <label>Gmail</label>
+	    <label>כתובת דואר אלקטרוני</label>
 	    <%= text_field_tag 'login'%> 
-	    <label>Password</label>
+	    <label>סיסמא</label>
 	    <%= password_field_tag 'pass'%><p></p>
   		<%= submit_tag 'Import', :class=> 'btn btn-primary'%>  		
 	<% end %>	
@@ -19,6 +19,6 @@
 	  
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>    
+    <button class="btn" data-dismiss="modal" aria-hidden="true">סגור</button>    
   </div>
 </div>

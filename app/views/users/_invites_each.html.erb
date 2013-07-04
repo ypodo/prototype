@@ -6,24 +6,24 @@
 	<td><%=f.mail %> </td>
 	<td><%=f.number %></td>	    
       	<%if f.arriving.nil? %>
-      		<td>in progress</td>
+      		<td>בתהליך התקשרות</td>
       	<% elsif (f.arriving == 1)%>
-	    	<td bgcolor="#B5DD49">Confirmed</td>
+	    	<td bgcolor="#B5DD49">אישור</td>
 		<%elsif(f.arriving == 2)%>
-			<td bgcolor="#FFD9E2">Declined</td>
+			<td bgcolor="#FFD9E2">דחייה</td>
 		<%elsif(f.arriving == -10)%>
-			<td bgcolor="#FFD9E2">[1/3] No answer/busy<br> redialing in 5min</td>
+			<td bgcolor="#FFD9E2">אין מענה. חיוג חוזר יתבצע כ-5 דקות לאחר נסיון ההתקשרות</td>
 		<%elsif(f.arriving == -20)%>
-			<td bgcolor="#FFD9E2">[2/3] No answer/busy<br> redialing in 10min</td>
+			<td bgcolor="#FFD9E2">אין מענה. חיוג חוזר יתבצע כ-10 דקות לאחר נסיון ההתקשרות</td>
 		<%elsif(f.arriving == -30)%>
-			<td bgcolor="#FFD9E2">[3/3] No answer/busy<br> redialing in 20min</td>
+			<td bgcolor="#FFD9E2">אין מענה. חיוג חוזר יתבצע כ-20 דקות לאחר נסיון ההתקשרות</td>
 		<%elsif(f.arriving == -40)%>
-			<td bgcolor="#FFD9E2">No answer/busy</td>
+			<td bgcolor="#FFD9E2">אין מענה</td>
 		<%elsif(f.arriving == -50)%>
-			<td bgcolor="#FFD9E2">No answer provided</td>
+			<td bgcolor="#FFD9E2">לא התקבלה תשובה</td>
 
 		<%else%>
-			<td>No response.</td>			
+			<td>לא התקבלה תגובה</td>			
 	<%end%>		
 </tr>
 	<%end%>

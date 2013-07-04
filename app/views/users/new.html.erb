@@ -1,4 +1,4 @@
-<h1>Sign up</h1>
+<h1>הרשמה</h1>
 
 <%= form_for(@user) do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
@@ -15,14 +15,14 @@
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation, "Confirmation" %><br />
+    <%= f.label :password_confirmation, "אימות סיסמא" %><br />
     <%= f.password_field :password_confirmation %>
   </div>
   <div class="field">
-    <%= f.label :agreement, "Agreement" %>
+    <%= f.label :agreement, "תנאי שימוש" %>
     <%= f.check_box :agreement%>
   </div>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "הרשם!" %>
   </div>
 <% end %>

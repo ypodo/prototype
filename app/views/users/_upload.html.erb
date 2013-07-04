@@ -1,9 +1,9 @@
 <div class="input-append">
-	<p class="muted">Uploade excel or CSV file from PC</p>
+	<p class="muted">טעינת קובץ אקסל או CSV</p>
 	<%= form_tag({:action => :upload, :controller=> :upload}, :method => 'post', :multipart => true, :remote => true, :id=>"uploade_form" ) do %>
 	  <%= file_field_tag :data_file ,:required => true%>
 	  <%=hidden_field_tag('user', value = @user.id)%>
-	  <%= submit_tag 'Upload', :class=>"btn", :required => true, :remote=>true%>		
+	  <%= submit_tag 'טען', :class=>"btn", :required => true, :remote=>true%>		
 	<% end %>
 		<hr />	
 </div>

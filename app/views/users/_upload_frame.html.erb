@@ -6837,19 +6837,19 @@ body {
 }
 </style>
 <div class="well well-small">
-<div align="center"><b>OR</b> upload a recorded file (wav)</div>
+<div align="center"><b>או</b> טען קובץ אודיו (WAV)</div>
 <div class="button">
 	
 <%= form_tag({:action => :upload_audio, :controller=> :upload}, :method => 'post', :multipart => true, :remote => true, :id=>"uploade_audio_form", :size =>"10" ) do %>
 	  <%= file_field_tag :data_file ,:required => true, :accept=>"*.wav", :name=>"AUDIO_FILE", :value=>"1048576"%>
 	  <%= hidden_field_tag('user', value = @user.id)%>
 	  <br />
-	  <center><%= submit_tag 'Upload!', :class=>"button", :required => true%></center>		
+	  <center><%= submit_tag 'טען!', :class=>"button", :required => true%></center>		
 <% end %>
 <%if @color == "false"%>
-	<div align="center">File can't be uploaded (wav extension only; less than 1MB)</div>
+	<div align="center">ארעה שגיאה - פורמט WAV בלבד פחות מ-1 MB</div>
 <%elsif @color == "true"%>
-	<div align="center"><center>Successfully uploaded</center></div>
+	<div align="center"><center>טעינה הושלמה</center></div>
 <%end%>
 </div>
 </div>
