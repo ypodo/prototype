@@ -28,17 +28,17 @@
 			<div class="control-group">
 				<p>Login</p>
 				<%= form_for(:session, :url => sessions_path) do |f| %>			  
-			    <%= f.text_field :email, :placeholder=>"Email@",:type=>"email", :value=>"", :required => true,'data-toggle'=>'tooltip', 'title'=>"Enter your registed email to login"%>			  
-			    <%= f.password_field :password,:placeholder=>"Password" ,:required => true, 'data-toggle'=>'tooltip', 'title'=>"Enter your password to login the system"%>				    
+			    <%= f.text_field :email, :placeholder=>"Email@",:type=>"email", :value=>"", :required => true,'data-toggle'=>'tooltip', 'title'=>"הכנס כתובת דואר אלקטרוני"%>			  
+			    <%= f.password_field :password,:placeholder=>"Password" ,:required => true, 'data-toggle'=>'tooltip', 'title'=>"הכנס סיסמא"%>				    
 			    <div class="inline">
 				    <%= f.submit "Login", :class=>"btn btn-primary" %>
 				    <% end %>
 				    <%= link_to "forgot the password?", "#", :class=>"label label-warning", :data => {:toggle => "modal"}, :href => "#myModal"%>	
 					
 					<p></p>				   
-				    <a type="button" href="/auth/facebook">Facebook login</a>
+				    <a type="button" href="/auth/facebook">התחבר עם חשבון Facebook</a>
 				    <p></p>
-				   	<a type="button" href="/auth/google_oauth2">Google login</a>
+				   	<a type="button" href="/auth/google_oauth2">התחבר עם חשבון Google</a>
 				   	
 			    </div>	
 		  	</div>		  	

@@ -2,22 +2,22 @@
 	<tr>
 		<td id="">
 			<div class="input-append input-prepend span1 columns">
-				<span class="add-on" id="total_invites">Total invites: <%=@invites.count%></span>
+				<span class="add-on" id="total_invites">סה''כ מוזמנים: <%=@invites.count%></span>
 				<span class="add-on" id="payments">&#8362;<%=(@user.invites.count*unit_price).to_f.round(2)%> ILS</span>
 			</div>									
 			<tr>
-				<th>Name</th>
-				<th>Mail</th>
-				<th>Phone</th>
+				<th>שם</th>
+				<th>דואר אלקטרוני</th>
+				<th>מספר טלפון</th>
 				<!--<%=button_to "Delete all", :controller => "invites", :action => "delete_all", :remote => true, :confirm => "Are you sure?", :popup => true %>-->
-				<th><button class="btn btn-mini btn-danger" type="button" onclick="remove_all_invites();">Remove all invites</button></th>						
+				<th><button class="btn btn-mini btn-danger" type="button" onclick="remove_all_invites();">מחק כל רשומות</button></th>						
 			</tr>
 			<%@invites.each do |f| %>
 			<tr>				
 				<td><%=f.name %></td>
 				<td><%=f.mail %> </td>
 				<td><%=f.number %></td>	
-			    <td style="color: orange"><%= link_to 'Remove', f, method: :delete ,:class=>"label label-important", :remote=>true, :onclick=>"delete_invite_ajax(#{f.id});", :id=>f.id%></td>			    	
+			    <td style="color: orange"><%= link_to 'מחק', f, method: :delete ,:class=>"label label-important", :remote=>true, :onclick=>"delete_invite_ajax(#{f.id});", :id=>f.id%></td>			    	
 			</tr>
 			<%end%>		
 		</td>	
