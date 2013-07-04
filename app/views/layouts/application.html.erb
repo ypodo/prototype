@@ -1,9 +1,20 @@
+<%
+if @language == "heb"
+	@page_dir = "rtl"
+else
+	@page_dir = "ltr"		
+end
+@page_dir = "rtl"
+%>
+
+
+
 <!DOCTYPE html>
-<html>
+<html dir="<%=@page_dir%>">
   <head>
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />	
-	<title>אתר מזמינים: להתקשר, להזמין כמות גדולה של אורחים באופן אוטומטי, וידוא הגעת מוזמנים אוטומטי</title>
-	<meta name="description" content ="להתקשר לכל המוזמנים בו זמנית, ארגון חתונות, ארגון אירועים, ארגון כנסים, הזמנה של כמות גדולה של אורחים בלחיצת כפתור, ניתן לחסוך הרבה זמן על ידי שימוש באתר מזמינים, להקליט הזמנה  באתר ת אונליין">
+	<title>אתר מזמינים: להתקשר, להזמין כמות גדולה של אורחים באופן אוטומטי, לוודא הגעת מוזמנים לאירועי חתונה, בר-מצווה, כנס וכדומה</title>
+	<meta name="description" content ="השירות מציע התקשרות טלפונית לכלל רשימת המוזמנים בו-זמנית. באתר מזמינים ניתן להזמין כמות גדולה של אורחים בלחיצת כפתור ולקבל את תגובתם תוך דקות ספורות אונליין. הקליטו את ההזמנה, צרו רשימת מוזמנים ותנו לנו לעשות את העבודה הקשה">
 	
 	<%= stylesheet_link_tag "application"%>
     <%= csrf_meta_tag %>
@@ -17,7 +28,7 @@
 	<%= render 'layouts/header' %>	
       <section class="round" >
       	<% if signed_in? %>    	
-    	<%end%>   	
+    	<%end%>
         <% flash.each do |key, value| %>
           <div id="flash_field" class="alert alert-<%= key %>"><%= value %></div>
         <% end %>        

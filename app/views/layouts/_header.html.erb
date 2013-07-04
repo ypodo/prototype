@@ -19,24 +19,24 @@
 			    <ul class="nav pull-right">
                   <% if signed_in? %>					
 					<li class="divider-vertical"></li>                  		
-					<li><%= link_to "MY DESKTOP", current_user,:style => "font-size:16px;font-weight:600;font-family:Verdana;" %></li>
+					<li><%= link_to "שולחן עבודה", current_user,:style => "font-size:16px;font-weight:600;font-family:Verdana;" %></li>
 					<li class="divider-vertical"></li>				  
-					<li><%= link_to "How to?", root_path ,:style => "font-size:16px;font-weight:600;"%></li>
+					<li><%= link_to "עזרה", root_path ,:style => "font-size:16px;font-weight:600;"%></li>
 					<li class="divider-vertical"></li>				  
 					<!--<li><%=link_to "Price list", "#",:style => "font-size:16px;font-weight:600;"%></li>-->				 
 				      <% else %>
-			      	<li><%= link_to "Sign in", signin_path ,:style => "font-size:16px;font-weight:600;"%></li>
+			      	<li><%= link_to "התחבר", signin_path ,:style => "font-size:16px;font-weight:600;"%></li>
 			      <% end %>
 	                  <% if signed_in? %>
 	                  
 	                  <li class="dropdown">
 	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 16px; font-weight:700;"><i class="icon-user"></i> <%=current_user.name%> <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">                      
-	                      <li><a href="/history/show">My payments history</a></li>
-	                      <li><a href="/categories">Category</a></li>                       	
-						  <li><a href="/help">Get support</a></li>                      
+	                      <li><a href="/history/show">היסטוריית הזמנות שלי</a></li>
+	                      <li><a href="/categories">החלף קטגוריה</a></li>                       	
+						  <li><a href="/help">עזרה</a></li>                      
 	                      <li class="divider"></li>                      
-	                      <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+	                      <li><%= link_to "התנתק", signout_path, :method => :delete %></li>
               			</ul>
               			<li>
               				<%if current_user.provider=="facebook"%>

@@ -1,15 +1,15 @@
 <%if !@inviteHistorys.nil?%>
-<button class="btn btn-success" onclick="foo()">Close</button>
+<button class="btn btn-success" onclick="foo()">סגור</button>
 
 <p></p>
 <table class="table table-bordered" id="tbl_invitesHistory">
       <thead>
         <tr>
-          <th>invites: <%=@inviteHistorys.count%></th>
-          <th>First Name</th>
-          <th>Mail</th>
-          <th>Number</th>
-          <th>Status</th>
+          <th><%=@inviteHistorys.count%>סה''כ מוזמנים: </th>
+          <th>שם</th>
+          <th>כתובת דואר אלקטרוני</th>
+          <th>מספר טלפון</th>
+          <th>סטטוס הגעה</th>
         </tr>
       </thead>
       <tbody>
@@ -20,24 +20,24 @@
           <td><%=elem.mail%></td>
           <td><%=elem.number%></td> 
           	<%if elem.arriving.nil? %>
-          		<td>in progress</td>
+          		<td>בתהליך התקשרות</td>
           	<% elsif (elem.arriving == 1)%>
-		    	<td bgcolor="#B5DD49">Confirmed</td>
+		    	<td bgcolor="#B5DD49">אישור</td>
 			<%elsif(elem.arriving == 2)%>
-				<td bgcolor="#FFD9E2">Declined</td>
+				<td bgcolor="#FFD9E2">דחיה</td>
 			<%elsif(elem.arriving == -10)%>
-				<td bgcolor="#FFD9E2">[1/3] No answer/busy<br> redialing in 5min</td>
+				<td bgcolor="#FFD9E2">ללא מענה. חיוג חוזר מתוכנן 5 דקות לאחר נסיון ההתקשרות</td>
 			<%elsif(elem.arriving == -20)%>
-				<td bgcolor="#FFD9E2">[2/3] No answer/busy<br> redialing in 10min</td>
+				<td bgcolor="#FFD9E2">ללא מענה. חיוג חוזר מתוכנן 10 דקות לאחר נסיון ההתקשרות</td>
 			<%elsif(elem.arriving == -30)%>
-				<td bgcolor="#FFD9E2">[3/3] No answer/busy<br> redialing in 20min</td>
+				<td bgcolor="#FFD9E2">ללא מענה. חיוג חוזר מתוכנן 20 דקות לאחר נסיון ההתקשרות</td>
 			<%elsif(elem.arriving == -40)%>
-				<td bgcolor="#FFD9E2">No answer/busy</td>
+				<td bgcolor="#FFD9E2"></td>ללא מענה
 			<%elsif(elem.arriving == -50)%>
-				<td bgcolor="#FFD9E2">No answer provided</td>
+				<td bgcolor="#FFD9E2">לא התקבלה תגובה</td>
 
 			<%else%>
-				<td>No response</td>			
+				<td>לא התקבלה תגובה</td>			
           <%end%>  
         </tr>
         <%end%>        
