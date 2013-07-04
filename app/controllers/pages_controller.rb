@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+include ApplicationHelper
 require 'net/http'
 skip_before_filter  :verify_authenticity_token
   def home

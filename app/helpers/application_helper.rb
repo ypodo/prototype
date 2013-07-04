@@ -1,5 +1,5 @@
 module ApplicationHelper
-
+require 'nokogiri'
   def unit_price
     # invites_count
     # cost_per_call=0.18 Icomm
@@ -8,7 +8,7 @@ module ApplicationHelper
     cost_per_call=0.23
     profit=0.7
     mam=0.18    
-    return (cost_per_call*(1+profit)*(1+mam))      
+    return (cost_per_call*(1+profit)*(1+mam)).round(2)      
   end
   
   def unit_price_with_out_vat
@@ -19,7 +19,7 @@ module ApplicationHelper
     cost_per_call=0.23
     profit=0.7
     mam=0.18    
-    return (cost_per_call*(1+profit)*(1+mam))      
+    return (cost_per_call*(1+profit)*(1+mam)).round(2)      
   end
   
   def unit_price_with_vat
@@ -30,7 +30,7 @@ module ApplicationHelper
     cost_per_call=0.23
     profit=0.7
     mam=0.18    
-    return (cost_per_call*(1+profit)*(1+mam))      
+    return (cost_per_call*(1+profit)*(1+mam)).round(2)      
   end
-    
+      
 end
