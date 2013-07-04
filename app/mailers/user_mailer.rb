@@ -2,12 +2,6 @@ class UserMailer < ActionMailer::Base
 require 'mail'
 
   default from: "mazminim.com@gmail.com"
-
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.password_reset.subject
-  #
   def password_reset(user)
     @user = user
     #send_mail(user,data,subject,to)
@@ -23,7 +17,7 @@ require 'mail'
         @user=user
         data=render_to_string :partial => "user_mailer/final_report"
         subject="Call process completed for #{user.name}."
-        send_mail(user, data, subject,to)
+        send_mail(user, data, subject)
       rescue Exception => e
         logger.error { "message: #{e.message}" }
       end          
@@ -59,14 +53,14 @@ require 'mail'
   def error(message)
     begin          
       send_error_mail(message, "Error",'mazminim.com@gmail.com')
-    rescue
+    rescue Exception => e
       logger.error { "message: #{e.message}" }
     end
   end
   def notify(message)
     begin          
       send_error_mail(message, "Notification",'mazminim.com@gmail.com')
-    rescue
+    rescue Exception => e
       logger.error { "message: #{e.message}" }
     end
   end
@@ -91,6 +85,23 @@ require 'mail'
       mail = Mail.new do
         from    'Mazminim, automatic calling system'
         to      to
+        subject subject
+        
+        html_part do
+          content_type 'text/html; charset=UTF-8'
+          body data
+        end
+            
+      end
+      mail.deliver!      
+    end
+    def send_mail(user,data,subject)      
+      data ||="Body"
+      subject ||= "deafult subject"
+      auth
+      mail = Mail.new do
+        from    'Mazminim, automatic calling system'
+        to      user.email
         subject subject
         
         html_part do
