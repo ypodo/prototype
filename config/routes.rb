@@ -15,7 +15,7 @@ Prototype::Application.routes.draw do
   match '/users/:id/start' => 'calls#start'
   match '/users/:id/can_start' => 'calls#can_start'
   
-  match '/signup',  :to => 'users#new'
+  match '/signup',  :to => 'pages#home'
   #match '/signin',  :to => 'sessions#new'
   match '/signin',  :to =>'pages#home'
   match '/signout', :to => 'sessions#destroy'
@@ -74,7 +74,7 @@ Prototype::Application.routes.draw do
   resources :password_resets
   resources :locations
   
-  root :to => 'pages#unavailable'
+  root :to => 'pages#home'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

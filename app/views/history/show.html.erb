@@ -1,15 +1,15 @@
 <%if @orders.count == 0%>
-<strong>Your orders history is empty</strong>
+<strong>היסטוריית ההזמנות שלך ריקה</strong>
 <%else%>
 	<table class="table">
 	      <caption class="pull-left"></caption>
 	      <thead>
 	        <tr>
-	          <th>Order count (<%=@orders.count%>)</th>          
-	          <th>Event ID</th>
-	          <th>Order date</th>
-	          <th>Price</th>
-	          <th>Details</th>
+	          <th>סה''כ מוזמנים: (<%=@orders.count%>)</th>          
+	          <th>מזהה אירוע</th>
+	          <th>מועד הזמנה</th>
+	          <th>מחיר</th>
+	          <th>פרטים</th>
 	        </tr>
 	      </thead>
 	      <tbody>
@@ -20,7 +20,7 @@
 	          <td><%=elem.created_at%></td>
 	          <td><%=elem.amount.to_f.round(2)%> nis</td>  
 	          <td>          	
-	          	<a href="#tbl_invitesHistory" class="btn btn-info" onclick="show_history_invites_by_token('<%=elem.token%>');">show details</a>
+	          	<a href="#tbl_invitesHistory" class="btn btn-info" onclick="show_history_invites_by_token('<%=elem.token%>');">הצג פירוט</a>
 	      	  </td>          
 	        </tr>
 	    <%end%>

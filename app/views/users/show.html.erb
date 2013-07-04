@@ -2,13 +2,13 @@
   <div class="row-fluid">  
 	    <div class="span*">
 	    	<div class="tabbable"> <!-- Tabbable nav -->				 
-			  <ul class="nav nav-tabs" id="mainTabs">				  	
-			    <li class="active"><a href="#tab1" data-toggle="tab"><h4>Record message <i class="icon-play"></i></h4></a></li>
-			    <li><a href="#tab2" ><h4>Import contacts <i class="icon-list"></i></h4></a></li>
-			    <li><a href="#tab3" ><h4>Invite <i class="icon-ok"></i></h4></a></li>
-			    <li><a href="#tab4" ><h4>View results <i class="icon-tasks"></i></h4></a></li>	
+			  <ul class="nav nav-tabs" id="mainTabs">		  	
+			    <li class="active"><a href="#tab1" data-toggle="tab"><h4><i class="icon-play"></i> הקלט הודעה</h4></a></li>
+			    <li><a href="#tab2" ><h4><i class="icon-list"></i> צור רשימת מוזמנים</h4></a></li>
+			    <li><a href="#tab3" ><h4><i class="icon-ok"></i> הזמן!</h4></a></li>
+			    <li><a href="#tab4" ><h4><i class="icon-tasks"></i> צפה בתוצאות</h4></a></li>	
 			    <!--<li><a href="#tab5" class="btn btn-success"><h4>Test over Skype</h4></a></li>-->			    
-			  </ul>				  
+			  </ul>
 			  <div class="tab-content">
 			    <div class="tab-pane active" id="tab1">	
 					  	<%=render 'recorder'%>
@@ -22,15 +22,15 @@
 			    		<div class="well well-small">
 							<table border="0"width="100%" cellpadding="0" cellspacing="0">
 				<tr>
-					<TD ALIGN="center"><a href="#uploadModal" role="button" class="btn" data-toggle="modal"><input type="image"  src='/assets/upload.png' style="width: 45px;" /> Upload file from disk</a></td>
-					<TD ALIGN="center"><h4>OR</h4></td>
-					<TD ALIGN="center"><a href="#GoogleModal" role="button" class="btn" data-toggle="modal"><input type="image"  src='/assets/google_search_icon_1.png' style="width: 50px;" /> Import Google contacts</a></td>
+					<TD ALIGN="center"><a href="#uploadModal" role="button" class="btn" data-toggle="modal"><input type="image"  src='/assets/upload.png' style="width: 45px;" /> טעינת קובץ מדיסק</a></td>
+					<TD ALIGN="center"><h4>או</h4></td>
+					<TD ALIGN="center"><a href="#GoogleModal" role="button" class="btn" data-toggle="modal"><input type="image"  src='/assets/google_search_icon_1.png' style="width: 50px;" /> ייבוא אנשי קשר מחשבון גוגל</a></td>
 				</tr>
 				<tr>
-					<TD ALIGN="center"><p class="">Upload either Excel or CSV file.<br> 
-						Click the button the get more details</p></td>
+					<TD ALIGN="center"><p class="">באפשרותך להעלות קובץ אנשי קשר אקסל או CSV<br> 
+						לחץ על הכפתור לקבלת פרטים נוספים</p></td>
 					<TD ALIGN="center"></td>
-					<TD ALIGN="center"><p class="">Import your contacts from Google/Android phone</p></td>
+					<TD ALIGN="center"><p class="">באפשרותך לטעון אנשי קשר מחשבון גוגל (אם מכשירך מבוסס מערכת הפעלה אנדרואיד) </p></td>
 				</tr>
 			</table>
 			    		</div>
@@ -46,28 +46,29 @@
 		  		<div class="tab-pane" id="tab3">				      
 				<div class="span3">
 					 <div class="control-list" style="background-color: #EEEEEE">			    		
-	                	<button type="button" id="green_submit" onclick="can_start();" class="btn btn-block" data-toggle="tooltip" data-loading-text="Loading..." title="Press to to start the process">
+	                	<button type="button" id="green_submit" onclick="can_start();" class="btn btn-block" data-toggle="tooltip" data-loading-text="Loading..." title="Press the button to start the calling process">
 							<img src="/assets/call.png">							
 						</button>
-						<div class="lable" style="font-size: 8pt">Please ensure your browser allows pop-up windows! (<a href="http://www.upenn.edu/computing/help/doc/email/popup.html" target="_blank">see how</a>)</div>						
+						
+						<div class="lable" style="font-size: 8pt">אנא וודא שהדפדפן שלך מאשפר חלונות קופצים (ראה <a href="http://www.upenn.edu/computing/help/doc/email/popup.html" target="_blank">כיצד</a>)</div>
+						
+						<div class="lable" style="font-size: 8pt">Please ensure your browser allows pop-up windows! (<a href="http://www.upenn.edu/computing/help/doc/email/popup.html" target="_blank">see how)</div>						
 				    </div>
 				    <table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark"></a></td></tr></table><!-- PayPal Logo -->
 				</div>	
 				<div class="span8">	
 					<div class="alert alert-block alert-error fade in" id="notification" style="display: none">
 			            <button type="button" class="close" data-dismiss="alert">X</button>
-			            <h4 class="alert-heading">Oh! Something is wrong!</h4>
-			            <h3><p>To start using the service you must have at least 1 invite in the list and a recorded audio message.</p></h3>
-			            <p>Click the "Record message" tab to record your message.</p>
-			            <p>Click the "Import contacts" tab to add invites.</p>
-			              <a class="btn btn-info" onclick="tab1();">Record an audio message</a> Or
-			              <a class="btn btn-info" onclick="tab2();">Add invites</a>	
+			            <h4 class="alert-heading">חסר לנו מידע!</h4>
+			            <h3><p>על מנת להתחיל בתהליך ההתקשרות עליך ליצור לפחות מוזמן אחד ברשימת המוזמנים ולהקליט הודעתך!</p></h3>
+			              <a class="btn btn-info" onclick="tab1();">הקלט הודעתך</a> או
+			              <a class="btn btn-info" onclick="tab2();">צור רשימת מוזמנים</a>	
 			         </div>
 				         <div id="payment_details">
 				         	<%=render 'payment_details'%>	
 				         </div>
 			          <p>
-			          <font color="green"><h5>Click the green button to start the calling process!</h5></font>
+			          <font color="green"><h5>לחץ על הכפתור הירוק על מנת להתחיל בתהליך ההתקשרות!</h5></font>
 			          </p>						
 				</div>
 		    </div>
