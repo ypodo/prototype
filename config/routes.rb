@@ -1,10 +1,9 @@
 Prototype::Application.routes.draw do
   
-  resources :categories
-
+  
   #get "password_resets/new"
   get "password_resets/new" => "password_resets#new"
-  
+  resources :categories
   resources :authentications  
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
@@ -12,8 +11,6 @@ Prototype::Application.routes.draw do
   resources :rescues
   
   match '/history/show' => 'history#show'
-  match '/users/:id/start' => 'calls#start'
-  match '/users/:id/can_start' => 'calls#can_start'
   
   match '/signup',  :to => 'pages#home'
   #match '/signin',  :to => 'sessions#new'
@@ -29,6 +26,8 @@ Prototype::Application.routes.draw do
   match '/users/:id/ajax_progress_call' => 'users#ajax_progress_call'
   match '/users/:id/ajax_report' => 'users#ajax_report'
   match '/users/:id/ajax_report_sum' => 'users#ajax_report_sum'
+  match '/users/:id/start' => 'calls#start'
+  match '/users/:id/can_start' => 'calls#can_start'
   match '/history/show/:id' => 'history#ajax_history_invites_by_token'
   match '/users/:id/ajax_payment_details' => 'users#ajax_payment_details'
   get '/upload_frame', :to => 'users#upload'
