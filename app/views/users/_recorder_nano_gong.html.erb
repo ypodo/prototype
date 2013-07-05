@@ -16,11 +16,10 @@
 				<% if record_exist %>   				
 					<param name="SoundFileURL" value="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.wav"/>
 				<%else%>
-					<param name="SoundFileURL" value="http://<%=request.host_with_port%>/audio.wav"/>	
+					<param name="SoundFileURL" value="http://<%=request.host_with_port%>/noaudio.wav"/>	
 				<%end%>			
 				</applet>
-				<p></p>				
-				
+				<p></p>
 				<button type="button" onclick="postAudio();remove_span();recorderReloade();" class="btn btn-block" data-toggle="tooltip" data-loading-text="Loading..." title="Press to save your record on server">
 					<p>Save your record.</p>
 				</button>	 
@@ -29,7 +28,6 @@
 		<iframe class="" src="/upload_frame" frameborder="0" scrolling="no" align="middle" height="185" width="200" id="upload_frame">
 			Your browser doesn't support iframes. Please upgrade to latest version
 		</iframe>
-		
 			
 </div>
 <script>

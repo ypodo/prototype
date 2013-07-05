@@ -2,7 +2,6 @@
 function postAudio () {
 	var path="http://"+window.location.host;
 	applet.sendGongRequest('PostToForm', path+'/post.php', 'record', '', 'sound.wav');
-  //alert("Data successfully posted !");
 }
 function recorderReloade(argument){
 	// This function inmplemented in recorder partial	
@@ -155,13 +154,11 @@ $('#mainTabs a').click(function (e) {
   alert(this);
 })
 
-function agreementValid(){
-	
+function agreementValid(){	
 	if(!document.getElementById("agreement").checked){
 		document.getElementById('agreementText').setAttribute("style", "color: red;");
 	}
-	else{
-		
+	else{		
 		document.getElementById('agreementText').setAttribute("style");
 	}
 }
