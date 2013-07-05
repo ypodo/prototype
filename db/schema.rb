@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(:version => 20130701112931) do
     t.string   "provider"
     t.string   "uid"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(:version => 20130701112931) do
     t.string   "mail"
     t.string   "number"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "arriving"
   end
 
@@ -80,18 +80,6 @@ ActiveRecord::Schema.define(:version => 20130701112931) do
     t.integer  "event_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-  end
-
-  create_table "order_transactions", :force => true do |t|
-    t.integer  "order_id"
-    t.string   "action"
-    t.integer  "amount"
-    t.boolean  "success"
-    t.string   "authorization"
-    t.string   "message"
-    t.text     "params"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
   end
 
   create_table "orders", :force => true do |t|
@@ -118,11 +106,10 @@ ActiveRecord::Schema.define(:version => 20130701112931) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "encrypted_password"
     t.string   "salt"
-    t.boolean  "admin"
     t.boolean  "agreement"
     t.string   "provider"
     t.string   "uid"
