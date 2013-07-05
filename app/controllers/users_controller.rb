@@ -1,3 +1,4 @@
+# coding: utf-8
 class UsersController < ApplicationController
 include ApplicationHelper
 require 'fastthread'
@@ -121,13 +122,13 @@ require 'fastthread'
       @invites=@user.invites
       if @user.save      
         sign_in @user
-        flash[:success] = "Welcome to Mazminim.com!"        
+        flash[:success] = "ברוכים הבאים לאתר מזמינים!"        
 
         #Digest::SHA2.hexdigest("2")[0..32]
         fileH=current_user.audio_file.new
         fileH.audio_hash=Digest::SHA2.hexdigest(fileH.user_id.to_s)[0..32]
         if !fileH.save
-          flash[:error] = "Error"
+          flash[:error] = "ארעה שגיאה"
         end
         
 #        if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
@@ -146,11 +147,11 @@ require 'fastthread'
         UserMailer.registration_confirmation(@user)
 
       else
-        @title = "Please sign up"
+        @title = "התחברות לאתר"
         render 'new'
       end
     else
-      flash[:error] ="User with such email already exists"
+      flash[:error] ="משתמש עם כתובת דואר שסופקה קיים"
       redirect_to root_path
     end
     

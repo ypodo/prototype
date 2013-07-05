@@ -1,3 +1,4 @@
+# coding: utf-8
 module SessionsHelper
 
   def sign_in(user)
@@ -24,7 +25,7 @@ module SessionsHelper
   
   def deny_access
     store_location
-    redirect_to signin_path, :notice => "Please sign in to access this page"
+    redirect_to signin_path, :notice => "התחבר לאתר על מנת לצפות בדף זה"
   end
   
   def redirect_back_or(default)

@@ -1,3 +1,4 @@
+# coding: utf-8
 class CategoriesController < ApplicationController
   before_filter :authenticate, :only => [:index, :show]
   # GET /categories
@@ -21,7 +22,7 @@ class CategoriesController < ApplicationController
         current_user.skip_callbacks = true
         current_user.update_attribute(:category, category.name)
         current_user.skip_callbacks = false
-        flash[:notice] = "Category #{category.name} was selected"              
+        flash[:notice] = "הקטגוריה נקבעה בהצלחה"              
         redirect_to current_user  
       end      
     end    

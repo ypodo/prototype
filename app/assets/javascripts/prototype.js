@@ -16,6 +16,41 @@ function stop () {
   var duration = applet.sendGongRequest('StopMedia', 'sound.wav')
 }
 
+ $("form[data-remote]").each(function(i, form){
+        var f = $(form)
+        var loading = $("<div class='form_loading'></div>"),
+            notice  = $("<div class='form_notice'></div>"),
+            errors  = $("<ul class='form_errore'></ul>");
+        
+        f.append(loading.hide())
+        f.prepend(notice.hide())
+        f.prepend(errors.hide())
+            
+        // hide errors and notice and show loading indicator when loading
+        f.bind("ajax:loading", function(){ 
+            errors.hide(); 
+            notice.hide(); 
+            loading.show();
+        })
+        // hide loading indicator when finished
+        f.bind("ajax:complete", function() { 
+            loading.hide(); 
+        })
+        // show notice on success
+        f.bind("ajax:success", function(ev, data, status, xhr){ 
+            notice.text(data).show(); 
+        })
+        // show errors on failure
+        f.bind("ajax:failure", function(ev, xhr, status){
+            errors.html("")
+            $.parseJSON(xhr.responseText).forEach(function(msg){
+                errors.append("<li>" + msg + "</li>")
+            })
+            errors.show()
+        })
+    })
+
+
 function doAxaj(msg)
 { 		
 	//This function works by timer 
@@ -194,9 +229,9 @@ function delete_all_invites_html_table(argument) {
 	for(var i=document.getElementById("inviteT_tbl").rows.length;i>=3;i--){
 		document.getElementById("inviteT_tbl").deleteRow(i-1);			
 	};
-	document.getElementById("total_invites").innerHTML="Total invites: 0"
+	document.getElementById("total_invites").innerHTML="סה''כ מוזמנים: 0"
 	var i=document.getElementById("total_invites").innerHTML.split(":")[1];
-	document.getElementById("payments").innerHTML="nis: "+(unit_price*i).toFixed(2);
+	document.getElementById("payments").innerHTML="מחיר: "+(unit_price*i).toFixed(2) + "&#8362;";
 	
 }
 function checkout (argument) {  
