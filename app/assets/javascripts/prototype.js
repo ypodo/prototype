@@ -6,6 +6,7 @@ function postAudio () {
 }
 function recorderReloade(argument){
 	// This function inmplemented in recorder partial	
+}
 function play () {
   var time = applet.sendGongRequest('PlayMedia', 'sound.wav')
 }
@@ -16,40 +17,6 @@ function stop () {
   var duration = applet.sendGongRequest('StopMedia', 'sound.wav')
 }
 
- $("form[data-remote]").each(function(i, form){
-        var f = $(form)
-        var loading = $("<div class='form_loading'></div>"),
-            notice  = $("<div class='form_notice'></div>"),
-            errors  = $("<ul class='form_errore'></ul>");
-        
-        f.append(loading.hide())
-        f.prepend(notice.hide())
-        f.prepend(errors.hide())
-            
-        // hide errors and notice and show loading indicator when loading
-        f.bind("ajax:loading", function(){ 
-            errors.hide(); 
-            notice.hide(); 
-            loading.show();
-        })
-        // hide loading indicator when finished
-        f.bind("ajax:complete", function() { 
-            loading.hide(); 
-        })
-        // show notice on success
-        f.bind("ajax:success", function(ev, data, status, xhr){ 
-            notice.text(data).show(); 
-        })
-        // show errors on failure
-        f.bind("ajax:failure", function(ev, xhr, status){
-            errors.html("")
-            $.parseJSON(xhr.responseText).forEach(function(msg){
-                errors.append("<li>" + msg + "</li>")
-            })
-            errors.show()
-        })
-    })
- 
 function doAxaj(msg)
 { 		
 	//This function works by timer 
@@ -198,7 +165,7 @@ function total_invites_counter (argument) {
 }
 function append_data_invite_table (argument) {
 	if(argument !=null){
-		$('#inviteT_tbl tbody tr:nth-child(' + 2 + ')').after('<tr><td>'+JSON.parse(argument.responseText).name+'</td><td>'+JSON.parse(argument.responseText).mail+'</td><td>'+JSON.parse(argument.responseText).number+'</td><td style="color: orange"><a href="/invites/'+JSON.parse(argument.responseText).id+'" class="label label-important" data-method="delete" el="nofollow" onclick="delete_invite_ajax('+JSON.parse(argument.responseText).id+');" id="'+JSON.parse(argument.responseText).id+'" data-remote="true">Destroy</a></td></tr>');	
+		$('#inviteT_tbl tbody tr:nth-child(' + 2 + ')').after('<tr><td>'+JSON.parse(argument.responseText).name+'</td><td>'+JSON.parse(argument.responseText).mail+'</td><td>'+JSON.parse(argument.responseText).number+'</td><td style="color: orange"><a href="/invites/'+JSON.parse(argument.responseText).id+'" class="label label-important" data-method="delete" el="nofollow" onclick="delete_invite_ajax('+JSON.parse(argument.responseText).id+');" id="'+JSON.parse(argument.responseText).id+'" data-remote="true">מחק</a></td></tr>');	
 		clean_invite_inputs();		
 	return true;
 	}
