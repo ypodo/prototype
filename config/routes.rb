@@ -32,7 +32,7 @@ Prototype::Application.routes.draw do
   match '/users/:id/ajax_payment_details' => 'users#ajax_payment_details'
   get '/upload_frame', :to => 'users#upload'
   get '/load_recorder', :to => 'users#load_recorder'
-  #Post recorder
+  #Post recorder nanogong
   match '/post.php', :to => 'users#recorder'
   match '/wami', :to => 'users#wami'
   #match '/full_report/ajax_progress_call' => 'users#ajax_progress_call'

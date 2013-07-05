@@ -54,21 +54,23 @@ require 'fastthread'
     render :partial => "wami_recorder"
   end
     
-#  def recorder        
-##      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
-#    end
-#    if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-#      Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
-#    end
-#
-#    #copy audio to user section from temperory server section.
-#    @record_tmp=File.open(Rails.root.join(params[:record].tempfile.path), 'r').read
-#    
-#    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w") do |f|
-#      f.write(@record_tmp)
-#    end    
-#    convert_audio_to_sln    
-#  end
+  def recorder
+    if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+      Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
+    end
+    if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+      Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
+    end
+
+    #copy audio to user section from temperory server section.
+    @record_tmp=File.open(Rails.root.join(params[:record].tempfile.path), 'r').read
+    
+    #File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w") do |f|
+    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w+b") do |f|
+      f.write(@record_tmp)
+    end    
+    convert_audio_to_sln    
+  end
   
   def convert_audio_to_sln
     begin
