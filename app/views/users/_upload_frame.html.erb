@@ -1,3 +1,4 @@
+<html dir="rtl">
 <style type="text/css">
 /*
  * Bootstrap v2.3.1
@@ -6837,7 +6838,9 @@ body {
 }
 </style>
 <div class="well well-small">
-<div align="center"><b>או</b> טען קובץ אודיו (WAV)</div>
+<div dir="rtl">
+	או טען קובץ אודיו (wav בלבד) 
+	</div>
 <div class="button">
 	
 <%= form_tag({:action => :upload_audio, :controller=> :upload}, :method => 'post', :multipart => true, :remote => true, :id=>"uploade_audio_form", :size =>"10" ) do %>
@@ -6853,3 +6856,4 @@ body {
 <%end%>
 </div>
 </div>
+</html>

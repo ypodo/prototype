@@ -68,7 +68,7 @@ Wami.GUI = function(options) {
 	function startRecording() {
 		recordButton.setActivity(0);
 		playButton.setEnabled(false);
-		wamiNotificationArea.innerHTML = "Recording your message..";
+		wamiNotificationArea.innerHTML = "מקליט הודעה";
 		Wami.startRecording(options.recordUrl,
 				Wami.nameCallback(onRecordStart), 
 				Wami.nameCallback(onRecordFinish),
@@ -77,14 +77,14 @@ Wami.GUI = function(options) {
 	}
 
 	function stopRecording() {
-		wamiNotificationArea.innerHTML = "Uploading file. Please wait...";
+		wamiNotificationArea.innerHTML = "טעינת קובץ - אנא המתן";
 		Wami.stopRecording();
 		clearInterval(recordInterval);
 		recordButton.setEnabled(true);
 	}
 
 	function startPlaying() {
-		wamiNotificationArea.innerHTML = "Downloading. Please wait...";
+		wamiNotificationArea.innerHTML = "הורדת קובץ - אנא המתן";
 		if (!options.playUrl) {
 			return;
 			//alert('No play URL specified!');
@@ -98,7 +98,7 @@ Wami.GUI = function(options) {
 	}
 
 	function stopPlaying() {
-		wamiNotificationArea.innerHTML = "Stopped";
+		wamiNotificationArea.innerHTML = "";
 		Wami.stopPlaying();
 	}
 
@@ -125,7 +125,7 @@ Wami.GUI = function(options) {
 	function onError(e) {
 		//alert(e); something wrong
 		recordButton.setEnabled(true);
-		wamiNotificationArea.innerHTML = "Please record your message first!";
+		wamiNotificationArea.innerHTML = "אנא הקלט הודעה!";
 	}
 
 	function onRecordStart() {
@@ -142,14 +142,14 @@ Wami.GUI = function(options) {
 
 	function onRecordFinish() {
 		playButton.setEnabled(true);
-			wamiNotificationArea.innerHTML = "File uploaded successfully";
+			wamiNotificationArea.innerHTML = "טעינת קובץ הושלמה";
 		if (options.onRecordFinish) {
 			options.onRecordFinish();
 		}
 	}
 
 	function onPlayStart() {
-		wamiNotificationArea.innerHTML = "Playing";
+		wamiNotificationArea.innerHTML = "מנגן";
 		playInterval = setInterval(function() {
 			if (playButton.isActive()) {
 				var level = Wami.getPlayingLevel();
@@ -162,7 +162,7 @@ Wami.GUI = function(options) {
 	}
 
 	function onPlayFinish() {
-		wamiNotificationArea.innerHTML = "Stopped";
+		wamiNotificationArea.innerHTML = "";
 		clearInterval(playInterval);
 		recordButton.setEnabled(true);
 		playButton.setEnabled(true);

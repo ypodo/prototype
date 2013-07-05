@@ -2,21 +2,21 @@
 <div class="control-group well">	
 	<%= form_for(:session, :url => sessions_path) do |f| %>
 	  <div class="row-fluid">
-	    <%= f.label :email %>
+	    <%= f.label "דואר אלקטרוני" %>
 	    <%= f.text_field :email %>
 	  </div>
 	  <div class="row-fluid">
-	    <%= f.label :password %>
+	    <%= f.label "סיסמא" %>
 	    <%= f.password_field :password %>
 	  </div>
 	  <div class="actions">
-	    <%= f.submit "Sign in", :class=>"btn btn-primary"%>
+	    <%= f.submit "התחבר", :class=>"btn btn-primary"%>
 	  </div>
 	  <div class="row-fluid">
 	  <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-	  <%= label_tag :remember_me %>
+	  <%= label_tag "זכור אותי" %>
 	</div>
 	<% end %>	
-	<p>New user? <%= link_to "Sign up now!", signup_path %></p>	
-	<p><%= link_to "forgotten password?", new_password_reset_path %></p>	
+	<p>משתמש חדש? <%= link_to "הרשם עכשיו!", signup_path %></p>	
+	<p><%= link_to "שכחתי סיסמא", new_password_reset_path %></p>	
 </div>

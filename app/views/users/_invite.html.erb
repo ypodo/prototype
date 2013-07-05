@@ -10,10 +10,10 @@
 </div>
   <% end %>
 <div class="form-inline">
-	<%= f.text_field :name, :size=>"18" ,:placeholder=>"Name",:class=>"input", :required => true, :tabindex=>'1'%>
-	<%= f.text_field :mail, :size=>'25' ,:placeholder=>"Email", :type=>"email",:tabindex=>'2'%>	
-    <%= f.text_field :number, :size=>"10", :placeholder=>"Phone number", :required => true, :type=>"number", :tabindex=>'3'%>
-	<%= f.label  :"Insert new invite", :class => "btn btn-success", :id => "submit_invite", :onclick=>"add_invite_ajax();" ,'data-toggle'=>"tooltip", 'title'=>"Insert new invite", :tabindex=>'4'%>
+	<%= f.text_field :name, :size=>"18" ,:placeholder=>"שם",:class=>"input", :required => true, :tabindex=>'1'%>
+	<%= f.text_field :mail, :size=>'25' ,:placeholder=>"דואר אלקטרוני", :type=>"email",:tabindex=>'2'%>	
+    <%= f.text_field :number, :size=>"10", :placeholder=>"מספר טלפון", :required => true, :type=>"number", :tabindex=>'3'%>
+	<%= f.label  :"הכנס רשומה חדשה", :class => "btn btn-success", :id => "submit_invite", :onclick=>"add_invite_ajax();" ,'data-toggle'=>"tooltip", 'title'=>"Insert new invite", :tabindex=>'4'%>
 </div>			    
 	  
 <% end %>
