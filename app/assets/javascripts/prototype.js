@@ -5,6 +5,7 @@ function postAudio () {
 }
 function recorderReloade(argument){
 	// This function inmplemented in recorder partial	
+}
 function play () {
   var time = applet.sendGongRequest('PlayMedia', 'sound.wav')
 }
