@@ -162,7 +162,7 @@ function total_invites_counter (argument) {
 }
 function append_data_invite_table (argument) {
 	if(argument !=null){
-		$('#inviteT_tbl tbody tr:nth-child(' + 2 + ')').after('<tr><td>'+JSON.parse(argument.responseText).name+'</td><td>'+JSON.parse(argument.responseText).mail+'</td><td>'+JSON.parse(argument.responseText).number+'</td><td style="color: orange"><a href="/invites/'+JSON.parse(argument.responseText).id+'" class="label label-important" data-method="delete" el="nofollow" onclick="delete_invite_ajax('+JSON.parse(argument.responseText).id+');" id="'+JSON.parse(argument.responseText).id+'" data-remote="true">Destroy</a></td></tr>');	
+		$('#inviteT_tbl tbody tr:nth-child(' + 2 + ')').after('<tr><td>'+JSON.parse(argument.responseText).name+'</td><td>'+JSON.parse(argument.responseText).mail+'</td><td>'+JSON.parse(argument.responseText).number+'</td><td style="color: orange"><a href="/invites/'+JSON.parse(argument.responseText).id+'" class="label label-important" data-method="delete" el="nofollow" onclick="delete_invite_ajax('+JSON.parse(argument.responseText).id+');" id="'+JSON.parse(argument.responseText).id+'" data-remote="true">מחק</a></td></tr>');	
 		clean_invite_inputs();		
 	return true;
 	}

@@ -121,7 +121,7 @@ require 'fastthread'
       @invites=@user.invites
       if @user.save      
         sign_in @user
-        flash[:success] = "Welcome to Mazminim.com you can start using the service!"        
+        flash[:success] = "Welcome to Mazminim.com!"        
 
         #Digest::SHA2.hexdigest("2")[0..32]
         fileH=current_user.audio_file.new
@@ -130,16 +130,16 @@ require 'fastthread'
           flash[:error] = "Error"
         end
         
-        if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-          Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
-        end
-        if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-          Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
-        end
-        File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w+b") do |f|
-          f.write("")
-          f.close()
-        end        
+#        if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+#          Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
+#        end
+#        if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+#          Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
+#        end
+#        File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w+b") do |f|
+#          f.write("")
+#          f.close()
+#        end        
        
         
         redirect_to categories_path
