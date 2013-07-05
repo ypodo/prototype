@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
         current_user.skip_callbacks = true
         current_user.update_attribute(:category, category.name)
         current_user.skip_callbacks = false
-        flash[:notice] = "Category #{category.name} was selected, the application will be adpted for you."              
+        flash[:notice] = "Category #{category.name} was selected"              
         redirect_to current_user  
       end      
     end    

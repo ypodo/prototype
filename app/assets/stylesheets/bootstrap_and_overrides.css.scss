@@ -43,3 +43,11 @@ body {
   align:right;
   text-align:right;
 }
+
+.input-append .add-on, .input-prepend .add-on {
+ position:relative;
+ right:-820px;
+ align:right;
+ text-align:right;
+ float:right; 
+}

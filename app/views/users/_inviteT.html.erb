@@ -1,10 +1,13 @@
-<table id="inviteT_tbl" class="table table-bordered">	
-	<tr>
-		<td id="">
 			<div class="input-append input-prepend span1 columns">
 				<span class="add-on" id="total_invites">סה''כ מוזמנים: <%=@invites.count%></span>
-				<span class="add-on" id="payments">&#8362;<%=(@user.invites.count*unit_price).to_f.round(2)%> ILS</span>
+				<span class="add-on" id="payments">מחיר:
+					<%=(@user.invites.count*unit_price).to_f.round(2)%>&#8362;
+					</span>
 			</div>									
+
+
+<table id="inviteT_tbl" class="table table-bordered">	
+	<tr>
 			<tr>
 				<th>שם</th>
 				<th>דואר אלקטרוני</th>
@@ -20,6 +23,6 @@
 			    <td style="color: orange"><%= link_to 'מחק', f, method: :delete ,:class=>"label label-important", :remote=>true, :onclick=>"delete_invite_ajax(#{f.id});", :id=>f.id%></td>			    	
 			</tr>
 			<%end%>		
-		</td>	
+	
 	</tr>
 </table>

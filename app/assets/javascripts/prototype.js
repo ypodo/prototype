@@ -42,7 +42,7 @@ function can_start(mode){
 		if(can_start.responseText=="false"){			
 				$("#notification").show();
 				var elem=$('.control-list[style="background-color: #EEEEEE"]');
-				elem.css("background-color","red");
+				//elem.css("background-color","red");
 				return false;
 			}
 						
@@ -152,14 +152,14 @@ function total_invites_counter (argument) {
 	if(argument >0){
 		var i=document.getElementById("total_invites").innerHTML.split(":")[1];
 		i++;
-		document.getElementById("total_invites").innerHTML="Total invites: "+i;
-		document.getElementById("payments").innerHTML="nis: "+(unit_price*i).toFixed(2);
+		document.getElementById("total_invites").innerHTML="סה''כ מוזמנים: "+i;
+		document.getElementById("payments").innerHTML="מחיר: "+(unit_price*i).toFixed(2)+"&#8362;";
 	}
 	else if(argument <0){
 		var i=document.getElementById("total_invites").innerHTML.split(":")[1];
 		i--;
-		document.getElementById("total_invites").innerHTML="Total invites: "+i;
-		document.getElementById("payments").innerHTML="nis: "+(unit_price*i).toFixed(2);		
+		document.getElementById("total_invites").innerHTML="סה''כ מוזמנים: "+i;
+		document.getElementById("payments").innerHTML="מחיר: "+(unit_price*i).toFixed(2)+"&#8362;";		
 	}
   
 }
