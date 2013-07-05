@@ -288,12 +288,14 @@ function show_history_invites_by_token(argument) {
 				});
 }
 
-function fadeOutFlashArea() { 
+function fadeOutFlashArea() {
+	if ($('#flash_field').length) {
   setTimeout(function() {
     $(function() {
        $('#flash_field').delay(1000).fadeIn('normal', function() {
          $(this).delay(2500).fadeOut();
        });  
      });
-   }, 1000);   
+   }, 1000);  
+   } 
 };
