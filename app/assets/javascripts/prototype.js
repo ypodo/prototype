@@ -2,7 +2,6 @@
 function postAudio () {
 	var path="http://"+window.location.host;
 	applet.sendGongRequest('PostToForm', path+'/post.php', 'record', '', 'sound.wav');
-  //alert("Data successfully posted !");
 }
 function recorderReloade(argument){
 	// This function inmplemented in recorder partial	
@@ -122,13 +121,11 @@ $('#mainTabs a').click(function (e) {
   alert(this);
 })
 
-function agreementValid(){
-	
+function agreementValid(){	
 	if(!document.getElementById("agreement").checked){
 		document.getElementById('agreementText').setAttribute("style", "color: red;");
 	}
-	else{
-		
+	else{		
 		document.getElementById('agreementText').setAttribute("style");
 	}
 }
@@ -289,15 +286,6 @@ function show_history_invites_by_token(argument) {
 				document.getElementById("tbl_invitesHistory").innerHTML=respons.responseText;
 				
 				});
-}
-function check_google_translate_bar (argument) {
-  setTimeout(hide_google_frame, 3000);  
-}
-function hide_google_frame (argument) {
-  try{ 
-  	document.getElementById(":2.container").remove();
-  }
-  catch(err) {}
 }
 
 function fadeOutFlashArea() { 
