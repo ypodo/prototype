@@ -1,11 +1,14 @@
 module RecorderHelper
   
   def record_exist
-    if !File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"))
-      false
-    else
-      true
-    end
-         
+    begin
+      if !File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"))
+        return false
+      else
+        return true
+      end
+    rescue Exception => e
+      logger.error("#{e}")
+    end  
   end
 end
