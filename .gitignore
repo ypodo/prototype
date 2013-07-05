@@ -8,7 +8,10 @@
 /.bundle
 /private
 /public
-
+/app/mailers/user_mailer.rb
+/app/controllers/orders_controller.rb
+/app/controllers/dev_order_controller.rb
+/app/helpers/calls_helper.rb
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
