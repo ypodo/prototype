@@ -1,8 +1,8 @@
 
-function postAudio(){
-	var path="http://192.168.56.101:3000";
+function postAudio () {
+	var path="http://"+window.location.host;
 	applet.sendGongRequest('PostToForm', path+'/post.php', 'record', '', 'sound.wav');
-  	//alert("Data successfully posted !");
+  //alert("Data successfully posted !");
 }
 function recorderReloade(argument){
 	// This function inmplemented in recorder partial	
