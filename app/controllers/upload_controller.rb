@@ -1,3 +1,4 @@
+# coding: utf-8
 class UploadController < ApplicationController
 include UsersHelper
 require 'iconv'
@@ -33,7 +34,7 @@ require 'gdata'
   def upload  #action 
     #params[:data_file]    
     if !/(.xlsx)|(.csv)/.match(params[:data_file].original_filename)    
-      redirect_to user :notice =>"uploaded file extension is not correct"
+      redirect_to user :notice =>"סיומת קובץ לא תקינה"
       return
     end
     if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}",'csv') # if directory not exist it will be created
@@ -59,36 +60,36 @@ require 'gdata'
     elsif /(http:)/.match(params[:data_file].original_filename)
       
     else
-      redirect_to user, :notice => "Error: file extension uncorrected"
+      redirect_to user, :notice => "סיומת הקובץ אינה תקינה"
     end
      
     if s.nil?
-      redirect_to current_user, :notice => "Error occurred while convert process"
+      redirect_to current_user, :notice => "ארעה שגיאה"
       return
     end
     csv_db_loader(s)
           
     cookies[:ui_location]="tab2"         
-    redirect_to current_user, :notice =>"File Successfully uploaded."
+    redirect_to current_user, :notice =>"טעינת הקובץ הושלמה"
 
   end
   def google_contacts
     login=params[:login]
     pass=params[:pass]
     if login.nil? || pass.nil?
-      render :text => "Login or password is empty"
+      render :text => "שדה חובה ריק"
       return  
     end
     matching=0    
     raw_data=get_raw_data_from_google_contacts(login,pass)
     if raw_data.nil?
-      flash[:notice] = "Something goes wrong, please try again."
+      flash[:notice] = "ארעה שגיאה - נסה שנית"
       redirect_to current_user
       return
     end
     list=parse_name_number_email(raw_data)
     if list.nil? #error
-      render :text=> "Error accured while Google contact adta parsing"
+      render :text=> "ארעה שגיאה"
       return false
     else      
       list.each do |elem|
@@ -110,7 +111,7 @@ require 'gdata'
       end
     end
     cookies[:ui_location]="tab2"         
-    redirect_to current_user, :notice =>"Google contacts successfully uploaded. #{matching}"
+    redirect_to current_user, :notice =>"רשימת אנשי הקשר נטענה בהצלחה #{matching}"
   end
   private
     def authenticate

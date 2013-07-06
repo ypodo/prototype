@@ -1,3 +1,4 @@
+# coding: utf-8
 class PasswordResetsController < ApplicationController
   
   def create
@@ -8,7 +9,7 @@ class PasswordResetsController < ApplicationController
           user.send_password_reset
         end      
       end
-      redirect_to root_url , :notice => "Email sent with password reset instructions."
+      redirect_to root_url , :notice => "בדוק את תיבת הדואר שלך להוראות נוספות"
     rescue Exception => e
       logger.error { "message: #{e}" }
       UserMailer.error(e)
@@ -22,9 +23,9 @@ class PasswordResetsController < ApplicationController
   def update
     @user = User.find_by_password_reset_token!(params[:id])
     if @user.password_reset_sent_at < 2.hours.ago
-      redirect_to new_password_reset_path, :alert => "Password reset has expired."
+      redirect_to new_password_reset_path, :alert => "נסיון זה לא תקף - התחל את התהליך מהתחלה"
     elsif @user.update_attributes(params[:user])      
-      redirect_to root_url, :notice => "Password has been reset use it to login!"
+      redirect_to root_url, :notice => "הסיסמא הוחלפה בהצלחה"
     else
       render :edit
     end
