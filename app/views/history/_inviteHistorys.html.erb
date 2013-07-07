@@ -26,18 +26,18 @@
 			<%elsif(elem.arriving == 2)%>
 				<td bgcolor="#FFD9E2">דחיה</td>
 			<%elsif(elem.arriving == -10)%>
-				<td bgcolor="#FFD9E2">אין מענה. חיוג חוזר מתוכנן כ-5 דקות לאחר נסיון ההתקשרות</td>
+				<td bgcolor="#FFD9E2">אין מענה - חיוג חוזר מתוכנן (כ-5 דקות לאחר נסיון ההתקשרות)</td>
 			<%elsif(elem.arriving == -20)%>
-				<td bgcolor="#FFD9E2">אין מענה. חיוג חוזר מתוכנן כ-10 דקות לאחר נסיון ההתקשרות</td>
+				<td bgcolor="#FFD9E2">אין מענה - חיוג חוזר מתוכנן (כ-10 דקות לאחר נסיון ההתקשרות)</td>
 			<%elsif(elem.arriving == -30)%>
-				<td bgcolor="#FFD9E2">אין מענה. חיוג חוזר מתוכנן כ-20 דקות לאחר נסיון ההתקשרות</td>
+				<td bgcolor="#FFD9E2">אין מענה (סופי)</td>
 			<%elsif(elem.arriving == -40)%>
-				<td bgcolor="#FFD9E2"></td>אין מענה
+				<td bgcolor="#FFD9E2"></td>---
 			<%elsif(elem.arriving == -50)%>
-				<td bgcolor="#FFD9E2">לא התקבלה תשובה</td>
+				<td bgcolor="#FFD9E2">לא הוקשה תגובה</td>
 
 			<%else%>
-				<td>לא התקבלה תגובה</td>			
+				<td>ארעה שגיאה</td>			
           <%end%>  
         </tr>
         <%end%>        
