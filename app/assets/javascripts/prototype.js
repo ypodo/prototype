@@ -150,13 +150,13 @@ function total_invites_counter (argument) {
 		var i=document.getElementById("total_invites").innerHTML.split(":")[1];
 		i++;
 		document.getElementById("total_invites").innerHTML="סה''כ מוזמנים: "+i;
-		document.getElementById("payments").innerHTML="מחיר: "+(unit_price*i).toFixed(2)+"&#8362;";
+		document.getElementById("payments").innerHTML="מחיר: "+ "&#8362;" + (unit_price*i).toFixed(2);
 	}
 	else if(argument <0){
 		var i=document.getElementById("total_invites").innerHTML.split(":")[1];
 		i--;
 		document.getElementById("total_invites").innerHTML="סה''כ מוזמנים: "+i;
-		document.getElementById("payments").innerHTML="מחיר: "+(unit_price*i).toFixed(2)+"&#8362;";		
+		document.getElementById("payments").innerHTML="מחיר: "+ "&#8362;"  + (unit_price*i).toFixed(2);		
 	}
   
 }
@@ -196,7 +196,7 @@ function delete_all_invites_html_table(argument) {
 	};
 	document.getElementById("total_invites").innerHTML="סה''כ מוזמנים: 0"
 	var i=document.getElementById("total_invites").innerHTML.split(":")[1];
-	document.getElementById("payments").innerHTML="מחיר: "+(unit_price*i).toFixed(2) + "&#8362;";
+	document.getElementById("payments").innerHTML="מחיר: "+  "&#8362;" + (unit_price*i).toFixed(2);
 	
 }
 function checkout (argument) {  

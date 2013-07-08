@@ -5,7 +5,7 @@
 	      <caption class="pull-left"></caption>
 	      <thead>
 	        <tr>
-	          <th>סה''כ מוזמנים: (<%=@orders.count%>)</th>          
+	          <th>סך אירועים: <%=@orders.count%></th>          
 	          <th>מזהה אירוע</th>
 	          <th>מועד הזמנה</th>
 	          <th>מחיר</th>
@@ -19,9 +19,8 @@
 	          <td><%=elem.token%></td>
 	          <td><%=elem.created_at%></td>
 	          <td>
-	          	מחיר: 
 	          	<%=elem.amount.to_f.round(2)%>
-	          	"&#8362;"
+	          	&#8362;
 	          	</td>  
 	          <td>          	
 	          	<a href="#tbl_invitesHistory" class="btn btn-info" onclick="show_history_invites_by_token('<%=elem.token%>');">הצג פירוט</a>
