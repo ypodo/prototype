@@ -11,49 +11,99 @@
 -->
 <div class="controls">
 	<div class="row-fluid">
-		<div class="span4 round" style="background-color: #FFCC33">	
+				
+		<%= link_to @categories[0] do %>
+
+		<div class="span4 round" style="background-image: url('assets/category-back1.jpg');width: 320px; height: 180px; margin: 5px;">	
 			<div>
-				<img src="assets/<%=@categories[0].name%>.png" class="media-object" data-src="holder.js/64x64" style="width: 140px; height: 140px;">		
+
+  					<%= image_tag("wedding.png", :style=>"width: 140px; height: 140px;") %>
+			    	<span class="btn btn-large btn-block">חתונה</span>
+
 			</div>
-			<div><%= link_to @categories[0].name, @categories[0], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+
 		</div>
-		
-		<div class="span4 round" style="background-color: #FF3366">	
+				<% end %>
+
+
+
+
+		<%= link_to @categories[1] do %>
+
+		<div class="span4 round" style="background-image: url('assets/category-back2.jpg');width: 320px; height: 180px;margin: 5px;">	
 			<div>
-				<img src="assets/<%=@categories[1].name%>.png" class="img-rounded" style="width: 140px; height: 140px;">
+
+  					<%= image_tag("bar-mitzvah.png", :style=>"width: 140px; height: 140px;") %>
+			    	<span class="btn btn-large btn-block">בר\בת-מצווה</span>
+
 			</div>
-			<div><%= link_to @categories[1].name, @categories[1], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+
 		</div>
-		
-		<div class="span4 round" style="background-color: #FF6633">	
+				<% end %>
+				
+				
+				
+
+		<%= link_to @categories[2] do %>
+
+		<div class="span4 round" style="background-image: url('assets/category-back3.jpg');width: 320px; height: 180px;margin: 5px;">	
 			<div>
-				<img src="assets/<%=@categories[2].name%>.png" class="img-rounded" style="width: 140px; height: 140px;">
+
+  					<%= image_tag("Other.png", :style=>"width: 140px; height: 140px;") %>
+			    	<span class="btn btn-large btn-block">ארוע כללי</span>
+
 			</div>
-			<div><%= link_to @categories[2].name, @categories[2], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+
 		</div>
-	</div>
-	<br />
-	<div class="row-fluid">
-		<div class="span4" style="background-color: orange" >	
+				<% end %>
+
+
+
+
+		<%= link_to @categories[3] do %>
+
+		<div class="span4 round" style="background-image: url('assets/category-back4.jpg');width: 320px; height: 180px;margin: 5px;">	
 			<div>
-				<img src="assets/<%=@categories[3].name%>.png" style="width: 140px; height: 140px;">
+
+  					<%= image_tag("Conference.png", :style=>"width: 140px; height: 140px;") %>
+			    	<span class="btn btn-large btn-block">ועידה</span>
+
 			</div>
-			<div><%= link_to @categories[3].name, @categories[3], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+
 		</div>
-		<div class="span4 round" style="background-color: #B88A00">	
+				<% end %>
+
+
+
+		<%= link_to @categories[4] do %>
+
+		<div class="span4 round" style="background-image: url('assets/category-back5.jpg');width: 320px; height: 180px;margin: 5px;">	
 			<div>
-				<img src="assets/<%=@categories[4].name%>.png" style="width: 140px; height: 140px;">
+
+  					<%= image_tag("survey.png", :style=>"width: 140px; height: 140px;") %>
+			    	<span class="btn btn-large btn-block">סקר</span>
+
 			</div>
-			<div><%= link_to @categories[4].name, @categories[4], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+
 		</div>
-		
-		<div class="span4 round" style="background-color: #33FF66">	
+				<% end %>
+
+
+
+		<%= link_to @categories[5] do %>
+
+		<div class="span4 round" style="background-image: url('assets/category-back6.jpg');width: 320px; height: 180px;margin: 5px;">	
 			<div>
-				<img src="assets/ad.png" style="width: 140px; height: 140px;">
+
+  					<%= image_tag("advertising.png", :style=>"width: 140px; height: 140px;") %>
+			    	<span class="btn btn-large btn-block">פרסומת</span>
+
 			</div>
-			<div><%= link_to @categories[5].name, @categories[5], :class=>'class="btn btn-large btn-block btn-primary' %></div>	
+
 		</div>
-	</div>
+				<% end %>
+
+
 
 </div>
 </div>
