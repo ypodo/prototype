@@ -21,7 +21,7 @@ module CompletionHelper
          if order.save
            #call other function
            user=User.find_by_id(order.user_id)
-           UserMailer.report_on_completion(user)
+           UserMailer.report_on_completion(user,token)
            return
          end
        else
