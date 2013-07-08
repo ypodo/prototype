@@ -23,8 +23,8 @@
               	<%count_not=0%>
               	<%count_redialing_5=0%>
               	<%count_redialing_10=0%>
-              	<%count_no_answer=0%>
-              	<%count_no_answer_provided=0%>
+              	<%count_no_answer_final=0%>
+              	<%count_no_response=0%>
               	<%@invite_history.each do |elem|
               		if  (elem.arriving.nil?)
       					count_nil+=1
@@ -37,15 +37,15 @@
   					elsif  (elem.arriving == -20)
       					count_redialing_10+=1		
   					elsif  (elem.arriving == -30)
-      					count_no_answer+=1
+      					count_no_answer_final+=1
   					elsif  (elem.arriving == -50)
-      					count_no_answer_provided+=1
+      					count_no_response+=1
       				end
   				end
       			%>
           <thead>
             <caption>
-            	סיכום            
+            	דוח סיכום            
             </caption>	            
           </thead>
           <tbody>
@@ -53,6 +53,10 @@
               <td style="font-weight: bold">סה''כ מוזמנים</td>
               <td style="font-weight: bold" id="total_invites_data_row"><%=@invite_history.count%></td>                  
             </tr>
+            <tr class="warning">              
+              <td style="font-weight: bold">בתהליך התקשרות:</td>
+              <td style="font-weight: bold" id="in_progress_row"><%=count_nil%></td>                  
+            </tr>       
             <tr class="error">              
               <td style="font-weight: bold;background: #99FFCC">אישרו הגעה:</td>
               <td style="font-weight: bold;background: #99FFCC" id="comming_invites_data_row"><%=count_yes%></td>                  
@@ -62,10 +66,6 @@
               <td style="font-weight: bold;background: #FFCCCC" id="declined_data_row"><%=count_not%></td>                  
             </tr>      
             <tr class="warning">              
-              <td style="font-weight: bold">בתהליך התקשרות:</td>
-              <td style="font-weight: bold" id="in_progress_row"><%=count_nil%></td>                  
-            </tr>       
-            <tr class="warning">              
               <td style="font-weight: bold">מתבצע חיוג חוזר ראשון:</td>
               <td style="font-weight: bold" id="redial_5_row"><%=count_redialing_5%></td>                  
             </tr>       
@@ -74,12 +74,12 @@
               <td style="font-weight: bold" id="refial_10_row"><%=count_redialing_10%></td>                  
             </tr>       
             <tr class="warning">              
-              <td style="font-weight: bold">לא התקבלה תשובה:</td>
-              <td style="font-weight: bold" id="no_answer_provided_row"><%=count_no_answer_provided%></td>                  
+              <td style="font-weight: bold">לא הוקשה תגובה:</td>
+              <td style="font-weight: bold" id="no_answer_provided_row"><%=count_no_response%></td>                  
             </tr>       
             <tr class="warning">              
-              <td style="font-weight: bold;background: #99CCFF">לא ענו:</td>
-              <td style="font-weight: bold;background: #99CCFF" id="no_answer_data_row"><%=count_no_answer%></td>                  
+              <td style="font-weight: bold;background: #99CCFF">לא ענו - סופי:</td>
+              <td style="font-weight: bold;background: #99CCFF" id="no_answer_data_row"><%=count_no_answer_final%></td>                  
             </tr>       
 
           </tbody>
