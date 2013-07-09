@@ -22,6 +22,8 @@ gem "twitter-bootstrap-rails"
 #https://github.com/nov/paypal-express/wiki/Digital-Goods
 gem "paypal-express"
 
+#platform
+gem "net-ping"
 #excel
 # Gems used only for assets and not required
 # in production environments by default.
