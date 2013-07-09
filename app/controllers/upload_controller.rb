@@ -39,46 +39,50 @@ require 'gdata'
   
   def upload  #action 
     #params[:data_file]    
-    if !/(.xlsx)|(.csv)/.match(params[:data_file].original_filename)    
-      redirect_to user :notice =>"סיומת קובץ לא תקינה"
-      return
-    end
-    if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}",'csv') # if directory not exist it will be created
-      Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}","csv")) # directory create
-    end
-    @uploaded_data=File.open(Rails.root.join(params[:data_file].tempfile.path), 'r').read
-    File.open(Rails.root.join('private','nfs-share',"#{user_from_remember_token.id}","csv", params[:data_file].original_filename), 'w') do |file|
-      file.write(@uploaded_data+".xlsx")
-    end
-    excel_path="private/nfs-share/#{user_from_remember_token.id}/csv/#{params[:data_file].original_filename}"
-    
-    if /(.xlsx)/.match(params[:data_file].original_filename)
-      s = Roo::Excelx.new(excel_path)
+    begin
+      if !/(.xlsx)|(.csv)/.match(params[:data_file].original_filename)    
+        redirect_to current_user, :notice =>"סיומת קובץ לא תקינה"
+        return
+      end
+      if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}",'csv') # if directory not exist it will be created
+        Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}","csv")) # directory create
+      end
+      @uploaded_data=File.open(Rails.root.join(params[:data_file].tempfile.path), 'r').read
+      File.open(Rails.root.join('private','nfs-share',"#{user_from_remember_token.id}","csv", params[:data_file].original_filename), 'w') do |file|
+        file.write(@uploaded_data+".xlsx")
+      end
+      excel_path="private/nfs-share/#{user_from_remember_token.id}/csv/#{params[:data_file].original_filename}"
       
-    elsif /(.csv)/.match(params[:data_file].original_filename)
-      s = Roo::Csv.new(excel_path)
-    
-    elsif /(.xls)/.match(params[:data_file].original_filename)
-      s = Roo::Excel.new(params[:data_file].original_filename)
-    
-    elsif /(.ods)/.match(params[:data_file].original_filename)
-      s = Roo::Openoffice.new(excel_path)
-    elsif /(http:)/.match(params[:data_file].original_filename)
+      if /(.xlsx)/.match(params[:data_file].original_filename)
+        s = Roo::Excelx.new(excel_path)
+        
+      elsif /(.csv)/.match(params[:data_file].original_filename)
+        s = Roo::Csv.new(excel_path)
       
-    else
-      redirect_to user, :notice => "סיומת הקובץ אינה תקינה"
+      elsif /(.xls)/.match(params[:data_file].original_filename)
+        s = Roo::Excel.new(params[:data_file].original_filename)
+      
+      elsif /(.ods)/.match(params[:data_file].original_filename)
+        s = Roo::Openoffice.new(excel_path)
+      elsif /(http:)/.match(params[:data_file].original_filename)
+        
+      else
+        redirect_to user, :notice => "סיומת הקובץ אינה תקינה"
+      end
+       
+      if s.nil?
+        redirect_to current_user, :notice => "ארעה שגיאה"
+        return
+      end
+      csv_db_loader(s)
+            
+      cookies[:ui_location]="tab2"         
+      redirect_to current_user, :notice =>"טעינת הקובץ הושלמה"
+    rescue Exception => e
+      logger.error { "message: #{e}" }
     end
-     
-    if s.nil?
-      redirect_to current_user, :notice => "ארעה שגיאה"
-      return
-    end
-    csv_db_loader(s)
-          
-    cookies[:ui_location]="tab2"         
-    redirect_to current_user, :notice =>"טעינת הקובץ הושלמה"
-
   end
+  
   def google_contacts
     login=params[:login]
     pass=params[:pass]
