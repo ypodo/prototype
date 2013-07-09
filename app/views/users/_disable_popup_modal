@@ -1,0 +1,53 @@
+<!-- Button to trigger modal -->
+
+ 
+<!-- Modal -->
+<div id="popupModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myPopupModalLabel">כיצד לאפשר חלונות קופצים?</h3>
+  </div>
+  <div class="modal-body">
+	<h4>Chrome</h4>
+<ol>
+	<li>אם חלונות קופצים נחסמו, יופיע הסמל<img src="./ניהול חלונות קופצים - Chrome עזרה_files/chrome_95472_alert.gif" alt="התראת חלון קופץ נחסם"> בסרגל הכתובות. לחץ על הסמל כדי לראות רשימה של החלונות הקופצים שנחסמו.</li>
+	<li>לחץ על הקישור עבור החלון הקופץ שברצונך לראות.</li>
+	<li>כדי להציג תמיד חלונות קופצים עבור אתר, בחר "הצג תמיד חלונות קופצים מ[שם האתר]."  האתר יצורף לרשימת החריגים. תוכל לנהל רשימה זו בתיבת הדו-שיח 'הגדרות תוכן'.</li>
+</ol>
+<p>כדי לאפשר חלונות קופצים מאתר באופן ידני, בצע את הפעולות הבאות:</p>
+<ol>
+	<li>לחץ על תפריט Chrome <img src="./ניהול חלונות קופצים - Chrome עזרה_files/SNP_2696434_en_v1" alt="Chrome menu" title="Chrome menu" width="29" height="29"> בסרגל הכלים של הדפדפן.</li>
+	<li>בחר <strong>הגדרות</strong>.</li>
+	<li>לחץ על <strong>הצג הגדרות מתקדמות</strong>.</li>
+	<li>בקטע "פרטיות" לחץ על הלחצן <strong>הגדרות תוכן</strong>.</li>
+	<li>בקטע "חלונות קופצים", לחץ על <strong>נהל חריגים</strong></li>
+</ol>
+<h5>אפשר את הצגת כל החלונות הקופצים</h5>
+<p>תוכל לאפשר את הצגת כל החלונות הקופצים על ידי השבתת חוסם החלונות הקופצים. בצע את הצעדים הבאים:</p>
+<ol>
+	<li>לחץ על תפריט Chrome <img src="./ניהול חלונות קופצים - Chrome עזרה_files/SNP_2696434_en_v1" alt="Chrome menu" title="Chrome menu" width="29" height="29"> בסרגל הכלים של הדפדפן.</li>
+	<li>בחר <strong>הגדרות</strong>.</li>
+	<li>לחץ על <strong>הצג הגדרות מתקדמות</strong>.</li>
+	<li>בקטע "פרטיות" לחץ על הלחצן <strong>הגדרות תוכן</strong>.</li>
+	<li>בקטע "חלונות קופצים", בחר "אפשר לכל האתרים להציג חלונות קופצים". התאם אישית אישורים עבור אתרים ספציפיים, על ידי לחיצה על <strong>נהל חריגים</strong>.</li>
+</ol>
+<p></p>
+ <h4>Internet Explorer</h4>
+ <div id="MT1">
+
+<br><br>
+
+כדי להפעיל או להשבית את חוסם הפריטים המוקפצים, בצע את הפעולות הבאות:
+<ol><li>לחץ על <strong class="uiterm">התחל</strong>, לחץ על <strong class="uiterm">הפעלה</strong>, הקלד <span class="userInput">inetcpl.cpl</span> ולאחר מכן לחץ על <strong class="uiterm">אישור</strong> כדי לפתוח את תיבת הדו-שיח <strong class="uiterm">מאפייני אינטרנט</strong>. לחלופין, פתח את Internet Explorer ולאחר מכן לחץ על <strong class="uiterm">אפשרויות אינטרנט</strong> בתפריט <strong class="uiterm">כלים</strong> כדי לפתוח את תיבת הדו-שיח 'מאפייני אינטרנט'.
+</li><li>לחץ על הכרטיסייה <strong class="uiterm">פרטיות</strong> ולאחר מכן בצע אחת מהפעולות הבאות: 
+
+<ul><li>לחץ כדי לסמן את <strong class="uiterm">חסום פריטים מוקפצים</strong> על מנת להפעיל את חוסם הפריטים המוקפצים.</li><li>לחץ כדי לנקות את <strong class="uiterm">חסום פריטים מוקפצים</strong> על מנת להשבית את חוסם הפריטים המוקפצים.</li></ul></li></ol></div>
+ 
+ 
+ 
+ 
+
+  </div>
+</div>
+
+

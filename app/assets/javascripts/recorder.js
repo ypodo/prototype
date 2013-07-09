@@ -57,7 +57,7 @@ Wami.setup = function(options) {
 		if (options.onReady) {
 			options.onReady();
 		}
-		Wami.setSettings({'sampleRate':44100});
+		//Wami.setSettings({'sampleRate':44100});
 		return;
 	}
 

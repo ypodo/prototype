@@ -51,9 +51,11 @@
 					 <div class="control-list" style="background-color: #EEEEEE">			    		
 	                	<button type="button" id="green_submit" onclick="can_start();" class="btn btn-block" data-toggle="tooltip" data-loading-text="Loading..." title="לחץ על מנת להתחיל בתהליך התקשרות">
 							<img src="/assets/call.png">							
-						</button>						
-						<div class="lable" style="font-size: 8pt">אנא וודא שהדפדפן שלך מאשפר חלונות קופצים (ראה <a href="http://www.upenn.edu/computing/help/doc/email/popup.html" target="_blank">כיצד</a>)</div>
+						</button>
+						<%=render 'disable_popup_modal'%>						
+						<div class="lable" style="font-size: 8pt">אנא וודא שהדפדפן שלך מאשפר חלונות קופצים (ראה <a href="#popupModal" role="button" data-toggle="modal">כיצד</a>)</div>
 						<div class="lable" style="font-size: 10pt;" align="justify"> המתן בסבלנות לאחר הלחיצה והמנע מלחיצות נוספות!</div>
+
 				    </div>
 				    <table border="0" cellpadding="10" cellspacing="0" align="center" width="200">
 				    	<tr>
