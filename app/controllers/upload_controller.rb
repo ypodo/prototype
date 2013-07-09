@@ -7,28 +7,34 @@ require 'gdata'
   before_filter :authenticate, :only => [:upload,:google_contacts]
   
   def upload_audio
-    max_size=1048576
-    if(params[:user]==current_user.id.to_s && params[:AUDIO_FILE].content_type == "audio/wav")
-      if(File.size(params[:AUDIO_FILE].tempfile)<max_size)        
-        if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-          Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create      
-        end        
-        if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
-          Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
+    begin
+      max_size=1048576
+      if(params[:user]==current_user.id.to_s && params[:AUDIO_FILE].content_type == "audio/wav")
+        if(File.size(params[:AUDIO_FILE].tempfile)<max_size)        
+          if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+            Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create      
+          end        
+          if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+            Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
+          end
+          #copy audio to user section from temperory server section.
+          @record_tmp=File.open(Rails.root.join(params[:AUDIO_FILE].tempfile.path), 'r').read    
+          File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w") do |f|
+            f.write(@record_tmp)
+          end    
+          convert_audio_to_sln    
         end
-        #copy audio to user section from temperory server section.
-        @record_tmp=File.open(Rails.root.join(params[:AUDIO_FILE].tempfile.path), 'r').read    
-        File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w") do |f|
-          f.write(@record_tmp)
-        end    
-        convert_audio_to_sln    
-      end
-       @color="true"
-    else
-       @color="false"
-    end      
-    @user = current_user   
-    render :partial => "users/upload_frame", :color => @color  
+         @color="true"
+      else
+         @color="false"
+      end      
+      @user = current_user   
+      render :partial => "users/upload_frame", :color => @color  
+    rescue Exception => e
+      UserMailer.error("upload_audio: #{e.message}")
+    end
+    
+    
   end
   
   def upload  #action 
@@ -232,6 +238,40 @@ require 'gdata'
       end
     end
     
+    def sample_rate(path)
+      #can be problem with spacers=> "/home/ubuntu/Documents/Aptana Studio 3 Workspace_temp/prototype_git1/audio.wav"
+
+      #Input File     : 'audio.wav'
+      #Channels       : 1
+      #Sample Rate    : 22050
+      #Precision      : 16-bit
+      #Duration       : 00:00:02.08 = 45764 samples ~ 155.66 CDDA sectors
+      #File Size      : 91.6k
+      #Bit Rate       : 353k
+      #Sample Encoding: 16-bit Signed Integer PCM
+      puts path.to_s
+      info=`soxi #{path.to_s}`
+      info.each_line do |f|
+         if /Sample Rate/.match(f)
+          return f.split(":")[1]
+         end          
+      end
+      return false
+    end
+    def acceptance_test(path)
+      s_rate=22050
+      precision="16-bit"
+      max_duration=1.minute
+      acceptance=true
+      
+      info=`soxi #{path.to_s}`
+      info.each_line do |f|
+         if /Sample Rate/.match(f)
+          return f.split(":")[1]
+         end          
+      end
+      return acceptance
+    end
     
     
 end

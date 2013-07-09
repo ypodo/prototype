@@ -30,11 +30,16 @@ module UsersHelper
     profit=0.7
     mam=0.18    
     return (cost_per_call*(1+profit)*(1+mam)).round(2)       
-  end
+  end  
   
   def convert_audio_to_sln
-    if File.exist?(File.join('private','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.id}.wav"))              
-      Kernel.system "private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id}"        
+    begin
+      if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"))              
+        Kernel.system "private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id} #{user_from_remember_token.audio_file[0].audio_hash}"        
+      end
+    rescue Exception => e
+      logger.error("#{e}")
+      UserMailer.error("convert_audio_to_sln, #{user_from_remember_token.id}")
     end 
   end
 end
