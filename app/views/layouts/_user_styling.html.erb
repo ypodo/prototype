@@ -1,0 +1,32 @@
+ <% if signed_in? %>					  	
+<style>
+	<%if current_user.category == "wedding"%>
+		body {				
+		background-image:url('/assets/category-back1.jpg');				
+		}
+	<%elsif current_user.category == "bar-mitzvah"%>
+		body {				
+		background-image:url('/assets/category-back2.jpg');				
+		}
+	<%elsif current_user.category == "Other"%>
+		body {				
+			background-image:url('/assets/category-back3.jpg');				
+			}
+	<%elsif current_user.category == "Conference"%>
+		body {				
+			background-image:url('/assets/category-back4.jpg');				
+			}
+	<%elsif current_user.category == "survey"%>
+		body {				
+			background-image:url('/assets/category-back5.jpg');				
+			}
+	<%elsif current_user.category == "advertising"%>
+		body {				
+			background-image:url('/assets/category-back6.jpg');				
+			}
+	<%end%>
+	
+</style>
+		     	
+ <% end %>	
+ 

@@ -5,8 +5,7 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   #http://localhost:3000/categories
   def index
-    @categories = Category.all
-    
+    @categories = Category.all     
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @categories }
@@ -22,7 +21,8 @@ class CategoriesController < ApplicationController
         current_user.skip_callbacks = true
         current_user.update_attribute(:category, category.name)
         current_user.skip_callbacks = false
-        flash[:notice] = "הקטגוריה נקבעה בהצלחה"              
+        flash[:notice] = "הקטגוריה נקבעה בהצלחה"      
+               
         redirect_to current_user  
       end      
     end    
