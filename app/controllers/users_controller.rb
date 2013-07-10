@@ -68,8 +68,6 @@ require 'fastthread'
       logger.error("#{e}")
       UserMailer.error("convert_audio_to_mp3, #{user_from_remember_token.id}")
     end 
-     
-    
     render :text => "ok"
     
   end
@@ -122,9 +120,9 @@ require 'fastthread'
   end
   
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User destroyed."
-    redirect_to users_path
+    #User.find(params[:id]).destroy
+    #flash[:success] = "User destroyed."
+    #redirect_to users_path
   end
   
   def index
