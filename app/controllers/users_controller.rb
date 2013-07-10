@@ -40,9 +40,9 @@ require 'fastthread'
     convert_audio_to_sln
   end
   
-  def wami_play
-    @user = current_user
-  end
+  #def wami_play
+  #  @user = current_user
+  #end
   def upload
     #uplode_frame
     @user = current_user
@@ -76,7 +76,7 @@ require 'fastthread'
   def convert_audio_to_sln
     begin
       if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"))              
-        Kernel.system "private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id} #{user_from_remember_token.audio_file[0].audio_hash}"        
+        Kernel.system "/home/ubuntu/Documents/prototype_git1/private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id} #{user_from_remember_token.audio_file[0].audio_hash}"        
       end
     rescue Exception => e
       logger.error("#{e}")

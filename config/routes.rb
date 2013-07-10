@@ -46,7 +46,7 @@ Prototype::Application.routes.draw do
   match '/term_of_use', :to => 'pages#term_of_use'
   #WAMI
   post '/wami', :to => 'users#wami'
-  get '/wami_play', :to => 'users#wami_play'
+  #get '/wami_play', :to => 'users#wami_play'
   match '/recorder', :to => 'pages#recorder'
   
   # Sotial Auth routing    
