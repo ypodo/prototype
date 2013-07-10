@@ -1,0 +1,47 @@
+        <script type="text/javascript" src="/assets/swfobject.js"></script>
+		<script type="text/javascript">
+
+			// swf path
+            var swfPath = "/preview.swf";
+          	//swfPath += "?t=" + Date.parse(new Date()); // uncomment this line to activate the cache buster
+          	var swfID = "FlabellComponent";	
+			
+			// stage dimensions
+			var stageW = 442;//"100%"; // minimum is 230
+			var stageH = 144;//"100%"; // minimum is 140
+			
+		    var attributes = {};
+		    attributes.id = attributes.name = swfID;
+
+		    var params = {};
+			params.allowfullscreen = "true";
+			params.allowScriptAccess = "always";
+			params.bgcolor = "#ffffff";
+			// uncomment this line to have the background of the swf object transparent - good for rounded corners	
+			params.wmode = "transparent";
+            
+            //for a better explanation about the flashvars please check out the Help folder
+            //from the downloaded package
+            
+			var flashvars = {};	
+			flashvars.componentWidth = stageW-2;
+			flashvars.componentHeight = stageH-4;
+			flashvars.pathToFiles = "/audiorecorder/";
+			flashvars.xmlPath = "/xml/settings.xml";
+
+			swfobject.embedSWF(swfPath, swfID, stageW, stageH, "10.1", "/expressInstall.swf", flashvars, params, attributes);
+		</script>
+	
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td align="center">
+					<!-- this div will be overwritten by SWF object -->		
+					<div id="FlabellComponent">
+						<p>In order to view this object you need Flash Player 10+ support!</p>
+						<a href="http://www.adobe.com/go/getflashplayer">
+							<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"/>
+						</a>
+					</div>
+				</td>
+			</tr>
+		</table>

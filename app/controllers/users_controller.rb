@@ -26,23 +26,60 @@ require 'fastthread'
   end
   
   def wami
+    if params[:Filedata].nil?
+      redirect_to root_path
+      return
+    end
+
+    attachement = params[:Filedata].original_filename
+    extension = attachement.split('.').last
+
+    if extension != "mp3"
+      redirect_to root_path
+      return
+    end
+
     if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
       Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create
     end
     if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
       Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
     end
-    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w+b") do |f|
+    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.mp3"), "w+b") do |f|
       #f.write("first attempt")
-      f.write(request.env["rack.input"].read)
-      f.close()
+      #@attachement = params[:Filedata].tempfile
+
+      # Save to temp file
+      f.write params[:Filedata].read
+
+      #f.write(request.env["rack.input"].read)
+      #f.close()
     end
-    convert_audio_to_sln
+    #convert mp3 to wav
+    begin
+      
+      convert_result = Kernel.system "mpg123 -w " + File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.2channels.wav") + " " + File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.mp3")     
+      if convert_result
+        Kernel.system "sox -c1 " + File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.2channels.wav") + " " + File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav")
+        Kernel.system "rm " + File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.2channels.wav")
+        convert_audio_to_sln
+      end
+    rescue Exception => e
+      logger.error("#{e}")
+      UserMailer.error("convert_audio_to_mp3, #{user_from_remember_token.id}")
+    end 
+     
+    
+    render :text => "ok"
+    
+  end
+  def playback_area
+    
+  end
+  def wami_play
+    @user = current_user
   end
   
-  #def wami_play 
-  #  @user = current_user
-  #end
   def upload
     #uplode_frame
     @user = current_user
@@ -52,7 +89,7 @@ require 'fastthread'
   
   def load_recorder
     @user = current_user
-    render :partial => "wami_recorder"
+    render :partial => "recorder_flabell"
   end
     
   def recorder
