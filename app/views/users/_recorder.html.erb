@@ -5,9 +5,15 @@
 			<p>
 			יש לך הודעה מוקלטת - לחץ להשמעת ההודעה כפי שהיא תישמע למוזמנים!
 			</p>
+
+			
+			<audio controls>
+
+  <source src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.wav" type="audio/wav">
 			<embed height="50" width="100" src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.wav"/>
+</audio>
 			<%else%>
-			no recorded message	
+			אין הודעה מוקלטת - הקלט או העלה קובץ ממחשבך!	
 			<%end%>		
 
 		</div>
