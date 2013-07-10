@@ -1,7 +1,15 @@
 <div class="span3" align="center">			
 	<div class="row-fluid">	
 		<div class="well well-small">
-			playback should be here
+			<% if record_exist %>
+			<p>
+			יש לך הודעה מוקלטת - לחץ להשמעת ההודעה כפי שהיא תישמע למוזמנים!
+			</p>
+			<embed height="50" width="100" src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.wav"/>
+			<%else%>
+			no recorded message	
+			<%end%>		
+
 		</div>
 
 		<iframe class="span*" src="/upload_frame" frameborder="0" scrolling="no" align="middle" height="185" width="220" id="upload_frame">
