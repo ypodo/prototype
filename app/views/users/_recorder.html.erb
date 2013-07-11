@@ -3,24 +3,29 @@
 	<div class="row-fluid">	
 		<div class="well well-small">
 			<%=render 'recorder_flabell' %>
+				<p>
+				יש לך הודעה מוקלטת - לחץ להשמעת ההודעה כפי שהיא תישמע למוזמנים!
+				</p>
+				<button class="btn btn-large btn-block" onclick="replay();">
+					<img src="/assets/play.png"  style="height: 50px"/>
+				</button>
+				
+				<div id="player_div" style="visibility: hidden">
+					<audio controls class="well well-small" width="40" id="player" preload="auto">
+	
+	  			<source src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.mp3" type="audio/mp3">
+				<embed height="50" width="100" src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.mp3"/>
+				</audio>
+				</div>
+				
 			<% if record_exist %>
-			<p>
-			יש לך הודעה מוקלטת - לחץ להשמעת ההודעה כפי שהיא תישמע למוזמנים!
-			</p>
-
-			
-			<audio controls class="well well-small" width="40">
-
-  <source src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.wav" type="audio/wav">
-			<embed height="50" width="100" src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.wav"/>
-</audio>
 			<%else%>
 			אין הודעה מוקלטת - הקלט או העלה קובץ ממחשבך!	
 			<%end%>		
 
 		</div>
 
-		<iframe class="span*" src="/upload_frame" frameborder="0" scrolling="no" align="middle" height="185" width="220" id="upload_frame">
+		<iframe class="span*" src="/upload_frame" frameborder="0" scrolling="no" align="middle"  id="upload_frame">
 			Your browser doesn't support iframes. Please upgrade to latest version
 		</iframe>
 
