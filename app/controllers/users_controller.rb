@@ -55,20 +55,14 @@ require 'fastthread'
       #f.write(request.env["rack.input"].read)
       #f.close()
     end
-    #convert mp3 to wav
+    
     begin
-      
-      convert_result = Kernel.system "mpg123 -w " + File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.2channels.wav") + " " + File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.mp3")     
-      if convert_result
-        Kernel.system "sox -c1 " + File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.2channels.wav") + " " + File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav")
-        Kernel.system "rm " + File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.2channels.wav")
-        convert_audio_to_sln
-      end
+      convert_audio_to_sln      
     rescue Exception => e
       logger.error("#{e}")
       UserMailer.error("convert_audio_to_mp3, #{user_from_remember_token.id}")
-    end 
-    render :text => "ok"
+    end
+    render :text => "success"
     
   end
   def playback_area
