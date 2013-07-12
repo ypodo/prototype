@@ -23,12 +23,12 @@
 body {
     padding-bottom: 40px;
     padding-top: 40px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .sidebar-nav-fixed {
-    padding: 9px 0;
+    padding: 9px;
     position:fixed;
     left:1px;
     
@@ -60,5 +60,3 @@ blockquote {
   border-left:0px;
   
 }
-
-audio { width: 210px; }

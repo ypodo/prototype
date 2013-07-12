@@ -3,7 +3,7 @@
 <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" type="text/css" rel="stylesheet" />
 <div class="well well-small">
 <div>
-	או טען קובץ אודיו (wav בלבד) 
+	או טען קובץ אודיו (mp3 בלבד) 
 	</div>
 
 	
@@ -15,7 +15,7 @@
 	  <center><%= submit_tag 'טען!', :class=>"button", :required => true%></center>		
 <% end %>
 <%if @color == "false"%>
-	<div align="center">ארעה שגיאה - פורמט WAV בלבד פחות מ-1 MB</div>
+	<div align="center">ארעה שגיאה - פורמט MP3 בלבד פחות מ-1 MB</div>
 <%elsif @color == "true"%>
 	<div align="center"><center>טעינה הושלמה</center></div>
 <%end%>

@@ -10,16 +10,11 @@
 			    <!--<li><a href="#tab5" class="btn btn-success"><h4>Test over Skype</h4></a></li>-->			    
 			  </ul>
 			  <div class="tab-content">
-			    <div class="tab-pane active" id="tab1">	
-					  	<%if (/MSIE/.match(request.env['HTTP_USER_AGENT']))%>
-					  		<%=render 'recorder_nano_gong'%>
-						<%else%>
-							<%=render 'recorder'%>
-							
-						<%end%>
-				  	<div class="span9 well">
-						<%=render 'recorder_flabell' %>
-						<%=render 'speeches_eng'%>
+			    <div class="tab-pane active" id="tab1">					  	
+						<%=render 'recorder'%>
+				  	<div class="span8 well">
+						
+						<%=render 'speeches_heb'%>
 					</div>	
 			    </div>
 			    <div class="tab-pane" id="tab2">				      

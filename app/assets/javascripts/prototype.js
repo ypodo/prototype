@@ -1,21 +1,10 @@
-
-function postAudio () {
-	var path="http://"+window.location.host;
-	applet.sendGongRequest('PostToForm', path+'/post.php', 'record', '', 'sound.wav');
+function replay (argument) {
+		//Replpay audio after recording
+		var player=$("#player").attr("autoplay","true");
+		var player_div=$("#player_div");
+		player_div.append=player;
+		player.load();  
 }
-function recorderReloade(argument){
-	// This function inmplemented in recorder partial	
-}
-function play () {
-  var time = applet.sendGongRequest('PlayMedia', 'sound.wav')
-}
-function record () {
-  var duration = applet.sendGongRequest('RecordMedia', 'sound.wav')
-}
-function stop () {
-  var duration = applet.sendGongRequest('StopMedia', 'sound.wav')
-}
-
 function doAxaj(msg)
 { 		
 	//This function works by timer 
