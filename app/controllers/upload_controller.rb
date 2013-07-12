@@ -9,7 +9,7 @@ require 'gdata'
   def upload_audio
     begin
       max_size=1048576
-      if(params[:user]==current_user.id.to_s && params[:AUDIO_FILE].content_type == "audio/wav")
+      if(params[:user]==current_user.id.to_s && params[:AUDIO_FILE].content_type == "audio/mpeg")
         if(File.size(params[:AUDIO_FILE].tempfile)<max_size)        
           if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
             Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create      
@@ -19,7 +19,7 @@ require 'gdata'
           end
           #copy audio to user section from temperory server section.
           @record_tmp=File.open(Rails.root.join(params[:AUDIO_FILE].tempfile.path), 'r').read    
-          File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w") do |f|
+          File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.mp3"), "w") do |f|
             f.write(@record_tmp)
           end    
           convert_audio_to_sln    
@@ -263,7 +263,7 @@ require 'gdata'
       return false
     end
     def acceptance_test(path)
-      s_rate=22050
+      s_rate=44100
       precision="16-bit"
       max_duration=1.minute
       acceptance=true

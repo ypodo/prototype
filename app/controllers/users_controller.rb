@@ -95,8 +95,7 @@ require 'fastthread'
     #copy audio to user section from temperory server section.
     @record_tmp=File.open(Rails.root.join(params[:record].tempfile.path), 'r').read
     
-    #File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w") do |f|
-    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"), "w+b") do |f|
+    File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.mp3"), "w+b") do |f|
       f.write(@record_tmp)
     end    
     convert_audio_to_sln    
@@ -104,7 +103,7 @@ require 'fastthread'
   
   def convert_audio_to_sln
     begin
-      if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.wav"))              
+      if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.mp3"))              
         `private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id} #{user_from_remember_token.audio_file[0].audio_hash}`        
       end
     rescue Exception => e
