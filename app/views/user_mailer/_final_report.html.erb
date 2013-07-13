@@ -49,37 +49,45 @@
             </caption>	            
           </thead>
           <tbody>
-            <tr class="success">              
-              <td style="font-weight: bold">סה''כ מוזמנים:</td>
-              <td style="font-weight: bold" id="total_invites_data_row"><%=@invite_history.count%></td>                  
+            <tr class="info">              
+              <td style="font-weight: bold" id="total_invites_data_row"><%=@invite_history.count%></td>
+              <td style="font-weight: bold">סה''כ מוזמנים</td>
+                  
             </tr>
             <tr class="warning">              
-              <td style="font-weight: bold">בתהליך התקשרות:</td>
-              <td style="font-weight: bold" id="in_progress_row"><%=count_nil%></td>                  
+              <td style="font-weight: bold" id="in_progress_row"><%=count_nil%></td>
+              <td style="font-weight: bold">בתהליך התקשרות</td>
+                  
             </tr>       
-            <tr class="error">              
-              <td style="font-weight: bold;background: #99FFCC">אישרו הגעה:</td>
-              <td style="font-weight: bold;background: #99FFCC" id="comming_invites_data_row"><%=count_yes%></td>                  
+            <tr class="warning">              
+              <td style="font-weight: bold" id="comming_invites_data_row"><%=count_yes%></td>
+              <td style="font-weight: bold">אישרו הגעה</td>
+                  
             </tr>
-            <tr class="">              
-              <td style="font-weight: bold;background: #FFCCCC">דחו הגעה:</td>
-              <td style="font-weight: bold;background: #FFCCCC" id="declined_data_row"><%=count_not%></td>                  
+            <tr class="warning">              
+              <td style="font-weight: bold" id="declined_data_row"><%=count_not%></td>
+              <td style="font-weight: bold">דחו הגעה</td>
+                  
             </tr>      
             <tr class="warning">              
-              <td style="font-weight: bold">מתבצע חיוג חוזר ראשון:</td>
-              <td style="font-weight: bold" id="redial_5_row"><%=count_redialing_5%></td>                  
+              <td style="font-weight: bold" id="redial_5_row"><%=count_redialing_5%></td>
+              <td style="font-weight: bold">מתבצע חיוג חוזר ראשון</td>
+                  
             </tr>       
             <tr class="warning">              
-              <td style="font-weight: bold">מתבצע חיוג חוזר שני:</td>
-              <td style="font-weight: bold" id="refial_10_row"><%=count_redialing_10%></td>                  
+              <td style="font-weight: bold" id="refial_10_row"><%=count_redialing_10%></td>
+              <td style="font-weight: bold">מתבצע חיוג חוזר שני</td>
+                  
             </tr>       
             <tr class="warning">              
-              <td style="font-weight: bold">לא הוקשה תגובה:</td>
-              <td style="font-weight: bold" id="no_answer_provided_row"><%=count_no_response%></td>                  
+              <td style="font-weight: bold" id="no_answer_provided_row"><%=count_no_response%></td>
+              <td style="font-weight: bold">לא הוקשה תגובה</td>
+                  
             </tr>       
             <tr class="warning">              
-              <td style="font-weight: bold;background: #99CCFF">לא ענו - סופי:</td>
-              <td style="font-weight: bold;background: #99CCFF" id="no_answer_data_row"><%=count_no_answer_final%></td>                  
+              <td style="font-weight: bold" id="no_answer_data_row"><%=count_no_answer_final%></td>
+              <td style="font-weight: bold">לא ענו - סופי</td>
+                  
             </tr>       
 
           </tbody>
