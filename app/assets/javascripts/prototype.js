@@ -1,9 +1,8 @@
 function replay (argument) {
-		//Replpay audio after recording
-		var player=$("#player").attr("autoplay","true");
-		var player_div=$("#player_div");
-		player_div.append=player;
-		player.load();  
+		//Replpay audio after recording		
+		var src_orig=$("#player").attr("autoplay","true").children().attr("src");
+		$("#player").attr("autoplay","true").children().attr("src",src_orig+"?param="+Math.random()).load();
+		$("#player").load();  
 }
 function doAxaj(msg)
 { 		
