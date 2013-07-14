@@ -3,9 +3,24 @@
 	<div class="row-fluid">	
 		<div class="well well-small">
 			<%=render 'recorder_flabell' %>
-				<p>
+			<!--
+			<div id="if_message_recorded_id">	
+			<% if record_exist %>
+			<p>
 				יש לך הודעה מוקלטת - לחץ להשמעת ההודעה כפי שהיא תישמע למוזמנים!
-				</p>
+			</p>
+
+			<%else%>
+			<p>
+				אין הודעה מוקלטת - הקלט או העלה קובץ ממחשבך!	
+			</p>
+			<%end%>		
+			</div>
+			-->
+			<p>
+			הקלט הודעתך
+			</p>
+			
 				<button class="btn btn-large btn-block" onclick="replay();">
 					<img src="/assets/play.png"  style="height: 50px"/>
 				</button>
@@ -16,15 +31,12 @@
 	  			<source src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.mp3" type="audio/mp3">
 				
 				</audio>
-				</div>
-				
-			<% if record_exist %>
-			<%else%>
-			<p>
-				אין הודעה מוקלטת - הקלט או העלה קובץ ממחשבך!	
-			</p>
-			<%end%>		
 
+				</div>
+
+				<p>
+					לחץ להשמעת ההודעה כפי שהיא תישמע למוזמנים!
+				</p>
 		</div>
 
 		<iframe class="span*" src="/upload_frame" frameborder="0" scrolling="no" align="middle"  id="upload_frame">

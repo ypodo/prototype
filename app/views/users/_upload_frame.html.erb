@@ -8,7 +8,7 @@
 
 	
 <%= form_tag({:action => :upload_audio, :controller=> :upload}, :method => 'post', :multipart => true, :remote => true, :id=>"uploade_audio_form", :size =>"10" ) do %>
-	  <p><%= file_field_tag :data_file ,:required => true, :accept=>"*.wav", :name=>"AUDIO_FILE", :value=>"1048576"%></p>
+	  <p><%= file_field_tag :data_file ,:required => true, :accept=>"*.mp3", :name=>"AUDIO_FILE", :value=>"1048576"%></p>
 	  
 	  <%= hidden_field_tag('user', value = @user.id)%>
 	  <br />

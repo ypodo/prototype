@@ -24,7 +24,8 @@ function doAxaj(msg)
 }
 function can_start(mode){
 	//1. ask server about all requerment before start could be started
-	//document.getElementById("green_submit").disabled=true;	
+	//document.getElementById("green_submit").disabled=true;
+	$("#click_once_info").html(" המתן בסבלנות להופעת חלון חדש לאחר הלחיצה והמנע מלחיצות נוספות!");	
 	var can_start=$.ajax(window.location.pathname+"/can_start").done(function(){
 		if(can_start.responseText=="false"){			
 				$("#notification").show();
