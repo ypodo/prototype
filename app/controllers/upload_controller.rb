@@ -80,6 +80,8 @@ require 'gdata'
       redirect_to current_user, :notice =>"טעינת הקובץ הושלמה"
     rescue Exception => e
       logger.error { "message: #{e}" }
+      UserMailer.error("upload:  #{e}")
+      redirect_to current_user, :notice => "File structure not complied."
     end
   end
   
