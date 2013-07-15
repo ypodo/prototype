@@ -17,12 +17,11 @@
 			<%end%>		
 			</div>
 			-->
-			<p>
-			הקלט הודעתך
-			</p>
+
 			
-				<button class="btn btn-large btn-block" onclick="replay();">
-					<img src="/assets/play.png"  style="height: 50px"/>
+				<button class="btn btn-large btn-block" onclick="replay();" id="replay-button">
+					<!-- <img src="/assets/play.png"  style="height: 40px"/> -->
+					<p>לחץ להשמעת ההודעה כפי שהיא תישמע למוזמנים!</p>
 				</button>
 				
 				<div id="player_div" style="visibility: hidden; width: 0px; height: 0px;">
@@ -34,12 +33,9 @@
 
 				</div>
 
-				<p>
-					לחץ להשמעת ההודעה כפי שהיא תישמע למוזמנים!
-				</p>
 		</div>
 
-		<iframe class="span*" src="/upload_frame" frameborder="0" scrolling="no" align="middle"  id="upload_frame">
+		<iframe class="span*" src="/upload_frame" frameborder="0" scrolling="no" align="right" id="upload_frame" style="margin-left: 0px;">
 			Your browser doesn't support iframes. Please upgrade to latest version
 		</iframe>
 
