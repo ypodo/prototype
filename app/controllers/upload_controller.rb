@@ -33,6 +33,7 @@ require 'gdata'
       @user = current_user   
       render :partial => "users/upload_frame", :color => @color  
     rescue Exception => e
+      logger.error { "message: #{e}" }
       UserMailer.error("upload_audio: #{e.message}")
     end
     
