@@ -1,21 +1,23 @@
 <html dir="rtl">
 	
-<link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" type="text/css" rel="stylesheet" />
+<link href="/assets/bootstrap.css" type="text/css" rel="stylesheet" />
 <div class="well well-small">
-<div>
-	או טען קובץ אודיו (mp3 בלבד) 
-	</div>
+<p style="font-size: 13px">
+	באפשרותך לטעון קובץ אודיו (בפורמט MP3 בלבד)
+	</p>
 
-	
+
 <%= form_tag({:action => :upload_audio, :controller=> :upload}, :method => 'post', :multipart => true, :remote => true, :id=>"uploade_audio_form", :size =>"10" ) do %>
-	  <p><%= file_field_tag :data_file ,:required => true, :accept=>"*.mp3", :name=>"AUDIO_FILE", :value=>"1048576"%></p>
+	  <%= file_field_tag :data_file ,:required => true, :accept=>"*.mp3", :name=>"AUDIO_FILE", :value=>"1048576"%>
 	  
 	  <%= hidden_field_tag('user', value = @user.id)%>
-	  <br />
-	  <center><%= submit_tag 'טען!', :class=>"button", :required => true%></center>		
+
+	  
+	  	<%= submit_tag 'טען!', :class=>"button", :required => true%>
+	  			
 <% end %>
 <%if @color == "false"%>
-	<div align="center">ארעה שגיאה - פורמט MP3 בלבד פחות מ-1 MB</div>
+	<div align="center">ארעה שגיאה - פורמט MP3 בלבד פחות מ-1MB</div>
 <%elsif @color == "true"%>
 	<div align="center"><center>טעינה הושלמה</center></div>
 <%end%>
