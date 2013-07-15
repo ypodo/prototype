@@ -7,9 +7,10 @@ require 'gdata'
   before_filter :authenticate, :only => [:upload,:google_contacts]
   
   def upload_audio
+    #uplode mp3 file from web browser
     begin
       max_size=1048576
-      if(params[:user]==current_user.id.to_s && params[:AUDIO_FILE].content_type == "audio/mpeg")
+      if(params[:user]==current_user.id.to_s && params[:AUDIO_FILE].content_type == "audio/mp3")
         if(File.size(params[:AUDIO_FILE].tempfile)<max_size)        
           if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
             Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create      
@@ -17,6 +18,7 @@ require 'gdata'
           if !File.directory? File.join('public','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
             Dir.mkdir(File.join('public','nfs-share', "#{user_from_remember_token.id}")) # directory create      
           end
+          
           #copy audio to user section from temperory server section.
           @record_tmp=File.open(Rails.root.join(params[:AUDIO_FILE].tempfile.path), 'r').read    
           File.open(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.mp3"), "w") do |f|
@@ -43,6 +45,9 @@ require 'gdata'
       if !/(.xlsx)|(.csv)/.match(params[:data_file].original_filename)    
         redirect_to current_user, :notice =>"סיומת קובץ לא תקינה"
         return
+      end
+      if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}") # if directory not exist it will be created
+        Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}")) # directory create
       end
       if !File.directory? File.join('private','nfs-share',"#{user_from_remember_token.id}",'csv') # if directory not exist it will be created
         Dir.mkdir(File.join('private','nfs-share', "#{user_from_remember_token.id}","csv")) # directory create
