@@ -68,3 +68,12 @@ button#replay-button{
     height: 40px;
     text-shadow:#FE6 0 1px 0;
 }
+
+ul,ol {
+  border: 0px dotted gray;
+  border-radius: 3px 3px 3px 3px;
+  list-style: circle inside none;
+  padding-right: 10px;
+  
+  
+}
