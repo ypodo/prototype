@@ -9,10 +9,10 @@ class PasswordResetsController < ApplicationController
           user.send_password_reset
         end      
       end
-      redirect_to root_url , :notice => "בדוק את תיבת הדואר שלך להוראות נוספות"
+      redirect_to root_url, :notice => "בדוק את תיבת הדואר שלך להוראות נוספות"
     rescue Exception => e
       logger.error { "message: #{e}" }
-      UserMailer.error(e)
+      UserMailer.error("message: #{e}")
     end
   end
   
