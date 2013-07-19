@@ -5,9 +5,8 @@ class InvitesController < ApplicationController
   
   def create
     # AJAX method return invite if secseed
-    if current_user.invites.find_by_number(params[:invite])
-
-      
+    if current_user.invites.find_by_number(params[:invite].number).nil?
+      render :js => "alert('Validation error: please check email or number format.');"
     end
     @invite  = current_user.invites.build(params[:invite])
     #validate(@invite)
