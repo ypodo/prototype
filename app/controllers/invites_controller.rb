@@ -23,8 +23,6 @@ class InvitesController < ApplicationController
     rescue Exception => e
       logger.error { "message: #{e}" }      
     end
-    
-    
   end
   
   def destroy
