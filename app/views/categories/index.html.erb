@@ -2,22 +2,13 @@
 <p class="well" align="center" style="font-size: 25px">
 	בחר קטגוריה ליצירת אירוע חדש
 </p>
-<br />
-<!--<%= link_to 'New Category', new_category_path %>-->
-
 <div class="row-fluid control-group" >
-<!--
-<%@categories.each do |category| %>
-  <%=render 'each_categories', :category => category%>  
-<% end %>
-<%=@categories[0].name%>
--->
 <div class="controls">
 	<div class="row-fluid">
 		
 		<%= link_to @categories[0] do %>
 
-		<div class="span4 round" style="background-image: url('assets/category-back1.jpg');width: 320px; height: 180px; margin: 5px;">	
+		<div class="span4 round" style="background-image: url('assets/category-back1.jpg');width: 320px; height: 180px; margin: 30px;">	
 			<div>
 
   					<%= image_tag("wedding.png", :style=>"width: 140px; height: 140px;") %>
@@ -33,7 +24,7 @@
 
 		<%= link_to @categories[1] do %>
 
-		<div class="span4 round" style="background-image: url('assets/category-back2.jpg');width: 320px; height: 180px;margin: 5px;">	
+		<div class="span4 round" style="background-image: url('assets/category-back2.jpg');width: 320px; height: 180px;margin: 30px;">	
 			<div>
 
   					<%= image_tag("bar-mitzvah.png", :style=>"width: 140px; height: 140px;") %>
@@ -49,7 +40,7 @@
 
 		<%= link_to @categories[2] do %>
 
-		<div class="span4 round" style="background-image: url('assets/category-back3.jpg');width: 320px; height: 180px;margin: 5px;">	
+		<div class="span4 round" style="background-image: url('assets/category-back3.jpg');width: 320px; height: 180px;margin: 30px;">	
 			<div>
 
   					<%= image_tag("Other.png", :style=>"width: 140px; height: 140px;") %>
@@ -65,7 +56,7 @@
 
 		<%= link_to @categories[3] do %>
 
-		<div class="span4 round" style="background-image: url('assets/category-back4.jpg');width: 320px; height: 180px;margin: 5px;">	
+		<div class="span4 round" style="background-image: url('assets/category-back4.jpg');width: 320px; height: 180px;margin: 30px;">	
 			<div>
 
   					<%= image_tag("Conference.png", :style=>"width: 140px; height: 140px;") %>
@@ -80,7 +71,7 @@
 
 		<%= link_to @categories[4] do %>
 
-		<div class="span4 round" style="background-image: url('assets/category-back5.jpg');width: 320px; height: 180px;margin: 5px;">	
+		<div class="span4 round" style="background-image: url('assets/category-back5.jpg');width: 320px; height: 180px;margin: 30px;">	
 			<div>
 
   					<%= image_tag("survey.png", :style=>"width: 140px; height: 140px;") %>
@@ -95,7 +86,7 @@
 
 		<%= link_to @categories[5] do %>
 
-		<div class="span4 round" style="background-image: url('assets/category-back6.jpg');width: 320px; height: 180px;margin: 5px;">	
+		<div class="span4 round" style="background-image: url('assets/category-back6.jpg');width: 320px; height: 180px;margin: 30px;">	
 			<div>
 
   					<%= image_tag("ad.png", :style=>"width: 140px; height: 140px;") %>
