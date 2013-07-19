@@ -5,6 +5,10 @@ class InvitesController < ApplicationController
   
   def create
     # AJAX method return invite if secseed
+    if current_user.invites.find_by_number(params[:invite])
+
+      
+    end
     @invite  = current_user.invites.build(params[:invite])
     #validate(@invite)
     if @invite.save            
