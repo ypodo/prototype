@@ -1,5 +1,5 @@
 module ApplicationHelper
-require 'nokogiri'
+#require 'nokogiri'
   
   def unit_price
     # invites_count
