@@ -1,6 +1,5 @@
 require 'digest'
-class User < ActiveRecord::Base
-  
+class User < ActiveRecord::Base  
   #category
   #has_one :category
   
@@ -24,7 +23,7 @@ class User < ActiveRecord::Base
   validates :name,  :presence => true, :length => { :maximum => 50 }
   validates :email, :presence => true
   validates :password, :presence => true, :confirmation => true, :length => { :within => 2..40 }
-  before_create :encrypt_password
+  before_create :encrypt_password, :on_create
   
   cattr_accessor :skip_callbacks
   before_save :encrypt_password, :unless => :skip_callbacks
@@ -33,9 +32,17 @@ class User < ActiveRecord::Base
   has_many :authentications
   validates :name, :email, :presence => true
   
+  #answer details
+  has_many :answer
+  has_many :answer, :dependent => :destroy
+  
   #password reset
   before_create { generate_token(:auth_token) }
   
+  def on_create
+    self.answer.new(:title=>"Original audio",:selected=>true).save!
+    self.answer.new(:title=>"With system answer[yes=1 | no =2]",:selected=>false).save!
+  end
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now    

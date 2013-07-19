@@ -137,25 +137,37 @@ function add_invite_ajax(argument) {
 function total_invites_counter (argument) {
 	if(argument >0){
 		var i=document.getElementById("total_invites").innerHTML.split(":")[1];
-		i++;
+		i++;		
 		document.getElementById("total_invites").innerHTML="סה''כ מוזמנים: "+i;
-		document.getElementById("payments").innerHTML="מחיר: "+ "&#8362;" + (unit_price*i).toFixed(2);
+		if(i==0){
+			document.getElementById("payments").innerHTML="מחיר: "+ "&#8362;" + ((unit_price*i)).toFixed(2);
+		}
+		else if(i<6){
+			document.getElementById("payments").innerHTML="מחיר: "+ "&#8362;" + ((unit_price*i)+1.20).toFixed(2);
+		}else{
+			document.getElementById("payments").innerHTML="מחיר: "+ "&#8362;" + (unit_price*i).toFixed(2);	
+		}		
 	}
 	else if(argument <0){
 		var i=document.getElementById("total_invites").innerHTML.split(":")[1];
 		i--;
 		document.getElementById("total_invites").innerHTML="סה''כ מוזמנים: "+i;
-		document.getElementById("payments").innerHTML="מחיר: "+ "&#8362;"  + (unit_price*i).toFixed(2);		
-	}
-  
+		if(i==0){
+			document.getElementById("payments").innerHTML="מחיר: "+ "&#8362;" + ((unit_price*i)).toFixed(2);
+		}
+		else if(i<6){
+			document.getElementById("payments").innerHTML="מחיר: "+ "&#8362;" + ((unit_price*i)+1.20).toFixed(2);
+		}else{
+			document.getElementById("payments").innerHTML="מחיר: "+ "&#8362;"  + (unit_price*i).toFixed(2);	
+		}				
+	}  
 }
 function append_data_invite_table (argument) {
 	if(argument !=null){
 		$('#inviteT_tbl tbody tr:nth-child(' + 2 + ')').after('<tr><td>'+JSON.parse(argument.responseText).name+'</td><td>'+JSON.parse(argument.responseText).mail+'</td><td>'+JSON.parse(argument.responseText).number+'</td><td style="color: orange"><a href="/invites/'+JSON.parse(argument.responseText).id+'" class="label label-important" data-method="delete" el="nofollow" onclick="delete_invite_ajax('+JSON.parse(argument.responseText).id+');" id="'+JSON.parse(argument.responseText).id+'" data-remote="true">מחק</a></td></tr>');	
 		clean_invite_inputs();		
 	return true;
-	}
-  
+	}  
 }
 function clean_invite_inputs (argument) {
   	document.getElementById("invite_name").value=""
