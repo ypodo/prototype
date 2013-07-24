@@ -104,7 +104,7 @@ require 'fastthread'
   def convert_audio_to_sln
     begin
       if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.mp3"))              
-        `private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id} #{user_from_remember_token.audio_file[0].audio_hash}`        
+        `private/nfs-share/scripts/convert_audio.sh #{user_from_remember_token.id} #{user_from_remember_token.audio_file[0].audio_hash} #{user_from_remember_token.category}`        
       end
     rescue Exception => e
       logger.error("#{e}")
