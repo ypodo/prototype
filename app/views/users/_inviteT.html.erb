@@ -1,6 +1,7 @@
 <div>
 	<div class="add-on" id="total_invites">סה''כ מוזמנים: <%=@invites.count%></div>
-	<div class="add-on" id="payments">מחיר:	&#8362;<%=(@user.invites.count*unit_price).to_f.round(2)%>	</div>
+	
+	<div class="add-on" id="payments">מחיר:	&#8362;<%=total_price%></div>
 </div>									
 
 
