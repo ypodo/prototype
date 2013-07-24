@@ -31,7 +31,12 @@ module UsersHelper
     mam=0.18    
     return (cost_per_call*(1+profit)*(1+mam)).round(2)       
   end  
-  
+  def total_price
+    current_user.invites.count*unit_price.to_f.round(2)
+  end
+  def paypal
+    paypal=1.20
+  end
   def convert_audio_to_sln
     begin
       if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.mp3"))              
