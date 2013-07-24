@@ -11,12 +11,16 @@
 	    		<a class="brand pull-left" href="/" >				   
 				  	  <font face="forte" size="6" color="red">mazminim!</font>
 					  <font face="forte" size="3" color="red">Beta</font>
-			  	</a>	           
+						  
+			  	</a>
+			  		           
 		    <div class="nav-collapse collapse navbar-responsive-collapse">		    
 			    <ul class="nav">
 					  <li>
-					  			
-									        					  				  	
+						<% if signed_in? %>					  	
+					    	<a href="/categories"><font color="green"><%=current_user.category%></font></a> 	
+			        	<% end %>
+								  				  	
 					  </li>	  		  				
 					<% if signed_in? %>					  	
 					     	
