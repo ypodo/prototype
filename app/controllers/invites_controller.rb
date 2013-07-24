@@ -8,7 +8,8 @@ class InvitesController < ApplicationController
     #proverka esli prigloshenni nomer uje su4estvuet u dannogo usera
     #ispolzuetsa togda kogda user dobovlet novogo priglashennogo 4erez web ui
     begin
-      if !current_user.invites.find_by_number(params[:invite][:number]).nil?
+      number=params[:invite][:number].gsub(/[^0-9]/, "")
+      if !current_user.invites.find_by_number(number).nil?
         render :js => "alert('Validation notification: number already exists');"
         return
       end
