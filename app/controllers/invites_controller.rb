@@ -5,13 +5,24 @@ class InvitesController < ApplicationController
   
   def create
     # AJAX method return invite if secseed
-    @invite  = current_user.invites.build(params[:invite])
-    #validate(@invite)
-    if @invite.save            
-      render :json => @invite
-      #redirect_to current_user
-    else
-      render :js => "alert('Validation error: please check email or number format.');"
+    #proverka esli prigloshenni nomer uje su4estvuet u dannogo usera
+    #ispolzuetsa togda kogda user dobovlet novogo priglashennogo 4erez web ui
+    begin
+      number=params[:invite][:number].gsub(/[^0-9]/, "")
+      if !current_user.invites.find_by_number(number).nil?
+        render :js => "alert('Validation notification: number already exists');"
+        return
+      end
+      @invite  = current_user.invites.build(params[:invite])
+      #validate(@invite)
+      if @invite.save            
+        render :json => @invite
+        #redirect_to current_user
+      else
+        render :js => "alert('Validation error: please check email or number format.');"
+      end  
+    rescue Exception => e
+      logger.error { "message: #{e}" }      
     end
   end
   
@@ -20,10 +31,8 @@ class InvitesController < ApplicationController
     @user=User.find(@invite.user)    
     @invite.destroy
     @invites=@user.invites
-    #flash[:success] = "Record deleted!"
-    
-    render :json => @invite
-    
+    #flash[:success] = "Record deleted!"    
+    render :json => @invite    
   end
   
   def delete_all

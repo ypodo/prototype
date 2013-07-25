@@ -1,6 +1,9 @@
 Prototype::Application.routes.draw do
   
   
+  resources :answers
+
+
   #get "password_resets/new"
   get "password_resets/new" => "password_resets#new"
   resources :categories

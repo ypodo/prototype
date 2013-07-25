@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  selected: false
+  user_id: 1
+  title: MyString
+
+two:
+  selected: false
+  user_id: 1
+  title: MyString

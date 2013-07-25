@@ -25,14 +25,16 @@
 				</button>
 				
 				<div id="player_div" style="visibility: hidden; width: 0px; height: 0px;">
-					<audio controls class="well well-small" id="player" preload="auto" style="width: 0px">
-	
-	  			<source src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.mp3" type="audio/mp3">
-				
+					<audio controls class="well well-small" id="player" preload="auto" style="width: 0px">	
+	  			<source src="http://<%=request.host_with_port%>/nfs-share/<%=@user.id%>/<%=@user.audio_file[0].audio_hash%>.mp3" type="audio/mp3">				
 				</audio>
-
 				</div>
-
+				<p></p>				
+				<div align="left">				
+				<!--<%=render 'answer'%>-->
+				</div>
+				
+				
 		</div>
 
 		<iframe class="span*" src="/upload_frame" frameborder="0" scrolling="no" align="right" id="upload_frame" style="margin-left: 0px;">

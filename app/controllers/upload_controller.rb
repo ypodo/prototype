@@ -176,8 +176,11 @@ require 'gdata'
     end
     
     def is_a_valid_phone(value)
-      if /(^0\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)(\d\d\d\d\d\d\d{,1})/.match(value)
-        return true      
+      if /(^0\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)-(\d\d\d\d\d\d\d{,1})|(^0\d\d)(\d\d\d\d\d\d\d{,1})/.match(value) 
+        if current_user.invites.find_by_number(value).nil?
+          return true
+        else return false
+        end      
       else return false
       end 
     end

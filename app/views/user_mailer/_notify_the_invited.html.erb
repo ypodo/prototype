@@ -2,15 +2,22 @@
 <a href="http://mazminim.com">
 <img src="http://mazminim.com/assets/logo.png" width="240" height="50"/>
 </a>
-<p>You was invited</p> 
+<p><%=current_user.email%> contacted you</p> 
 <%if !@answer.nil?%>	
-	<%if @answer==1%>
+	<%if @answer=="yes"%>
 	<p style="color: #0000FF"><b>Your answer is: YES</b></p>
-	<%elsif @answer==2%>
-	<p style="color: #FF00FF"><b>Your answer is: NO</b></p>	
-	<%end%>	
+	<%elsif @answer=="no"%>
+	<p style="color: #FF00FF"><b>Your answer is: NO</b></p>		
+	<%elsif @answer=="other"%>
+	<p style="color: #FF00FF"><b>No answer</b></p>	
+	<%end%>
 <%end%>
 
 <p>בכל שאלה אנא צרו עימנו קשר דרך האתר mazminim.com</p>
-
+<address>
+  <strong>Mazminim.com</strong><br>
+  Urugway 28<br>
+  Jerusalem, IL 93906<br>
+  <abbr title="Phone number">P: </abbr> (972) 077-2025328.
+</address>
 </div>
