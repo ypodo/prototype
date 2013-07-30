@@ -6,7 +6,8 @@
           <td><%=elem.name%></td>
           <td><%=elem.mail%></td>
           <td><%=elem.number%></td> 
-          	<%if current_user.category == "bar-mitzvah" || "wedding" || "Conference" %>
+          	<% if current_user.category.upcase == 'BAR-MITZVAH' || current_user.category.upcase == 'WEDDING' || current_user.category.upcase == 'CONFERENCE'%>
+          	
           		<%if elem.arriving.nil? %>
           		<td>בתהליך התקשרות</td>
 	          	<% elsif (elem.arriving == 1)%>
@@ -27,7 +28,8 @@
 					<td>ארעה שגיאה</td>			
 	          	<%end%>          	
           	
-          	<%elsif current_user.category == "advertising" || "Other"%>
+          	<% elsif current_user.category.upcase == 'ADVERTISING'|| current_user.category.upcase == 'OTHER'%>
+          	
           		<%if elem.arriving.nil? %>
 	          		<td>בתהליך התקשרות</td>
 	          	<% elsif (elem.arriving == 1)%>
