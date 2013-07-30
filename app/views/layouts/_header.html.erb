@@ -17,8 +17,20 @@
 		    <div class="nav-collapse collapse navbar-responsive-collapse">		    
 			    <ul class="nav">
 					  <li>
-						<% if signed_in? %>					  	
-					    	<a href="/categories"><font color="green"><%=current_user.category%></font></a> 	
+						<% if signed_in? %>	
+							<%case current_user.category%>
+					 		  <%when "bar-mitzvah"%>
+							  	<a href="/categories"><font color="green">hebrew</font></a> 
+							  <%when "Weding"%>
+							  	<a href="/categories"><font color="green">hebrew</font></a>
+							  <%when "bar-mitzvah"%>
+							  	<a href="/categories"><font color="green">hebrew</font></a>
+							  <%when "bar-mitzvah"%>
+							  	<a href="/categories"><font color="green">hebrew</font></a>
+							  <%when "bar-mitzvah"%>
+							  	<a href="/categories"><font color="green">hebrew</font></a>
+							 <%end%>				  	
+					    	
 			        	<% end %>								  				  	
 					  </li>	  		  				
 					<% if signed_in? %>					  	
