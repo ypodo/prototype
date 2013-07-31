@@ -12,20 +12,25 @@ class SessionsController < ApplicationController
   
   def create    
     begin
-      if !request.env['omniauth.auth'].nil?
+      if !request.env['omniauth.auth'].nil?         # social registration 
         auth = request.env["omniauth.auth"]
-        if User.find_by_provider_and_uid(auth["provider"], auth["uid"])
+        if User.find_by_provider_and_uid(auth["provider"], auth["uid"]) # if existe
           user=User.find_by_provider_and_uid(auth["provider"], auth["uid"])
+          if user.audio_file[0].nil?
+            fileH=user.audio_file.new
+            fileH.audio_hash=Digest::SHA2.hexdigest(fileH.user_id.to_s)[0..32]
+            fileH.save
+          end
           session[:user_id] = user.id
           sign_in user
           redirect_to user, :notice => "מחובר!"
-        else        
+        else # Create new user from social
           user = User.create_with_omniauth(auth)
           session[:user_id] = user.id
           sign_in user
           redirect_to categories_path, :notice => "משתמש חדש נוצר בהצלחה"
         end       
-      else
+      else # user name password auth
         user = User.authenticate(params[:session][:email], params[:session][:password])
         if user.nil?
           #flash.now[:notice] = fading_flash_message("Thank you for your message.", 2)

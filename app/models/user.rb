@@ -73,18 +73,24 @@ class User < ActiveRecord::Base
   end
   
   def self.create_with_omniauth(auth)
-    create! do |user|
-      user.email=auth["info"]["email"]
-      user.provider = auth["provider"]
-      user.uid = auth["uid"]
-      user.name = auth["info"]["name"]
-      user.password=auth["uid"]
+    begin
+      create! do |user|
+        user.email=auth["info"]["email"]
+        user.provider = auth["provider"]
+        user.uid = auth["uid"]
+        user.name = auth["info"]["name"]
+        user.password=auth["uid"]
+      end
+      
+      user=User.find_by_email(auth["info"]["email"])
+      fileH=user.audio_file.new
+      fileH.audio_hash=Digest::SHA2.hexdigest(fileH.user_id.to_s)[0..32]
+      fileH.save
+      user
+    rescue Exception => e
+      error.logger.error { "message: #{e}" }
+      UserMailer.error("user.rb  self.create_with_omniauth(auth): #{e}")
     end
-    user=User.find_by_email(auth["info"]["email"])
-    fileH=user.audio_file.new
-    fileH.audio_hash=Digest::SHA2.hexdigest(fileH.user_id.to_s)[0..32]
-    fileH.save
-    user
   end
   private
 
