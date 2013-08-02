@@ -1,0 +1,32 @@
+<%if !@invite_history.nil?%>
+
+<%@invite_history.each do |elem| %>							
+<tr>	
+		
+          <td><%=elem.name%></td>
+          <td><%=elem.mail%></td>
+          <td><%=elem.number%></td>
+      	
+      		<%if elem.arriving.nil? %>
+      		<td>בתהליך התקשרות</td>
+          	<% elsif (elem.arriving == 1)%>
+		    	<td bgcolor="#B5DD49">אישור</td>
+			<%elsif(elem.arriving == 2)%>
+				<td bgcolor="#FFD9E2">דחיה</td>
+			<%elsif(elem.arriving == -10)%>
+				<td bgcolor="#FFD9E2">אין מענה - חיוג חוזר מתוכנן (כ-5 דקות לאחר נסיון ההתקשרות)</td>
+			<%elsif(elem.arriving == -20)%>
+				<td bgcolor="#FFD9E2">אין מענה - חיוג חוזר מתוכנן (כ-10 דקות לאחר נסיון ההתקשרות)</td>
+			<%elsif(elem.arriving == -30)%>
+				<td bgcolor="#FFD9E2">אין מענה (סופי)</td>
+			<%elsif(elem.arriving == -40)%>
+				<td bgcolor="#FFD9E2"></td>---
+			<%elsif(elem.arriving == -50)%>
+				<td bgcolor="#FFD9E2">לא הוקשה תגובה</td>	
+			<%else%>
+				<td>ארעה שגיאה</td>			
+          	<%end%>          	
+      	
+</tr>
+	<%end%>
+<%end%>
