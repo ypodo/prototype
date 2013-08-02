@@ -243,6 +243,7 @@ require 'fastthread'
     begin
       current_token=current_user.orders.last.token
       if !current_token.nil?
+        @user=current_user
         @invite_history=current_user.inviteHistorys.where(:token=>current_token)    
         report=render_to_string(:partial => "user_mailer/final_report")      
         UserMailer.send_mail_to_recipient(params[:mail],current_user,@invite_history)
