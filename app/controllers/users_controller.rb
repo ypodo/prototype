@@ -250,6 +250,7 @@ require 'fastthread'
       end
     rescue Exception => e
       logger.error { "message: #{e}" }
+      UserMailer.error("message: #{e}")
     end    
   end
   
