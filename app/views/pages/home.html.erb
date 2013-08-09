@@ -1,6 +1,20 @@
 <div class="row-fluid">
 	<div class="span8">			
 		<iframe id="video_main" class="well span*" height="400" src="//www.youtube.com/embed/zlUezjCz-xs" frameborder="100" allowfullscreen></iframe>
+
+
+<!-- AddThis Button BEGIN -->
+<a class="addthis_button_tweet"></a>
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+
+<a class="addthis_button_pinterest_pinit"></a>
+<a class="addthis_counter addthis_pill_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5204b48d7e7dfc81"></script>
+<!-- AddThis Button END -->
+	
 	<%= render 'pages/about'%>
 	</div>		
 	<div class="span4">	
@@ -50,11 +64,12 @@
 			<!--<%=link_to image_tag("/assets/Right3Green.png"),current_user%>-->			
             
             <%=render 'how_to_list'%>
-            <%=render 'addThis'%>         
+        	             
 		</div>	
 		
 			
-      	<% end %>      	
+      	<% end %>
+      	    <%=render 'addThis'%>  	
 	</div>	
 </div>
 
