@@ -33,17 +33,23 @@
 	 	<div class="row-fluid">		 	
 		 	<div class="span3">
 	 	 		<!--Small report table on the right side-->
+	 	 		
 	 	 		<% if signed_in? %>	
-					<%case current_user.category%>
-			 		  <%when "Bar-mitzvah"%>
+					<%case current_user.category.upcase%>
+			 		  <%when "BAR-MITZVAH"%>
+			 		  BAR-MITZVAH
 							<%=render 'report'%>
-					  <%when "Wedding"%>
+					  <%when "WEDDING"%>
+					  WEDDING
 							<%=render 'report'%>
-					  <%when "Other"%>
+					  <%when "OTHER"%>
+					  OTHER
 							<%=render 'report/reportAds'%>
-					  <%when "Advertising"%>
+					  <%when "ADVERTISING"%>
+					  ADVERTISING
 							<%=render 'report/reportAds'%>
-					  <%when "Conference"%>
+					  <%when "CONFERENSE"%>
+					  CONFERENSE
 							<%=render 'report'%>
 					 <%end%>				  	
 			    	

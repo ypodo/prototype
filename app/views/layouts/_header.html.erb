@@ -18,14 +18,14 @@
 			    <ul class="nav">
 					  <li>
 						<% if signed_in? %>	
-							<%case current_user.category%>
-					 		  <%when "Bar-mitzvah"%>
+							<%case current_user.category.upcase%>
+					 		  <%when "BAR-MITZVAH"%>
 							  	<a href="/categories"><font color="green"><strong>בר-מצווה</strong></font></a> 
-							  <%when "Wedding"%>
+							  <%when "WEDDING"%>
 							  	<a href="/categories"><font color="green"><strong>חתונה</strong></font></a>
-							  <%when "Other"%>
+							  <%when "OTHER"%>
 							  	<a href="/categories"><font color="green"><strong>ארוע כללי</strong></font></a>
-							  <%when "Advertising"%>
+							  <%when "ADVERTISING"%>
 							  	<a href="/categories"><font color="green"><strong>פרסום</strong></font></a>
 							  <%when "Conference"%>
 							  	<a href="/categories"><font color="green"><strong>ועידה</strong></font></a>

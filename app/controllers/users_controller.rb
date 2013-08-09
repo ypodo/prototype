@@ -239,7 +239,19 @@ require 'fastthread'
     #report and result
     current_token=current_user.orders.last.token
     @invite_history=current_user.inviteHistorys.where(:token=>current_token)
-    render :partial => 'users/report', :object => @invite_history # litle table with short description   
+    case current_user.category.upcase
+      when "BAR-MITZVAH"            
+        render :partial => 'users/report', :object => @invite_history # litle table with short description
+      when "WEDDING"            
+        render :partial => 'users/report', :object => @invite_history # litle table with short description
+      when "OTHER"            
+        render :partial => 'report/reportAds', :object => @invite_history # litle table with short description
+      when "ADVERTISING"            
+        render :partial => 'report/reportAds', :object => @invite_history # litle table with short description
+      when "CONFERENSE"            
+        render :partial => 'users/report', :object => @invite_history # litle table with short description
+     end
+       
   end
   
   def ajax_report_mail_to
