@@ -8,7 +8,21 @@
 	 	<div class="row-fluid">		 	
 			<div class="span3">
 	 	 		<!--Small report table on the right side-->
-	 	 		<%=render 'report'%>
+	 	 		<% if signed_in? %>	
+					<%case current_user.category%>
+			 		  <%when "Bar-mitzvah"%>
+							<%=render 'report'%>
+					  <%when "Wedding"%>
+							<%=render 'report'%>
+					  <%when "Other"%>
+							<%=render 'report/reportAds'%>
+					  <%when "Advertising"%>
+							<%=render 'report/reportAds'%
+					  <%when "Conference"%>
+							<%=render 'report'%>
+					 <%end%>				  	
+			    	
+	        	<% end %>	
 	 	 		
 	 	 	</div> 	
 		 	<div class="span9">

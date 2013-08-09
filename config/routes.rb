@@ -1,6 +1,9 @@
 Prototype::Application.routes.draw do
   
   
+  resources :companies
+
+
   resources :answers
 
 

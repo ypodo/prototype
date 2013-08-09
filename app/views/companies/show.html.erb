@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @company.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @company.email %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @company.user_id %>
+</p>
+
+<p>
+  <b>Logourl:</b>
+  <%= @company.logoURL %>
+</p>
+
+<p>
+  <b>Weburl:</b>
+  <%= @company.webURL %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @company.email %>
+</p>
+
+<p>
+  <b>Facebookurl:</b>
+  <%= @company.facebookURL %>
+</p>
+
+<p>
+  <b>Googleurl:</b>
+  <%= @company.googleURL %>
+</p>
+
+<p>
+  <b>Wikiurl:</b>
+  <%= @company.wikiURL %>
+</p>
+
+<p>
+  <b>Workers:</b>
+  <%= @company.workers %>
+</p>
+
+<p>
+  <b>Presedent:</b>
+  <%= @company.presedent %>
+</p>
+
+<p>
+  <b>Otherurl:</b>
+  <%= @company.otherURL %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @company.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719135937) do
+ActiveRecord::Schema.define(:version => 20130802183257) do
 
   create_table "answers", :force => true do |t|
     t.boolean  "selected"
@@ -52,6 +52,23 @@ ActiveRecord::Schema.define(:version => 20130719135937) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "user_id"
+    t.string   "logoURL"
+    t.string   "webURL"
+    t.string   "facebookURL"
+    t.string   "googleURL"
+    t.string   "wikiURL"
+    t.integer  "workers"
+    t.string   "presedent"
+    t.string   "otherURL"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "company_id"
   end
 
   create_table "invite_histories", :force => true do |t|
@@ -139,6 +156,7 @@ ActiveRecord::Schema.define(:version => 20130719135937) do
     t.datetime "password_reset_sent_at"
     t.string   "category"
     t.string   "language"
+    t.integer  "company_id"
   end
 
 end

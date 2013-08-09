@@ -1,0 +1,47 @@
+<h1>Listing companies</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>User</th>
+    <th>Logourl</th>
+    <th>Weburl</th>
+    <th>Email</th>
+    <th>Facebookurl</th>
+    <th>Googleurl</th>
+    <th>Wikiurl</th>
+    <th>Workers</th>
+    <th>Presedent</th>
+    <th>Otherurl</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @companies.each do |company| %>
+  <tr>
+    <td><%= company.name %></td>
+    <td><%= company.email %></td>
+    <td><%= company.user_id %></td>
+    <td><%= company.logoURL %></td>
+    <td><%= company.webURL %></td>
+    <td><%= company.email %></td>
+    <td><%= company.facebookURL %></td>
+    <td><%= company.googleURL %></td>
+    <td><%= company.wikiURL %></td>
+    <td><%= company.workers %></td>
+    <td><%= company.presedent %></td>
+    <td><%= company.otherURL %></td>
+    <td><%= company.user_id %></td>
+    <td><%= link_to 'Show', company %></td>
+    <td><%= link_to 'Edit', edit_company_path(company) %></td>
+    <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Company', new_company_path %>

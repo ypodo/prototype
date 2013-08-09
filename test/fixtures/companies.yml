@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  email: MyString
+  user_id: 1
+  logoURL: MyString
+  webURL: MyString
+  email: MyString
+  facebookURL: MyString
+  googleURL: MyString
+  wikiURL: MyString
+  workers: 1
+  presedent: MyString
+  otherURL: MyString
+  user_id: 1
+
+two:
+  name: MyString
+  email: MyString
+  user_id: 1
+  logoURL: MyString
+  webURL: MyString
+  email: MyString
+  facebookURL: MyString
+  googleURL: MyString
+  wikiURL: MyString
+  workers: 1
+  presedent: MyString
+  otherURL: MyString
+  user_id: 1
