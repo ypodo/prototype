@@ -37,6 +37,9 @@ module UsersHelper
   def paypal_fee
     1.20
   end
+  def paypal
+    1.20
+  end
   def convert_audio_to_sln
     begin
       if File.exist?(File.join('public','nfs-share',"#{user_from_remember_token.id}","#{user_from_remember_token.audio_file[0].audio_hash}.mp3"))              

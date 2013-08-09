@@ -1,17 +1,64 @@
+	<div id="full_report_table_div_empty">	
+	<br />
+	<p>
+	<div class="well" id="past_activity">
+		<center><h4 class="">טרם התקבלו תוצאות</h4></center>
+		<p class="help-block">על מנת להתחיל  - הקליטו הודעתכם, צרו רשימת מוזמנים וקבלו תוצאות תוך דקות ספורות!</p>  
+	</div>
+	</p>
+	</div>
+<script>document.getElementById("full_report_table_div_empty").style.display = 'none'</script>
+<div id="full_report_table_div_full">
  <div class="row-fluid" id="full_report_div" > 	
- 	
  	<div class="control-list"> 	
- 		<h6><div id="progress_bar_lable"></div></h6>
-	 		<div class="progress progress-striped active">
-			  <div class="bar bar-warning" style="width: 0%;" id="progress_bar"></div>
+ 		<div class="row-fluid">
+ 			<div class="span7">	 			
+	 			<h6><div id="progress_bar_lable"></div></h6>
+		 		<div class="progress progress-striped active">
+			  <div class="bar bar-warning" style="width: 0%;" id="progress_bar"></div>			  
 			</div>
+ 		</div>
+
+ 			<div class="span5">
+ 			<div id="token">
+			  	<%if !@user.orders.last.nil?%>			  		
+			  		<br />
+			  		<h5><p class="well well-small">מזהה פעולה: <%=@user.orders.last.token%></p></h5>
+				<%end%>		  	  
+	  	  	</div>
+ 		</div>
+
+		</div>
+
 	 	<div class="row-fluid">		 	
-			<div class="span3">
+		 	<div class="span3">
 	 	 		<!--Small report table on the right side-->
-	 	 		<%=render 'report'%>
+	 	 		<% if signed_in? %>	
+					<%case current_user.category%>
+			 		  <%when "Bar-mitzvah"%>
+							<%=render 'report'%>
+					  <%when "Wedding"%>
+							<%=render 'report'%>
+					  <%when "Other"%>
+							<%=render 'report/reportAds'%>
+					  <%when "Advertising"%>
+							<%=render 'report/reportAds'%>
+					  <%when "Conference"%>
+							<%=render 'report'%>
+					 <%end%>				  	
+			    	
+	        	<% end %>	
+	 	 		<button class="btn btn-block" type="button" onclick="refresh_report_sum()">רענן טבלה</button> 	
 	 	 		
-	 	 	</div> 	
+	 	 	</div>
+
 		 	<div class="span9">
+		 		<form class="well well-small">
+				  	<div class="input-append">
+					  <input class="span*" id="appendedInputButton" type="email" type="text">
+					  <button class="btn" type="button" for="inputIcon"  onclick="sendReport()">שלח דוח בדואר אלקטרוני</button>					  	  
+					</div>
+				</form>		
 			 	<table class="table table-bordered table-hover">
 			  		<thead>
 		                <tr>                  
@@ -22,10 +69,28 @@
 		                </tr>
 				  	</thead>
 				  	<tbody id="full_report_table_body">
-		                <%=render 'invites_each'%>                
+			                <%=render 'invites_each'%>                
 			          </tbody>
-			  	</table>	
-		 	</div>	 	 	
+			  	</table>
+			  	
+
+		 	</div>		 	
+	 	 	
 	 	</div>
  	</div> 	
  </div> 
+
+</div>
+<script>document.getElementById("full_report_table_div_full").style.display = 'none'</script>
+
+<%if @user.orders.last.nil?%>			  		
+<script>
+document.getElementById("full_report_table_div_empty").style.display = 'block';
+document.getElementById("full_report_table_div_full").style.display = 'none';
+</script>
+<%else %>
+<script>
+document.getElementById("full_report_table_div_empty").style.display = 'none';
+document.getElementById("full_report_table_div_full").style.display = 'block';
+</script>
+<%end%>
