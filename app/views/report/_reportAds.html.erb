@@ -10,10 +10,6 @@
               	<%@invite_history.each do |elem|
               		if  (elem.arriving.nil?)
       					count_nil+=1
-              		elsif (elem.arriving == 1)
-        				count_yes+=1
-      				elsif  (elem.arriving == 2)
-      					count_not+=1		
 					elsif  (elem.arriving == -10)
       					count_redialing_5+=1		
   					elsif  (elem.arriving == -20)

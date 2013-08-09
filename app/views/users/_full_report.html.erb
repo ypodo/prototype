@@ -35,21 +35,20 @@
 	 	 		<!--Small report table on the right side-->
 	 	 		
 	 	 		<% if signed_in? %>	
-					<%case current_user.category.upcase%>
-			 		  <%when "BAR-MITZVAH"%>
-			 		  BAR-MITZVAH
+					<%case current_user.category%>
+			 		  <%when "Bar-mitzvah"%>			 		  
 							<%=render 'report'%>
-					  <%when "WEDDING"%>
-					  WEDDING
+					  <%when "Wedding"%>
+					  
 							<%=render 'report'%>
-					  <%when "OTHER"%>
-					  OTHER
+					  <%when "Other"%>
+					  
 							<%=render 'report/reportAds'%>
-					  <%when "ADVERTISING"%>
-					  ADVERTISING
+					  <%when "Advertising"%>
+					  
 							<%=render 'report/reportAds'%>
-					  <%when "CONFERENSE"%>
-					  CONFERENSE
+					  <%when "Conference"%>
+					  
 							<%=render 'report'%>
 					 <%end%>				  	
 			    	

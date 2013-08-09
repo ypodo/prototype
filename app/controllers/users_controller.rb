@@ -239,16 +239,16 @@ require 'fastthread'
     #report and result
     current_token=current_user.orders.last.token
     @invite_history=current_user.inviteHistorys.where(:token=>current_token)
-    case current_user.category.upcase
-      when "BAR-MITZVAH"            
+    case current_user.category
+      when "Bar-mitzvah"            
         render :partial => 'users/report', :object => @invite_history # litle table with short description
-      when "WEDDING"            
+      when "Wedding"            
         render :partial => 'users/report', :object => @invite_history # litle table with short description
-      when "OTHER"            
+      when "Other"            
+        render :partial => 'users/report', :object => @invite_history # litle table with short description
+      when "Advertising"            
         render :partial => 'report/reportAds', :object => @invite_history # litle table with short description
-      when "ADVERTISING"            
-        render :partial => 'report/reportAds', :object => @invite_history # litle table with short description
-      when "CONFERENSE"            
+      when "Conference"            
         render :partial => 'users/report', :object => @invite_history # litle table with short description
      end
        
