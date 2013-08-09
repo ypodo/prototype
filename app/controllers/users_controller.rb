@@ -134,6 +134,9 @@ require 'fastthread'
     #used in _invite.html.erb
     @new_invite=Invite.new  
     
+    if current_user.audio_file[0].nil?
+      #to do
+    end
     #report and result
     if !@user.orders.last.nil?
       current_token=@user.orders.last.token
