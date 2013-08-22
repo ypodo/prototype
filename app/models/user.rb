@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   validates :name,  :presence => true, :length => { :maximum => 50 }
   validates :email, :presence => true
   validates :password, :presence => true, :confirmation => true, :length => { :within => 2..40 }
-  before_create :encrypt_password, :on_create
+  before_create :encrypt_password#, :on_create
   
   cattr_accessor :skip_callbacks
   before_save :encrypt_password, :unless => :skip_callbacks
